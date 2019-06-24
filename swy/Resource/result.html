@@ -1,0 +1,126 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=GB18030">
+            <title>发生错误</title>
+            <script type="text/javascript">
+                function backToPre(){
+                    if(history.length>0){
+                        history.back(-1);
+                    }else{
+                        window.close();
+                    }
+                }
+            </script>
+            </head>
+    <body>
+        <h2 style="text-align: center">
+            发生错误
+        </h2>
+        <center>
+            
+            错误信息：
+            <font style="color: red; font-weight: bold;">对不起,您没有权限访问!</font>
+            <div style="display: none">
+                org.acegisecurity.AccessDeniedException: 对不起,您没有权限访问!
+                at com.focustech.oss2008.acegi.vote.UnDenyBased.decide(UnDenyBased.java:39)
+                at sun.reflect.GeneratedMethodAccessor840.invoke(Unknown Source)
+                at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+                at java.lang.reflect.Method.invoke(Method.java:597)
+                at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:310)
+                at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:182)
+                at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:149)
+                at com.focustech.oss2008.service.impl.LogInterceptor.invoke(LogInterceptor.java:53)
+                at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:171)
+                at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:90)
+                at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:171)
+                at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:204)
+                at com.sun.proxy.$Proxy690.decide(Unknown Source)
+                at org.acegisecurity.intercept.AbstractSecurityInterceptor.beforeInvocation(AbstractSecurityInterceptor.java:323)
+                at org.acegisecurity.intercept.web.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:104)
+                at org.acegisecurity.intercept.web.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:72)
+                at org.acegisecurity.util.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:275)
+                at org.acegisecurity.ui.AbstractProcessingFilter.doFilter(AbstractProcessingFilter.java:271)
+                at sun.reflect.GeneratedMethodAccessor65.invoke(Unknown Source)
+                at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+                at java.lang.reflect.Method.invoke(Method.java:597)
+                at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:310)
+                at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:182)
+                at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:149)
+                at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:90)
+                at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:171)
+                at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:204)
+                at com.sun.proxy.$Proxy686.doFilter(Unknown Source)
+                at org.acegisecurity.util.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:275)
+                at com.focustech.oss2008.acegi.filter.OssSinglePointUserFilter.doFilter(OssSinglePointUserFilter.java:117)
+                at sun.reflect.GeneratedMethodAccessor65.invoke(Unknown Source)
+                at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+                at java.lang.reflect.Method.invoke(Method.java:597)
+                at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:310)
+                at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:182)
+                at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:149)
+                at com.focustech.oss2008.service.impl.LogInterceptor.invoke(LogInterceptor.java:53)
+                at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:171)
+                at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:90)
+                at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:171)
+                at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:204)
+                at com.sun.proxy.$Proxy684.doFilter(Unknown Source)
+                at org.acegisecurity.util.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:275)
+                at org.acegisecurity.ui.rememberme.RememberMeProcessingFilter.doFilter(RememberMeProcessingFilter.java:135)
+                at org.acegisecurity.util.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:275)
+                at com.focustech.oss2008.acegi.filter.OssExceptionTranslationFilter.doFilter(OssExceptionTranslationFilter.java:52)
+                at sun.reflect.GeneratedMethodAccessor65.invoke(Unknown Source)
+                at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+                at java.lang.reflect.Method.invoke(Method.java:597)
+                at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:310)
+                at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:182)
+                at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:149)
+                at com.focustech.oss2008.service.impl.LogInterceptor.invoke(LogInterceptor.java:53)
+                at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:171)
+                at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:90)
+                at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:171)
+                at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:204)
+                at com.sun.proxy.$Proxy684.doFilter(Unknown Source)
+                at org.acegisecurity.util.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:275)
+                at org.acegisecurity.ui.logout.LogoutFilter.doFilter(LogoutFilter.java:110)
+                at org.acegisecurity.util.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:275)
+                at com.focustech.oss2008.acegi.filter.OssHttpSessionContextIntegrationFilter.doFilter(OssHttpSessionContextIntegrationFilter.java:71)
+                at sun.reflect.GeneratedMethodAccessor65.invoke(Unknown Source)
+                at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+                at java.lang.reflect.Method.invoke(Method.java:597)
+                at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:310)
+                at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:182)
+                at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:149)
+                at com.focustech.oss2008.service.impl.LogInterceptor.invoke(LogInterceptor.java:53)
+                at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:171)
+                at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:90)
+                at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:171)
+                at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:204)
+                at com.sun.proxy.$Proxy683.doFilter(Unknown Source)
+                at org.acegisecurity.util.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:275)
+                at org.acegisecurity.util.FilterChainProxy.doFilter(FilterChainProxy.java:149)
+                at org.acegisecurity.util.FilterToBeanProxy.doFilter(FilterToBeanProxy.java:98)
+                at com.caucho.server.dispatch.FilterFilterChain.doFilter(FilterFilterChain.java:70)
+                at com.focustech.oss2008.web.filter.OssOpenSessionInViewFilter.doFilterInternal(OssOpenSessionInViewFilter.java:92)
+                at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:75)
+                at com.caucho.server.dispatch.FilterFilterChain.doFilter(FilterFilterChain.java:70)
+                at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:96)
+                at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:75)
+                at com.caucho.server.dispatch.FilterFilterChain.doFilter(FilterFilterChain.java:70)
+                at com.caucho.server.webapp.WebAppFilterChain.doFilter(WebAppFilterChain.java:173)
+                at com.caucho.server.dispatch.ServletInvocation.service(ServletInvocation.java:229)
+                at com.caucho.server.hmux.HmuxRequest.handleRequest(HmuxRequest.java:420)
+                at com.caucho.server.port.TcpConnection.run(TcpConnection.java:514)
+                at com.caucho.util.ThreadPool.runTasks(ThreadPool.java:520)
+                at com.caucho.util.ThreadPool.run(ThreadPool.java:442)
+                at java.lang.Thread.run(Thread.java:662)
+                
+            </div>
+            
+        </center>
+        <p style="text-align: center">
+        <a href="javascript:backToPre();">返回</a>
+        </p>
+    </body>
+</html>

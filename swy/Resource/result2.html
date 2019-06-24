@@ -1,0 +1,62 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=GB18030">
+            <meta http-equiv="pragma" content="no-cache">
+                </head>
+    <body>
+        <SCRIPT language="javascript">
+            /*如果提示信息不为空,则弹出提示信息框*/
+            if(true)
+            alert("将该客户加为自己的私有客户");
+            /*如果转发链接存在,则立即转发到相应页面*/
+            if(true)
+            window.location="customer.do?method=details&token=l4KVbKv8NG&process=close&customerId=17025224";
+            /*如果没有转发链接，则认为是EXT弹出框，并要求关闭该弹出框*/
+            else
+            {
+                /*
+                 if(window.parent.Ext.getCmp('op_win2')!=null)//如果弹出框的弹出框存在,则只关闭弹出框的弹出框
+                 window.parent.Ext.getCmp('op_win2').close;
+                 else
+                 window.parent.Ext.getCmp('op_win').close;
+                 window.parent.location.reload();
+                 */
+                if(parent == top) {
+                    try{
+                        parent.closeDWindowByModule();
+                    }catch(e){
+                        if (window.opener) {
+                            if (window.opener.opener) {
+                                window.opener.opener.location.reload();
+                                window.opener = null;
+                                parent.open('', '_top');
+                                window.close();
+                                window.parent.opener = null;
+                                parent.parent.open('', '_top');
+                                window.parent.close();
+                            } else {
+                                window.opener.location.reload();
+                                window.opener = null;
+                                parent.open('', '_top');
+                                window.close();
+                            }
+                        } else {
+                            parent.opener = null;
+                            parent.open('','_top');
+                            parent.close();
+                        }
+                    }
+                } else if(parent && parent.closeDWindowByModule) {
+                    //window.parent.location.reload();
+                    parent.closeDWindowByModule();
+                }
+                else{
+                    window.history.back(-1);
+                }
+            }
+        </SCRIPT>
+    </body>
+</html>

@@ -1,0 +1,16 @@
+//
+//  swy.pch
+//  swy
+//
+//  Created by panyuwen on 2019/6/21.
+//  Copyright © 2019 panyuwen. All rights reserved.
+//
+
+#ifndef swy_pch
+#define swy_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+#import "define.h"
+
+#endif /* swy_pch */
