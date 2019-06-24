@@ -187,7 +187,8 @@
 		334F9B8D2282D409000652CD /* swy */ = {
 			isa = PBXGroup;
 			children = (
-				33ED6D4422B7297D00DE3003 /* Resource */,
+				33ED6E4622C076CB00DE3003 /* base */,
+				33ED6E4522C0766F00DE3003 /* login */,
 				33ED6D4322B7295D00DE3003 /* customerList */,
 				33ED6D4222B7294B00DE3003 /* setting */,
 				33D1677722B1E824003EEE4F /* SDWebImage */,
@@ -195,24 +196,12 @@
 				334F9B8F2282D409000652CD /* AppDelegate.m */,
 				33ED6DDA22BA22B000DE3003 /* swyManage.h */,
 				33ED6DDB22BA22B000DE3003 /* swyManage.m */,
-				33ED6D9A22B8718100DE3003 /* backArrow.h */,
-				33ED6D9B22B8718100DE3003 /* backArrow.m */,
-				87E76EA722AEA35A005E4EFE /* loginViewController.h */,
-				87E76EA822AEA35A005E4EFE /* loginViewController.m */,
-				87E76EA922AEA35A005E4EFE /* loginViewController.xib */,
-				33D1673C22B0F1A1003EEE4F /* launchViewController.h */,
-				33D1673D22B0F1A1003EEE4F /* launchViewController.m */,
-				33D1673E22B0F1A1003EEE4F /* launchViewController.xib */,
-				33D1670522B0CEEE003EEE4F /* NSMutableURLRequest+header.h */,
-				33D1670622B0CEEE003EEE4F /* NSMutableURLRequest+header.m */,
 				33ED6DE822BA547500DE3003 /* launchView.xib */,
-				33ED6D4822B72A4800DE3003 /* baseViewController.h */,
-				33ED6D4922B72A4800DE3003 /* baseViewController.m */,
 				33ED6E4122BCA3C600DE3003 /* define.h */,
 				33ED6E4022BCA3B100DE3003 /* swy.pch */,
-				334F9B972282D40B000652CD /* Assets.xcassets */,
-				334F9B9C2282D40B000652CD /* Info.plist */,
 				334F9B9D2282D40B000652CD /* main.m */,
+				334F9B9C2282D40B000652CD /* Info.plist */,
+				33ED6D4422B7297D00DE3003 /* Resource */,
 			);
 			path = swy;
 			sourceTree = "<group>";
@@ -306,6 +295,7 @@
 		33ED6D4422B7297D00DE3003 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				334F9B972282D40B000652CD /* Assets.xcassets */,
 				33ED6DE422BA462800DE3003 /* IMG_6133 2.JPG */,
 				33ED6DDD22BA2DF200DE3003 /* WechatIMG45.jpeg */,
 				33ED6D9822B86EC100DE3003 /* WechatIMG43.jpeg */,
@@ -317,6 +307,32 @@
 				33CA54C722AFA88700C1F8D9 /* customerList.html */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		33ED6E4522C0766F00DE3003 /* login */ = {
+			isa = PBXGroup;
+			children = (
+				87E76EA722AEA35A005E4EFE /* loginViewController.h */,
+				87E76EA822AEA35A005E4EFE /* loginViewController.m */,
+				87E76EA922AEA35A005E4EFE /* loginViewController.xib */,
+				33D1673C22B0F1A1003EEE4F /* launchViewController.h */,
+				33D1673D22B0F1A1003EEE4F /* launchViewController.m */,
+				33D1673E22B0F1A1003EEE4F /* launchViewController.xib */,
+			);
+			path = login;
+			sourceTree = "<group>";
+		};
+		33ED6E4622C076CB00DE3003 /* base */ = {
+			isa = PBXGroup;
+			children = (
+				33D1670522B0CEEE003EEE4F /* NSMutableURLRequest+header.h */,
+				33D1670622B0CEEE003EEE4F /* NSMutableURLRequest+header.m */,
+				33ED6D9A22B8718100DE3003 /* backArrow.h */,
+				33ED6D9B22B8718100DE3003 /* backArrow.m */,
+				33ED6D4822B72A4800DE3003 /* baseViewController.h */,
+				33ED6D4922B72A4800DE3003 /* baseViewController.m */,
+			);
+			path = base;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
