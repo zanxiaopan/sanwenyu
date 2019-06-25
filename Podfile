@@ -9,7 +9,7 @@ target 'swy' do
 
   # Pods for swy
 pod 'AFNetworking', '~> 3.0'
-pod 'TFHpple', '~> 2.0.0'
+#pod 'hpple', '~> 0.2.0'
 pod 'MBProgressHUD', '~> 1.1.0'
 pod 'MMDrawerController', '~> 0.6.0'
 pod 'MJRefresh', '~> 3.1.15'
