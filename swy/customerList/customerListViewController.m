@@ -486,11 +486,15 @@ didCompleteWithError:(nullable NSError *)error
         cell.customIDLabel.alpha = 1.0;
         cell.industoryName.alpha = 1.0;
     }else if (elementAll.hasKeyWord) {//指定公司中的关键字
+        cell.customIDLabel.textColor = [UIColor blackColor];
+        cell.industoryName.textColor = [UIColor blackColor];
         cell.customIDLabel.font = [UIFont boldSystemFontOfSize:15];
         cell.industoryName.font = [UIFont boldSystemFontOfSize:15];
         cell.customIDLabel.alpha = 0.7;
         cell.industoryName.alpha = 0.7;
     }else{
+        cell.customIDLabel.textColor = [UIColor blackColor];
+        cell.industoryName.textColor = [UIColor blackColor];
         cell.customIDLabel.font = [UIFont systemFontOfSize:15];
         cell.industoryName.font = [UIFont systemFontOfSize:15];
         cell.customIDLabel.alpha = 0.7;
