@@ -50,6 +50,9 @@
 		33ED6DE522BA462800DE3003 /* IMG_6133 2.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 33ED6DE422BA462800DE3003 /* IMG_6133 2.JPG */; };
 		33ED6DE922BA547500DE3003 /* launchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33ED6DE822BA547500DE3003 /* launchView.xib */; };
 		33ED6E4422BF172000DE3003 /* webViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33ED6E4322BF172000DE3003 /* webViewController.m */; };
+		33ED6E5822C1EA8E00DE3003 /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = 33ED6E5322C1EA8E00DE3003 /* TFHpple.m */; };
+		33ED6E5922C1EA8E00DE3003 /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 33ED6E5622C1EA8E00DE3003 /* TFHppleElement.m */; };
+		33ED6E5A22C1EA8E00DE3003 /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 33ED6E5722C1EA8E00DE3003 /* XPathQuery.m */; };
 		6EADDE334D7B48A539B200D5 /* libPods-swy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 502B5C77CCAFAA37D465305C /* libPods-swy.a */; };
 		87E76EA522AE9FAA005E4EFE /* customerListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E76EA322AE9FAA005E4EFE /* customerListViewController.m */; };
 		87E76EA622AE9FAA005E4EFE /* customerListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87E76EA422AE9FAA005E4EFE /* customerListViewController.xib */; };
@@ -133,6 +136,12 @@
 		33ED6E4122BCA3C600DE3003 /* define.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = define.h; sourceTree = "<group>"; };
 		33ED6E4222BF172000DE3003 /* webViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = webViewController.h; sourceTree = "<group>"; };
 		33ED6E4322BF172000DE3003 /* webViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = webViewController.m; sourceTree = "<group>"; };
+		33ED6E5222C1EA8E00DE3003 /* TFHppleElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHppleElement.h; sourceTree = "<group>"; };
+		33ED6E5322C1EA8E00DE3003 /* TFHpple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHpple.m; sourceTree = "<group>"; };
+		33ED6E5422C1EA8E00DE3003 /* XPathQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPathQuery.h; sourceTree = "<group>"; };
+		33ED6E5522C1EA8E00DE3003 /* TFHpple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHpple.h; sourceTree = "<group>"; };
+		33ED6E5622C1EA8E00DE3003 /* TFHppleElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHppleElement.m; sourceTree = "<group>"; };
+		33ED6E5722C1EA8E00DE3003 /* XPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPathQuery.m; sourceTree = "<group>"; };
 		502B5C77CCAFAA37D465305C /* libPods-swy.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-swy.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7099768B4DCDB07B1B11898D /* Pods-swy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swy.release.xcconfig"; path = "Pods/Target Support Files/Pods-swy/Pods-swy.release.xcconfig"; sourceTree = "<group>"; };
 		87E76EA222AE9FAA005E4EFE /* customerListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = customerListViewController.h; sourceTree = "<group>"; };
@@ -187,6 +196,7 @@
 		334F9B8D2282D409000652CD /* swy */ = {
 			isa = PBXGroup;
 			children = (
+				33ED6E5122C1EA8E00DE3003 /* hpple */,
 				33ED6E4622C076CB00DE3003 /* base */,
 				33ED6E4522C0766F00DE3003 /* login */,
 				33ED6D4322B7295D00DE3003 /* customerList */,
@@ -333,6 +343,19 @@
 				33ED6D4922B72A4800DE3003 /* baseViewController.m */,
 			);
 			path = base;
+			sourceTree = "<group>";
+		};
+		33ED6E5122C1EA8E00DE3003 /* hpple */ = {
+			isa = PBXGroup;
+			children = (
+				33ED6E5222C1EA8E00DE3003 /* TFHppleElement.h */,
+				33ED6E5322C1EA8E00DE3003 /* TFHpple.m */,
+				33ED6E5422C1EA8E00DE3003 /* XPathQuery.h */,
+				33ED6E5522C1EA8E00DE3003 /* TFHpple.h */,
+				33ED6E5622C1EA8E00DE3003 /* TFHppleElement.m */,
+				33ED6E5722C1EA8E00DE3003 /* XPathQuery.m */,
+			);
+			path = hpple;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -484,6 +507,7 @@
 			files = (
 				33ED6D4D22B72BEB00DE3003 /* sortAndFilterViewController.m in Sources */,
 				33ED6DE222BA356D00DE3003 /* heightSetCell.m in Sources */,
+				33ED6E5A22C1EA8E00DE3003 /* XPathQuery.m in Sources */,
 				33D1679F22B1E824003EEE4F /* SDWebImagePrefetcher.m in Sources */,
 				33D1679822B1E824003EEE4F /* SDWebImageManager.m in Sources */,
 				33ED6D9C22B8718100DE3003 /* backArrow.m in Sources */,
@@ -497,6 +521,7 @@
 				33D1679E22B1E824003EEE4F /* SDWebImageCompat.m in Sources */,
 				33D167A322B1E824003EEE4F /* UIImageView+WebCache.m in Sources */,
 				33ED6D4A22B72A4800DE3003 /* baseViewController.m in Sources */,
+				33ED6E5922C1EA8E00DE3003 /* TFHppleElement.m in Sources */,
 				33D1679C22B1E824003EEE4F /* UIImage+GIF.m in Sources */,
 				33D1670722B0CEEE003EEE4F /* NSMutableURLRequest+header.m in Sources */,
 				33D167A022B1E824003EEE4F /* SDImageCache.m in Sources */,
@@ -507,6 +532,7 @@
 				33D1679922B1E824003EEE4F /* SDWebImageDecoder.m in Sources */,
 				33D167A522B1E824003EEE4F /* UIButton+WebCache.m in Sources */,
 				33CA54CC22AFB08C00C1F8D9 /* customerInfoCell.m in Sources */,
+				33ED6E5822C1EA8E00DE3003 /* TFHpple.m in Sources */,
 				334F9B902282D409000652CD /* AppDelegate.m in Sources */,
 				33D167A222B1E824003EEE4F /* NSData+ImageContentType.m in Sources */,
 				33D1679B22B1E824003EEE4F /* SDWebImageDownloader.m in Sources */,
