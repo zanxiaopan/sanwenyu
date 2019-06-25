@@ -53,6 +53,7 @@
 		33ED6E5822C1EA8E00DE3003 /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = 33ED6E5322C1EA8E00DE3003 /* TFHpple.m */; };
 		33ED6E5922C1EA8E00DE3003 /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 33ED6E5622C1EA8E00DE3003 /* TFHppleElement.m */; };
 		33ED6E5A22C1EA8E00DE3003 /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 33ED6E5722C1EA8E00DE3003 /* XPathQuery.m */; };
+		33ED6E6122C20EF200DE3003 /* TFHppleElement+swy.m in Sources */ = {isa = PBXBuildFile; fileRef = 33ED6E6022C20EF200DE3003 /* TFHppleElement+swy.m */; };
 		6EADDE334D7B48A539B200D5 /* libPods-swy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 502B5C77CCAFAA37D465305C /* libPods-swy.a */; };
 		87E76EA522AE9FAA005E4EFE /* customerListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E76EA322AE9FAA005E4EFE /* customerListViewController.m */; };
 		87E76EA622AE9FAA005E4EFE /* customerListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87E76EA422AE9FAA005E4EFE /* customerListViewController.xib */; };
@@ -142,6 +143,8 @@
 		33ED6E5522C1EA8E00DE3003 /* TFHpple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHpple.h; sourceTree = "<group>"; };
 		33ED6E5622C1EA8E00DE3003 /* TFHppleElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHppleElement.m; sourceTree = "<group>"; };
 		33ED6E5722C1EA8E00DE3003 /* XPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPathQuery.m; sourceTree = "<group>"; };
+		33ED6E5F22C20EF200DE3003 /* TFHppleElement+swy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TFHppleElement+swy.h"; sourceTree = "<group>"; };
+		33ED6E6022C20EF200DE3003 /* TFHppleElement+swy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "TFHppleElement+swy.m"; sourceTree = "<group>"; };
 		502B5C77CCAFAA37D465305C /* libPods-swy.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-swy.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7099768B4DCDB07B1B11898D /* Pods-swy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swy.release.xcconfig"; path = "Pods/Target Support Files/Pods-swy/Pods-swy.release.xcconfig"; sourceTree = "<group>"; };
 		87E76EA222AE9FAA005E4EFE /* customerListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = customerListViewController.h; sourceTree = "<group>"; };
@@ -206,6 +209,8 @@
 				334F9B8F2282D409000652CD /* AppDelegate.m */,
 				33ED6DDA22BA22B000DE3003 /* swyManage.h */,
 				33ED6DDB22BA22B000DE3003 /* swyManage.m */,
+				33ED6E5F22C20EF200DE3003 /* TFHppleElement+swy.h */,
+				33ED6E6022C20EF200DE3003 /* TFHppleElement+swy.m */,
 				33ED6DE822BA547500DE3003 /* launchView.xib */,
 				33ED6E4122BCA3C600DE3003 /* define.h */,
 				33ED6E4022BCA3B100DE3003 /* swy.pch */,
@@ -532,6 +537,7 @@
 				33D1679922B1E824003EEE4F /* SDWebImageDecoder.m in Sources */,
 				33D167A522B1E824003EEE4F /* UIButton+WebCache.m in Sources */,
 				33CA54CC22AFB08C00C1F8D9 /* customerInfoCell.m in Sources */,
+				33ED6E6122C20EF200DE3003 /* TFHppleElement+swy.m in Sources */,
 				33ED6E5822C1EA8E00DE3003 /* TFHpple.m in Sources */,
 				334F9B902282D409000652CD /* AppDelegate.m in Sources */,
 				33D167A222B1E824003EEE4F /* NSData+ImageContentType.m in Sources */,
@@ -675,7 +681,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = sanwenyu.DiyForSSH.com;
+				PRODUCT_BUNDLE_IDENTIFIER = sanwenyu1.DiyForSSH.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -702,7 +708,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = sanwenyu.DiyForSSH.com;
+				PRODUCT_BUNDLE_IDENTIFIER = sanwenyu1.DiyForSSH.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;

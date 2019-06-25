@@ -14,6 +14,7 @@
 #import "settingViewController.h"
 #import "swyManage.h"
 #import "MJRefresh.h"
+#import "TFHppleElement+swy.h"
 
 #define isDevlopping NO
 
@@ -475,8 +476,26 @@ didCompleteWithError:(nullable NSError *)error
     TFHppleElement *elemnent1 = [[array[3] searchWithXPathQuery:@"//a"] objectAtIndex:0];
     cell.industoryName.text = elemnent1.content;
     //客户编号
-    TFHppleElement *elemnent2 = array[1];
+    TFHppleElement *elemnent2 = array[7];
     cell.customIDLabel.text = elemnent2.content;
+    if (elementAll.isExpectedLastModify) {//指定修改人
+        cell.customIDLabel.textColor = [UIColor redColor];
+        cell.industoryName.textColor = [UIColor redColor];
+        cell.customIDLabel.font = [UIFont boldSystemFontOfSize:15];
+        cell.industoryName.font = [UIFont boldSystemFontOfSize:15];
+        cell.customIDLabel.alpha = 1.0;
+        cell.industoryName.alpha = 1.0;
+    }else if (elementAll.hasKeyWord) {//指定公司中的关键字
+        cell.customIDLabel.font = [UIFont boldSystemFontOfSize:15];
+        cell.industoryName.font = [UIFont boldSystemFontOfSize:15];
+        cell.customIDLabel.alpha = 0.7;
+        cell.industoryName.alpha = 0.7;
+    }else{
+        cell.customIDLabel.font = [UIFont systemFontOfSize:15];
+        cell.industoryName.font = [UIFont systemFontOfSize:15];
+        cell.customIDLabel.alpha = 0.7;
+        cell.industoryName.alpha = 0.7;
+    }
     return cell;
 }
 
@@ -493,33 +512,25 @@ didCompleteWithError:(nullable NSError *)error
 
 - (void)sortList
 {
-    /*if ([swyManage manage].screenKeyWord.length) {
-        NSArray *words = [[swyManage manage].screenKeyWord componentsSeparatedByString:@"/"];
-        NSMutableArray *mutableArr = [_dataSource mutableCopy];
-        NSMutableArray *mutableArr2 = [_dataSource mutableCopy];
-        [mutableArr enumerateObjectsUsingBlock:^(TFHppleElement  *_Nonnull elementAll, NSUInteger idx, BOOL * _Nonnull stop) {
-            NSArray<TFHppleElement *> *array = [elementAll searchWithXPathQuery:@"//td"];//10个数据
-            NSString *industoryName = [array[3] content];;
-            if ([self isHaveString:industoryName inArray:words]) {
-                TFHppleElement *temp = mutableArr2[0];
-                mutableArr2[0] = elementAll;
-                mutableArr2[idx] = temp;
-            }
-        }];
-        _dataSource = [NSArray arrayWithArray:mutableArr];
-        return;
-        
-    }*/
+    //筛选公司
     NSArray *words = [[swyManage manage].screenKeyWord componentsSeparatedByString:@"/"];
-   self.dataSource =(NSMutableArray *)[[self.dataSource reverseObjectEnumerator] allObjects];
+    NSArray *modifyPersons = [[swyManage manage].sortWordLastModifyPerson componentsSeparatedByString:@"/"];
+    NSInteger personCount = 0;
+    self.dataSource =(NSMutableArray *)[[self.dataSource reverseObjectEnumerator] allObjects];
     NSMutableArray *mutableArr = [NSMutableArray array];
     for (TFHppleElement  *obj in self.dataSource) {
         NSArray<TFHppleElement *> *array = [obj searchWithXPathQuery:@"//td"];//10个数据
         NSString *industoryName = [array[3] content];
-        if ([self isHaveString:industoryName inArray:words]) {
+        NSString *personName = [array[7] content];
+        if ([self isHaveString:personName inArray:modifyPersons]) {
+            obj.isExpectedLastModify = YES;
             [mutableArr insertObject:obj atIndex:0];
+            personCount = personCount+1;
+        }else if ([self isHaveString:industoryName inArray:words]) {
+            obj.hasKeyWord = YES;
+            [mutableArr insertObject:obj atIndex:personCount];
         }else{
-             [mutableArr addObject:obj];
+            [mutableArr addObject:obj];
         }
     }
     self.dataSource = mutableArr;

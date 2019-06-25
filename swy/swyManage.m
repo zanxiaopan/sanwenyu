@@ -104,6 +104,20 @@
     }
 }
 
+- (void)setSortWordLastModifyPerson:(NSString *)sortWordLastModifyPerson
+{
+    [[NSUserDefaults standardUserDefaults] setObject:sortWordLastModifyPerson forKey:@"sortWordLastModifyPerson"];
+}
+
+- (NSString *)sortWordLastModifyPerson
+{
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"sortWordLastModifyPerson"]) {
+        return [[NSUserDefaults standardUserDefaults] objectForKey:@"sortWordLastModifyPerson"];
+    }else{
+        return @"";
+    }
+}
+
 - (NSDateFormatter *)dateFormatter
 {
     if (!_dateFormatter) {

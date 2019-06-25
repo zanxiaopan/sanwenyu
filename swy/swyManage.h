@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic ,assign) BOOL autoRefreshList;
 
 @property (nonatomic ,copy) NSString *screenKeyWord;
+@property (nonatomic ,copy) NSString *sortWordLastModifyPerson;
 
 @property (strong, nonatomic) MMDrawerController *drawerController;
 @end

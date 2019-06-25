@@ -13,6 +13,7 @@
 @interface sortAndFilterViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic ,strong) UITableView      *tableView;
 @property (nonatomic ,strong) UITextField      *screenKeyWordTF;
+@property (nonatomic ,strong) UITextField      *lastModifyPersonTF;
 @end
 
 @implementation sortAndFilterViewController
@@ -27,6 +28,7 @@
 - (void)backAction
 {
     [swyManage manage].screenKeyWord = self.screenKeyWordTF.text;
+    [swyManage manage].sortWordLastModifyPerson = self.lastModifyPersonTF.text;
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -43,11 +45,41 @@
     return _screenKeyWordTF;
 }
 
+- (UITextField *)lastModifyPersonTF
+{
+    if (!_lastModifyPersonTF) {
+        _lastModifyPersonTF = [[UITextField alloc] initWithFrame:CGRectMake(20, 0, ScreenWidth-40, 40)];
+        _lastModifyPersonTF.borderStyle = UITextBorderStyleNone;
+        _lastModifyPersonTF.placeholder = @"输入最后修改人 之间以/分开";
+        if ([swyManage manage].sortWordLastModifyPerson) {
+            _lastModifyPersonTF.text = [swyManage manage].sortWordLastModifyPerson;
+        }
+    }
+    return _lastModifyPersonTF;
+}
+
 - (UITableViewCell *)keyWordInputCell
 {
     UITableViewCell *cell = [UITableViewCell new];
     cell.selectionStyle =UITableViewCellSelectionStyleNone;
     [cell.contentView addSubview:self.screenKeyWordTF];
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(20, 39, ScreenWidth-40, 1)];
+    line.backgroundColor = [UIColor grayColor];
+    line.alpha = 0.5;
+    [cell.contentView addSubview:line];
+    return cell;
+    
+}
+
+- (UITableViewCell *)lastModifyInputCell
+{
+    UITableViewCell *cell = [UITableViewCell new];
+    cell.selectionStyle =UITableViewCellSelectionStyleNone;
+    [cell.contentView addSubview:self.lastModifyPersonTF];
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(20, 39, ScreenWidth-40, 1)];
+    line.backgroundColor = [UIColor grayColor];
+    line.alpha = 0.5;
+    [cell.contentView addSubview:line];
     return cell;
     
 }
@@ -69,7 +101,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    return 4;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -83,7 +115,19 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == 0) {
+        UITableViewCell *cell = [UITableViewCell new];
+        cell.textLabel.text = @"优先展示包含以下公司名的公司";
+        cell.textLabel.font = [UIFont boldSystemFontOfSize:20];
+        return cell;
+    }else if (indexPath.row == 1) {
         return [self keyWordInputCell];
+    }else if (indexPath.row == 2) {
+        UITableViewCell *cell = [UITableViewCell new];
+        cell.textLabel.text = @"最后修改人优先展示";
+        cell.textLabel.font = [UIFont boldSystemFontOfSize:20];
+        return cell;
+    }else if (indexPath.row == 3) {
+        return [self lastModifyInputCell];
     }
     UITableViewCell *cell = [UITableViewCell new];
     cell.selectionStyle =UITableViewCellSelectionStyleNone;
