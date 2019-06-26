@@ -475,26 +475,19 @@ didCompleteWithError:(nullable NSError *)error
     //公司
     TFHppleElement *elemnent1 = [[array[3] searchWithXPathQuery:@"//a"] objectAtIndex:0];
     cell.industoryName.text = elemnent1.content;
-    //客户编号
-    TFHppleElement *elemnent2 = array[7];
-    cell.customIDLabel.text = elemnent2.content;
-    if (elementAll.isExpectedLastModify) {//指定修改人
-        cell.customIDLabel.textColor = [UIColor redColor];
-        cell.industoryName.textColor = [UIColor redColor];
+    //客户是否注册
+    cell.customIDLabel.text = elementAll.hasMicID ? @"已注册":@"未注册";
+    if (elementAll.hasKeyWord && elementAll.hasMicID) {//指定公司中的关键字
         cell.customIDLabel.font = [UIFont boldSystemFontOfSize:15];
         cell.industoryName.font = [UIFont boldSystemFontOfSize:15];
         cell.customIDLabel.alpha = 1.0;
         cell.industoryName.alpha = 1.0;
-    }else if (elementAll.hasKeyWord) {//指定公司中的关键字
-        cell.customIDLabel.textColor = [UIColor blackColor];
-        cell.industoryName.textColor = [UIColor blackColor];
-        cell.customIDLabel.font = [UIFont boldSystemFontOfSize:15];
-        cell.industoryName.font = [UIFont boldSystemFontOfSize:15];
-        cell.customIDLabel.alpha = 0.7;
-        cell.industoryName.alpha = 0.7;
-    }else{
-        cell.customIDLabel.textColor = [UIColor blackColor];
-        cell.industoryName.textColor = [UIColor blackColor];
+    }else if (!elementAll.hasKeyWord && elementAll.hasMicID){
+        cell.customIDLabel.font = [UIFont systemFontOfSize:15];
+        cell.industoryName.font = [UIFont systemFontOfSize:15];
+        cell.customIDLabel.alpha = 1.0;
+        cell.industoryName.alpha = 1.0;
+    }else {
         cell.customIDLabel.font = [UIFont systemFontOfSize:15];
         cell.industoryName.font = [UIFont systemFontOfSize:15];
         cell.customIDLabel.alpha = 0.7;
@@ -518,23 +511,31 @@ didCompleteWithError:(nullable NSError *)error
 {
     //筛选公司
     NSArray *words = [[swyManage manage].screenKeyWord componentsSeparatedByString:@"/"];
-    NSArray *modifyPersons = [[swyManage manage].sortWordLastModifyPerson componentsSeparatedByString:@"/"];
-    NSInteger personCount = 0;
+    NSInteger hasMicCount = 0;
+    NSInteger hasKeyWordNOIdCount = 0;
     self.dataSource =(NSMutableArray *)[[self.dataSource reverseObjectEnumerator] allObjects];
     NSMutableArray *mutableArr = [NSMutableArray array];
     for (TFHppleElement  *obj in self.dataSource) {
         NSArray<TFHppleElement *> *array = [obj searchWithXPathQuery:@"//td"];//10个数据
         NSString *industoryName = [array[3] content];
-        NSString *personName = [array[7] content];
-        if ([self isHaveString:personName inArray:modifyPersons]) {
-            obj.isExpectedLastModify = YES;
-            [mutableArr insertObject:obj atIndex:0];
-            personCount = personCount+1;
-        }else if ([self isHaveString:industoryName inArray:words]) {
-            obj.hasKeyWord = YES;
-            [mutableArr insertObject:obj atIndex:personCount];
+        NSString *micID = [array[2] content];
+        obj.hasMicID = micID && ![micID isEqualToString:@"N/A"];
+        obj.hasKeyWord = [self isHaveString:industoryName inArray:words];
+        if (obj.hasMicID) {
+            if (obj.hasKeyWord) {
+                [mutableArr insertObject:obj atIndex:0];
+                hasMicCount = hasMicCount+1;
+            }else {
+                [mutableArr insertObject:obj atIndex:hasMicCount];
+                hasMicCount = hasMicCount +1;
+            }
         }else{
-            [mutableArr addObject:obj];
+            if (obj.hasKeyWord) {
+                [mutableArr insertObject:obj atIndex:hasMicCount+hasKeyWordNOIdCount];
+                hasKeyWordNOIdCount = hasKeyWordNOIdCount+1;
+            }else {
+                [mutableArr addObject:obj];
+            }
         }
     }
     self.dataSource = mutableArr;

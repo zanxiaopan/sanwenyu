@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface TFHppleElement (swy)
 @property (nonatomic, assign) BOOL hasKeyWord;
 @property (nonatomic, assign) BOOL isExpectedLastModify;
+@property (nonatomic, assign) BOOL hasMicID;
 @end
 
 NS_ASSUME_NONNULL_END
