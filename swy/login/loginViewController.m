@@ -87,12 +87,39 @@
 
 }
 
+- (BOOL)localValidate
+{
+    if (!_userNameTF.text.length) {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.label.text = @"请输入用户名";
+        [hud hideAnimated:YES afterDelay:1];
+        return NO;
+    }else if (!_passwordTF.text.length){
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.label.text = @"请输入用户密码";
+        [hud hideAnimated:YES afterDelay:1];
+        return NO;
+    } else if (!_verifyCodeTF.text.length) {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.label.text = @"请输入验证码";
+        [hud hideAnimated:YES afterDelay:1];
+        return NO;
+    }else if(!_dynamicCodeTF.text.length){
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.label.text = @"请输入动态码";
+        [hud hideAnimated:YES afterDelay:1];
+        return NO;
+    }
+    return YES;
+}
+
+
 - (void)loginAction
 {
+    if (![self localValidate]) {
+        return;
+    }
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.removeFromSuperViewOnHide = YES;
-    
-    
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://sales.vemic.com/login.do"]];
     [request configDefaultRequestHeader];
     NSString *refer = @"https://sales.vemic.com/login_error.do?aut_security_source=SAL";
@@ -110,11 +137,52 @@
     
     NSURLSessionTask *task = [self.session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            [hud hideAnimated:YES];
+            
             if ([response.URL.absoluteString isEqualToString:@"https://sales.vemic.com/workspace.do?aut_security_source=SAL"] || [response.URL.absoluteString isEqualToString:@"http://sales.vemic.com/workspace.do?aut_security_source=SAL"]) {
+                [hud hideAnimated:YES afterDelay:0.5];
                 [self dismissViewControllerAnimated:YES completion:nil];
                 [[swyManage manage] setUserName:self->_userNameTF.text];
                 [[swyManage manage] setPassWord:self->_passwordTF.text];
+            }else if ([response.URL.absoluteString isEqualToString:@"https://sales.vemic.com/login_error.do?aut_security_source=SAL"]) {
+                NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding (kCFStringEncodingGB_18030_2000);
+                NSString *htmlStr = [[NSString alloc] initWithData:data encoding:encoding];
+                if ( [htmlStr containsString:@"showHide('echo','用户不存在或密码不正确或用户已被禁用!');"]) {
+                    hud.label.text = @"用户不存在或密码不正确或用户已被禁用!";
+                    [hud hideAnimated:YES afterDelay:1];
+                    [self refreshCode];
+                    self.userNameTF.text = nil;
+                    self.passwordTF.text = nil;
+                    self.verifyCodeTF.text = nil;
+                    self.dynamicCodeTF.text = nil;
+                }else if ( [htmlStr containsString:@"showHide('echo','验证码输入不正确!');"]){
+                    hud.label.text = @"验证码输入不正确!";
+                    [hud hideAnimated:YES afterDelay:1];
+                    [self refreshCode];
+                    self.verifyCodeTF.text = nil;
+                    self.dynamicCodeTF.text = nil;
+                }else if ( [htmlStr containsString:@"showHide('echo','动态密码不正确');"]){
+                    hud.label.text = @"动态密码不正确";
+                    [hud hideAnimated:YES afterDelay:1];
+                    [self refreshCode];
+                    self.verifyCodeTF.text = nil;
+                    self.dynamicCodeTF.text = nil;
+                }else{
+                    hud.label.text = @"登录失败";
+                    [hud hideAnimated:YES afterDelay:1];
+                    [self refreshCode];
+                    self.userNameTF.text = nil;
+                    self.passwordTF.text = nil;
+                    self.verifyCodeTF.text = nil;
+                    self.dynamicCodeTF.text = nil;
+                }
+            }else{
+                hud.label.text = @"登录失败";
+                [hud hideAnimated:YES afterDelay:1];
+                [self refreshCode];
+                self.userNameTF.text = nil;
+                self.passwordTF.text = nil;
+                self.verifyCodeTF.text = nil;
+                self.dynamicCodeTF.text = nil;
             }
         });
     }];
