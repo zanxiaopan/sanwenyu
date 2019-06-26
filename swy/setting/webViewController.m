@@ -7,10 +7,9 @@
 //
 
 #import "webViewController.h"
-#import <WebKit/WebKit.h>
 
 @interface webViewController ()
-@property (nonatomic, strong) WKWebView *webView;
+@property (nonatomic, strong) UIWebView *webView;
 @end
 
 @implementation webViewController
@@ -24,10 +23,11 @@
     [_webView loadRequest:[NSURLRequest requestWithURL:url]];
 }
 
--(WKWebView *)webView
+-(UIWebView *)webView
 {
     if (!_webView) {
-        _webView = [[WKWebView alloc] initWithFrame:self.view.bounds];
+        _webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
+        _webView.scalesPageToFit = YES;
 
     }
     return _webView;
