@@ -20,7 +20,12 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+
     // Override point for customization after application launch.
+    //设置ua
+    NSDictionary *dictionnary = [[NSDictionary alloc] initWithObjectsAndKeys:@"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36", @"UserAgent", nil];
+    [[NSUserDefaults standardUserDefaults] registerDefaults:dictionnary];
+    
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
 
     UIViewController * center = [[UINavigationController alloc] initWithRootViewController:[[customerListViewController alloc] init]];
