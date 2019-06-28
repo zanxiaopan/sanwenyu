@@ -510,19 +510,21 @@ didCompleteWithError:(nullable NSError *)error
 - (void)sortList
 {
     //筛选公司
+    //1倒序
+    self.dataSource =(NSMutableArray *)[[self.dataSource reverseObjectEnumerator] allObjects];
+    //2关键字和会员状态排序
     NSArray *words = [[swyManage manage].screenKeyWord componentsSeparatedByString:@"/"];
     NSInteger hasMicCount = 0;
     NSInteger hasKeyWordNOIdCount = 0;
-    self.dataSource =(NSMutableArray *)[[self.dataSource reverseObjectEnumerator] allObjects];
     NSMutableArray *mutableArr = [NSMutableArray array];
     for (TFHppleElement  *obj in self.dataSource) {
         NSArray<TFHppleElement *> *array = [obj searchWithXPathQuery:@"//td"];//10个数据
         NSString *industoryName = [array[3] content];
         NSString *micID = [array[2] content];
-        obj.hasMicID = micID && ![micID isEqualToString:@"N/A"];
+        obj.hasMicID = micID && ![micID isEqualToString:@"N/A"] ;
         obj.hasKeyWord = [self isHaveString:industoryName inArray:words];
-        if (obj.hasMicID) {
-            if (obj.hasKeyWord) {
+        if (obj.hasMicID && [swyManage manage].isRegisterSwitchStatus) {
+            if ([swyManage manage].keyWordSwitchStatus && [swyManage manage].screenKeyWord.length && obj.hasKeyWord) {
                 [mutableArr insertObject:obj atIndex:0];
                 hasMicCount = hasMicCount+1;
             }else {
@@ -530,7 +532,7 @@ didCompleteWithError:(nullable NSError *)error
                 hasMicCount = hasMicCount +1;
             }
         }else{
-            if (obj.hasKeyWord) {
+            if ([swyManage manage].keyWordSwitchStatus && [swyManage manage].screenKeyWord.length && obj.hasKeyWord ) {
                 [mutableArr insertObject:obj atIndex:hasMicCount+hasKeyWordNOIdCount];
                 hasKeyWordNOIdCount = hasKeyWordNOIdCount+1;
             }else {

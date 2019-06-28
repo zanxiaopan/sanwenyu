@@ -118,6 +118,34 @@
     }
 }
 
+- (void)setKeyWordSwitchStatus:(BOOL)keyWordSwitchStatus
+{
+    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:keyWordSwitchStatus] forKey:@"keyWordSwitchStatus"];
+}
+
+- (BOOL)keyWordSwitchStatus
+{
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"keyWordSwitchStatus"]) {
+        return [[[NSUserDefaults standardUserDefaults] objectForKey:@"keyWordSwitchStatus"]boolValue];
+    }else{
+        return NO;
+    }
+}
+
+- (void)setIsRegisterSwitchStatus:(BOOL)isRegisterSwitchStatus
+{
+    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:isRegisterSwitchStatus] forKey:@"isRegisterSwitchStatus"];
+}
+
+- (BOOL)isRegisterSwitchStatus
+{
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"isRegisterSwitchStatus"]) {
+        return [[[NSUserDefaults standardUserDefaults] objectForKey:@"isRegisterSwitchStatus"]boolValue];
+    }else{
+        return NO;
+    }
+}
+
 - (NSDateFormatter *)dateFormatter
 {
     if (!_dateFormatter) {

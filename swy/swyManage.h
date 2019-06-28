@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic ,assign) NSInteger lineHeight;
 @property (nonatomic ,assign) BOOL isBirthDay;
 @property (nonatomic ,assign) BOOL autoRefreshList;
+@property (nonatomic ,assign) BOOL keyWordSwitchStatus;
+@property (nonatomic ,assign) BOOL isRegisterSwitchStatus;
 
 @property (nonatomic ,copy) NSString *screenKeyWord;
 @property (nonatomic ,copy) NSString *sortWordLastModifyPerson;

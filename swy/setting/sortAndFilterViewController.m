@@ -14,6 +14,8 @@
 @property (nonatomic ,strong) UITableView      *tableView;
 @property (nonatomic ,strong) UITextField      *screenKeyWordTF;
 @property (nonatomic ,strong) UITextField      *lastModifyPersonTF;
+@property (nonatomic ,strong) UIButton     *keywordSwitch;
+@property (nonatomic ,strong) UIButton     *showMicCustomSwitch;
 @end
 
 @implementation sortAndFilterViewController
@@ -29,7 +31,14 @@
 {
     [swyManage manage].screenKeyWord = self.screenKeyWordTF.text;
     [swyManage manage].sortWordLastModifyPerson = self.lastModifyPersonTF.text;
+    [swyManage manage].keyWordSwitchStatus = _keywordSwitch.selected;
+    [swyManage manage].isRegisterSwitchStatus = _showMicCustomSwitch.selected;
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)switchBtnClicked:(UIButton *)btn
+{
+    btn.selected = !btn.selected;
 }
 
 - (UITextField *)screenKeyWordTF
@@ -57,6 +66,33 @@
     }
     return _lastModifyPersonTF;
 }
+
+- (UIButton *)showMicCustomSwitch
+{
+    if (!_showMicCustomSwitch) {
+        _showMicCustomSwitch = [[UIButton alloc] init];
+        _showMicCustomSwitch.frame = CGRectMake(0, 5, 30, 30);
+        [_showMicCustomSwitch setImage:[UIImage imageNamed:@"unchecked_checkbox"] forState:UIControlStateNormal];
+        [_showMicCustomSwitch setImage:[UIImage imageNamed:@"checked_checkbox"] forState:UIControlStateSelected];
+        [_showMicCustomSwitch addTarget:self action:@selector(switchBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        _showMicCustomSwitch.selected = [swyManage manage].isRegisterSwitchStatus;
+    }
+    return _showMicCustomSwitch;
+}
+
+- (UIButton *)keywordSwitch
+{
+    if (!_keywordSwitch) {
+        _keywordSwitch = [[UIButton alloc] init];
+        _keywordSwitch.frame = CGRectMake(0, 05, 30, 30);
+        [_keywordSwitch setImage:[UIImage imageNamed:@"unchecked_checkbox"] forState:UIControlStateNormal];
+        [_keywordSwitch setImage:[UIImage imageNamed:@"checked_checkbox"] forState:UIControlStateSelected];
+        [_keywordSwitch addTarget:self action:@selector(switchBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        _keywordSwitch.selected = [swyManage manage].keyWordSwitchStatus;
+    }
+    return _keywordSwitch;
+}
+
 
 - (UITableViewCell *)keyWordInputCell
 {
@@ -101,7 +137,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2;
+    return 3;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -116,18 +152,24 @@
 {
     if (indexPath.row == 0) {
         UITableViewCell *cell = [UITableViewCell new];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.textLabel.text = @"优先展示包含以下公司名的公司";
         cell.textLabel.font = [UIFont boldSystemFontOfSize:20];
+        cell.accessoryView = self.keywordSwitch;
         return cell;
     }else if (indexPath.row == 1) {
         return [self keyWordInputCell];
     }else if (indexPath.row == 2) {
         UITableViewCell *cell = [UITableViewCell new];
-        cell.textLabel.text = @"最后修改人优先展示";
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.textLabel.text = @"优先展示已注册会员";
         cell.textLabel.font = [UIFont boldSystemFontOfSize:20];
+        cell.accessoryView = self.showMicCustomSwitch;
+        UIView *line = [[UIView alloc] initWithFrame:CGRectMake(20, 39, ScreenWidth-40, 1)];
+        line.backgroundColor = [UIColor grayColor];
+        line.alpha = 0.5;
+        [cell.contentView addSubview:line];
         return cell;
-    }else if (indexPath.row == 3) {
-        return [self lastModifyInputCell];
     }
     UITableViewCell *cell = [UITableViewCell new];
     cell.selectionStyle =UITableViewCellSelectionStyleNone;
