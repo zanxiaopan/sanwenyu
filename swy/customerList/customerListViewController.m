@@ -511,7 +511,9 @@ didCompleteWithError:(nullable NSError *)error
 {
     //筛选公司
     //1倒序
-    self.dataSource =(NSMutableArray *)[[self.dataSource reverseObjectEnumerator] allObjects];
+    if ([swyManage manage].invertSwitch) {
+        self.dataSource =(NSMutableArray *)[[self.dataSource reverseObjectEnumerator] allObjects];
+    }
     //2关键字和会员状态排序
     NSArray *words = [[swyManage manage].screenKeyWord componentsSeparatedByString:@"/"];
     NSInteger hasMicCount = 0;

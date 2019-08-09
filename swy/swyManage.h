@@ -19,11 +19,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic ,assign) BOOL autoRefreshList;
 @property (nonatomic ,assign) BOOL keyWordSwitchStatus;
 @property (nonatomic ,assign) BOOL isRegisterSwitchStatus;
-
+@property (nonatomic ,assign) BOOL invertSwitch;
 @property (nonatomic ,copy) NSString *screenKeyWord;
 @property (nonatomic ,copy) NSString *sortWordLastModifyPerson;
 
 @property (strong, nonatomic) MMDrawerController *drawerController;
+@property (strong, nonatomic) UIImage *launchImage;
 @end
 
 NS_ASSUME_NONNULL_END

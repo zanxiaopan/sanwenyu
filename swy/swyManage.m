@@ -21,6 +21,19 @@
     return swyManger;
 }
 
+- (UIImage *)launchImage {
+    NSData *imageData = [[NSUserDefaults standardUserDefaults] objectForKey:@"launchImage"];
+    if (imageData) {
+        return [UIImage imageWithData:imageData];
+    }
+    return nil;
+}
+
+-(void)setLaunchImage:(UIImage *)launchImage {
+    NSData *imageData = UIImageJPEGRepresentation(launchImage, 1.0);
+    [[NSUserDefaults standardUserDefaults] setObject:imageData forKey:@"launchImage"];
+}
+
 - (NSInteger)lineHeight
 {
     NSNumber *number = [[NSUserDefaults standardUserDefaults] objectForKey:@"lineHeight"];
@@ -76,7 +89,19 @@
     return NO;
 }
 
--(BOOL)autoRefreshList
+- (BOOL)invertSwitch {
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"invertSwitch"]) {
+        return [[[NSUserDefaults standardUserDefaults] objectForKey:@"invertSwitch"]boolValue];
+    }else{
+        return YES;
+    }
+}
+
+- (void)setInvertSwitch:(BOOL)invertSwitch {
+    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:invertSwitch] forKey:@"invertSwitch"];
+}
+
+- (BOOL)autoRefreshList
 {
     if ([[NSUserDefaults standardUserDefaults] objectForKey:@"autoRefreshList"]) {
         return [[[NSUserDefaults standardUserDefaults] objectForKey:@"autoRefreshList"]boolValue];

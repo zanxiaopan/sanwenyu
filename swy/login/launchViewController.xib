@@ -18,23 +18,9 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IMG_6133 2.JPG" translatesAutoresizingMaskIntoConstraints="NO" id="qoe-DA-Rot">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                </imageView>
-            </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-            <constraints>
-                <constraint firstItem="qoe-DA-Rot" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="0Lc-jd-ZoI"/>
-                <constraint firstItem="qoe-DA-Rot" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="GF8-VT-YX6"/>
-                <constraint firstAttribute="bottom" secondItem="qoe-DA-Rot" secondAttribute="bottom" id="Van-Ee-5jX"/>
-                <constraint firstAttribute="trailing" secondItem="qoe-DA-Rot" secondAttribute="trailing" id="cl6-h1-fnY"/>
-            </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
             <point key="canvasLocation" x="-118" y="94"/>
         </view>
     </objects>
-    <resources>
-        <image name="IMG_6133 2.JPG" width="2160" height="2875"/>
-    </resources>
 </document>
