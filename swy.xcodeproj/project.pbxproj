@@ -47,7 +47,7 @@
 		33ED6DDE22BA2DF200DE3003 /* WechatIMG45.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 33ED6DDD22BA2DF200DE3003 /* WechatIMG45.jpeg */; };
 		33ED6DE222BA356D00DE3003 /* heightSetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33ED6DE022BA356D00DE3003 /* heightSetCell.m */; };
 		33ED6DE322BA356D00DE3003 /* heightSetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33ED6DE122BA356D00DE3003 /* heightSetCell.xib */; };
-		33ED6DE522BA462800DE3003 /* IMG_6133 2.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 33ED6DE422BA462800DE3003 /* IMG_6133 2.JPG */; };
+		33ED6DE522BA462800DE3003 /* IMG_61332.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 33ED6DE422BA462800DE3003 /* IMG_61332.JPG */; };
 		33ED6DE922BA547500DE3003 /* launchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33ED6DE822BA547500DE3003 /* launchView.xib */; };
 		33ED6E4422BF172000DE3003 /* webViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33ED6E4322BF172000DE3003 /* webViewController.m */; };
 		33ED6E5822C1EA8E00DE3003 /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = 33ED6E5322C1EA8E00DE3003 /* TFHpple.m */; };
@@ -131,7 +131,7 @@
 		33ED6DDF22BA356D00DE3003 /* heightSetCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = heightSetCell.h; sourceTree = "<group>"; };
 		33ED6DE022BA356D00DE3003 /* heightSetCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = heightSetCell.m; sourceTree = "<group>"; };
 		33ED6DE122BA356D00DE3003 /* heightSetCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = heightSetCell.xib; sourceTree = "<group>"; };
-		33ED6DE422BA462800DE3003 /* IMG_6133 2.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "IMG_6133 2.JPG"; sourceTree = "<group>"; };
+		33ED6DE422BA462800DE3003 /* IMG_61332.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_61332.JPG; sourceTree = "<group>"; };
 		33ED6DE822BA547500DE3003 /* launchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = launchView.xib; sourceTree = "<group>"; };
 		33ED6E4022BCA3B100DE3003 /* swy.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = swy.pch; sourceTree = "<group>"; };
 		33ED6E4122BCA3C600DE3003 /* define.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = define.h; sourceTree = "<group>"; };
@@ -311,7 +311,7 @@
 			isa = PBXGroup;
 			children = (
 				334F9B972282D40B000652CD /* Assets.xcassets */,
-				33ED6DE422BA462800DE3003 /* IMG_6133 2.JPG */,
+				33ED6DE422BA462800DE3003 /* IMG_61332.JPG */,
 				33ED6DDD22BA2DF200DE3003 /* WechatIMG45.jpeg */,
 				33ED6D9822B86EC100DE3003 /* WechatIMG43.jpeg */,
 				33D167A622B1EA1D003EEE4F /* result.html */,
@@ -432,7 +432,7 @@
 				87E76EAB22AEA35A005E4EFE /* loginViewController.xib in Resources */,
 				33CA54C822AFA88700C1F8D9 /* customerList.html in Resources */,
 				33D1670222B0A4EC003EEE4F /* detail2.html in Resources */,
-				33ED6DE522BA462800DE3003 /* IMG_6133 2.JPG in Resources */,
+				33ED6DE522BA462800DE3003 /* IMG_61332.JPG in Resources */,
 				33CA54CD22AFB08C00C1F8D9 /* customerInfoCell.xib in Resources */,
 				33D1670022B09787003EEE4F /* detail.html in Resources */,
 				33ED6DDE22BA2DF200DE3003 /* WechatIMG45.jpeg in Resources */,
