@@ -18,7 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    UIImageView *imageView = [[UIImageView alloc]initWithFrame:self.view.bounds];
+    UIImageView *imageView = [[UIImageView alloc]initWithFrame:[UIScreen mainScreen].bounds];
     imageView.contentMode = UIViewContentModeScaleAspectFill;
     if ([swyManage manage].launchImage) {
         imageView.image = [swyManage manage].launchImage;
