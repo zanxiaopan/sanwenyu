@@ -101,6 +101,18 @@
     [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:invertSwitch] forKey:@"invertSwitch"];
 }
 
+- (BOOL)settedCustomAutoClickSwitch {
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"settedCustomAutoClickSwitch"]) {
+        return [[[NSUserDefaults standardUserDefaults] objectForKey:@"settedCustomAutoClickSwitch"]boolValue];
+    }else{
+        return NO;
+    }
+}
+
+- (void)setSettedCustomAutoClickSwitch:(BOOL)settedCustomAutoClickSwitch {
+    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:settedCustomAutoClickSwitch] forKey:@"settedCustomAutoClickSwitch"];
+}
+
 - (BOOL)autoRefreshList
 {
     if ([[NSUserDefaults standardUserDefaults] objectForKey:@"autoRefreshList"]) {

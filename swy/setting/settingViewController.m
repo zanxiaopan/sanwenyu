@@ -14,11 +14,13 @@
 #import "webViewController.h"
 #import "MBProgressHUD.h"
 
+
 @interface settingViewController ()<UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property (nonatomic ,strong) UITableView       *tableView;
 @property (nonatomic ,strong) UIButton          *logoutBtn;
 @property (nonatomic ,strong) UISwitch          *autoRefreshSwitch;//自动刷新开关
 @property (nonatomic, strong) UISwitch          *invertSwitch;//倒序开关
+@property (nonatomic, strong) UISwitch          *settedCustomAutoClickSwitch;//自动抢设置的客户
 @end
 
 @implementation settingViewController
@@ -30,6 +32,16 @@
     self.title = @"设置";
     [self.view addSubview:self.logoutBtn];
     self.navigationController.navigationItem.leftBarButtonItem = nil;
+    
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    self.invertSwitch.on = [swyManage manage].invertSwitch;
+    self.settedCustomAutoClickSwitch.on = [swyManage manage].settedCustomAutoClickSwitch;
+    self.autoRefreshSwitch.on = [swyManage manage].autoRefreshList;
 }
 
 - (void)logoutAction
@@ -52,6 +64,8 @@
 {
     if (uiswitch == self.autoRefreshSwitch) {
         [swyManage manage].autoRefreshList = _autoRefreshSwitch.isOn;
+    }else if ( uiswitch == self.settedCustomAutoClickSwitch) {
+        [swyManage manage].settedCustomAutoClickSwitch = _settedCustomAutoClickSwitch.isOn;
     }else {
         [swyManage manage].invertSwitch = _invertSwitch.isOn;
     }
@@ -75,6 +89,15 @@
         [_invertSwitch addTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
     }
     return _invertSwitch;
+}
+
+- (UISwitch *)settedCustomAutoClickSwitch {
+    if (!_settedCustomAutoClickSwitch) {
+        _settedCustomAutoClickSwitch = [[UISwitch alloc] initWithFrame:CGRectMake(140, 0, 60, 30)];
+        _settedCustomAutoClickSwitch.onTintColor = [UIColor orangeColor];
+        [_settedCustomAutoClickSwitch addTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
+    }
+    return _settedCustomAutoClickSwitch;
 }
 
 - (UIButton *)logoutBtn
@@ -107,7 +130,11 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 7;
+    NSString *userPhoneName = [[UIDevice currentDevice] name];
+    if ([userPhoneName isEqualToString:@"小不点的一点点 (2)"] || [userPhoneName isEqualToString:@"Evonne"] || [userPhoneName isEqualToString:@"iPhone XR"]) {
+        return 9;
+    }
+    return 8;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -117,6 +144,10 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSString *userPhoneName = [[UIDevice currentDevice] name];
+    BOOL isShanshan = [userPhoneName isEqualToString:@"小不点的一点点 (2)"] || [userPhoneName isEqualToString:@"Evonne"] || [userPhoneName isEqualToString:@"iPhone XR"];
+
+    
     UITableViewCell *cell = [UITableViewCell new];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     if (indexPath.row == 0) {
@@ -128,15 +159,22 @@
     }else if (indexPath.row == 3) {
         cell.textLabel.text = @"添加新客户";
     }else if (indexPath.row == 4) {
+        cell.textLabel.text = @"我的区域的开放客户";
+    }
+    else if (indexPath.row == 5) {
         cell.textLabel.text = @"设置启动图";
     }
-    else if ( indexPath.row == 5) {
+    else if ( indexPath.row == 6) {
         cell.textLabel.text = @"客户列表倒序";
         [cell.contentView addSubview:self.invertSwitch];
         self.invertSwitch.center = cell.contentView.center;
         self.invertSwitch.on = [swyManage manage].invertSwitch;
-    }
-    else{
+    }else if (indexPath.row == 7 && isShanshan) {
+        cell.textLabel.text = @"盯客户";
+        [cell.contentView addSubview:self.settedCustomAutoClickSwitch];
+        self.settedCustomAutoClickSwitch.center = cell.contentView.center;
+        self.settedCustomAutoClickSwitch.on = [swyManage manage].settedCustomAutoClickSwitch;
+    }else{
         cell.textLabel.text = @"自动刷新";
         [cell.contentView addSubview:self.autoRefreshSwitch];
         self.autoRefreshSwitch.center = cell.contentView.center;
@@ -171,6 +209,14 @@
             vc.urlStr = @"http://sales.vemic.com/uitoolList.ui?funcID=40015&_i_f_k_=true&charlength=1000&pageLimit=50";
         }];
     }else if (indexPath.row == 4) {
+        [[swyManage manage].drawerController closeDrawerAnimated:false completion:^(BOOL finished) {
+            webViewController *vc = [webViewController new];
+            UINavigationController *nav = (UINavigationController *)[swyManage manage].drawerController.centerViewController;
+            [nav pushViewController:vc animated:YES];
+            vc.urlStr = @"http://sales.vemic.com/uitoolList.ui?funcID=1000931&gotoUrl=customer.do?method=operateView&isOpen=1";
+        }];
+    }
+    else if (indexPath.row == 5) {
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
         picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         picker.delegate = self;

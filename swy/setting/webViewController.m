@@ -8,7 +8,7 @@
 
 #import "webViewController.h"
 
-@interface webViewController ()
+@interface webViewController ()<UIWebViewDelegate>
 @property (nonatomic, strong) UIWebView *webView;
 @end
 
@@ -28,6 +28,7 @@
     if (!_webView) {
         _webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
         _webView.scalesPageToFit = YES;
+        _webView.delegate = self;
 
     }
     return _webView;
@@ -43,6 +44,14 @@
 - (void)backAction
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark WebViewDelegate
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    //我的区域的开放客户
+    if ([webView.request.URL.absoluteString isEqualToString:@"http://sales.vemic.com/uitoolList.ui?funcID=1000931&gotoUrl=customer.do?method=operateView&isOpen=1"]) {
+        [webView stringByEvaluatingJavaScriptFromString:@""];
+    }
 }
 
 

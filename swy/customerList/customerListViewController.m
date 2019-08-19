@@ -15,8 +15,9 @@
 #import "swyManage.h"
 #import "MJRefresh.h"
 #import "TFHppleElement+swy.h"
+#import "MBProgressHUD.h"
 
-#define isDevlopping NO
+#define isDevlopping YES
 
 @interface customerListViewController ()<NSURLSessionDelegate,UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UIButton      *refreshBtn;
@@ -27,10 +28,15 @@
 
 @property (nonatomic, strong) NSString          *token;
 @property (nonatomic, strong) NSString          *customerId;
+@property (nonatomic, strong) NSMutableDictionary      *customDict;//customerId:customName
 @property (nonatomic, strong) NSString          *formToken;
 @property (nonatomic, strong) NSURLSession      *session;
 @property (nonatomic, strong) MJRefreshStateHeader     *refreshHeader;
 @property (nonatomic, strong) UIActivityIndicatorView *indicator;
+@property (nonatomic, strong) NSTimer *timer;
+@property (nonatomic, strong) NSURLSessionTask *currentTask;
+@property (nonatomic, strong) MBProgressHUD *hud;
+@property (nonatomic, strong) UIButton *floatBtn;
 
 @end
 
@@ -44,15 +50,24 @@
     self.navigationItem.leftBarButtonItem= [[UIBarButtonItem alloc] initWithCustomView:self.refreshBtn];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.indicator];
     self.title  = @"swy";
+    self.customDict = [NSMutableDictionary dictionary];
     //[self.view addSubview:self.imageView];
     [self.view addSubview:self.tableView];
     self.tableView.mj_header = self.refreshHeader;
     self.imageView.userInteractionEnabled = NO;
+    [[UIApplication sharedApplication].keyWindow addSubview:self.floatBtn];
+    [[swyManage manage] addObserver:self forKeyPath:@"settedCustomAutoClickSwitch" options:NSKeyValueObservingOptionNew context:nil];
+}
+
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
+{
+    self.floatBtn.hidden = ![swyManage manage].settedCustomAutoClickSwitch;
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [self requesList];
+    
 }
 
 - (NSURLSession *)session
@@ -135,6 +150,22 @@
     return _settingBtn;
 }
 
+- (UIButton *)floatBtn {
+    if (!_floatBtn) {
+        _floatBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _floatBtn.titleLabel.font = [UIFont boldSystemFontOfSize:20];
+        [_floatBtn setTitle:@"抢" forState:UIControlStateNormal];
+        [_floatBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        _floatBtn.frame = CGRectMake(10,[UIScreen mainScreen].bounds.size.height-100, 50, 50);
+        _floatBtn.layer.cornerRadius = 25;
+        _floatBtn.layer.masksToBounds = YES;
+        [_floatBtn addTarget:self action:@selector(qiangkehu) forControlEvents:UIControlEventTouchUpInside];
+        _floatBtn.hidden = ![swyManage manage].settedCustomAutoClickSwitch;
+        _floatBtn.backgroundColor = [UIColor orangeColor];
+    }
+    return _floatBtn;
+}
+
 - (UITableView *)tableView
 {
     if (!_tableView) {
@@ -149,6 +180,18 @@
 }
 
 #pragma mark Action
+- (void)qiangkehu {
+    if (_dataSource.count) {
+        int randomNum = (arc4random() % _dataSource.count);
+        TFHppleElement *elementAll = _dataSource[randomNum];
+        NSArray<TFHppleElement *> *array = [elementAll searchWithXPathQuery:@"//td"];//10个数据
+        TFHppleElement *elemnent1 = [[array[3] searchWithXPathQuery:@"//a"] objectAtIndex:0];
+        NSString *url = [elemnent1.attributes objectForKey:@"href"];
+        [self showRobAcc:[NSString stringWithFormat:@"https://sales.vemic.com%@",url]];
+    }
+
+}
+
 - (void)refreshAction
 {
     [self requesList];
@@ -162,13 +205,14 @@
 
 - (void)requesList
 {
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
     [self.indicator startAnimating];
     if (!isDevlopping) {
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://sales.vemic.com/customer.do?method=listRobAccount"]];
         [request addValue:@"https://sales.vemic.com/customer.do?method=listRobAccount" forHTTPHeaderField:@"Referer"];
         [request configDefaultRequestHeader];
         NSURLSessionTask *task = [self.session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-
+            
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.refreshHeader endRefreshing];
                 [self.indicator stopAnimating];
@@ -180,13 +224,23 @@
                     NSArray *array = [tfhpple searchWithXPathQuery:@"//tr[@class='odd']"];
                     if (array.count) {
                         self.dataSource = array;
-                        [self sortList];
-                        [self.tableView reloadData];
+                        if (![swyManage manage].settedCustomAutoClickSwitch) {
+                            [self sortList];
+                            [self.tableView reloadData];
+                        }else{
+                            BOOL haveFound = [self sortList];
+                            if (!haveFound) {
+                                [self restartRefreshTimer];
+                            }else {
+                                self.dataSource = nil;
+                            }
+                            [self.tableView reloadData];
+                        }
                     }else{
                         self.dataSource = nil;
                         [self.tableView reloadData];
                         if ([swyManage manage].autoRefreshList) {
-                            [self performSelector:@selector(requesList) withObject:nil afterDelay:0.3];
+                            [self restartRefreshTimer];
                         }
                     }
                 }else{
@@ -198,7 +252,7 @@
         [task resume];
     }else{
         [self.refreshHeader endRefreshing];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
              [self.indicator stopAnimating];
         });
         NSURL *url = [[NSBundle mainBundle] URLForResource:@"customerList.html" withExtension:nil];
@@ -207,10 +261,27 @@
         NSArray *array = [tfhpple searchWithXPathQuery:@"//tr[@class='odd']"];
         if (array.count) {
             self.dataSource = array;
-            [self sortList];
-            [self.tableView reloadData];
+            if (![swyManage manage].settedCustomAutoClickSwitch) {
+                [self sortList];
+                [self.tableView reloadData];
+            }else{
+                BOOL haveFound = [self sortList];
+                if (!haveFound) {
+                    [self restartRefreshTimer];
+                }
+                [self.tableView reloadData];
+            }
         }
     }
+
+}
+
+- (void)restartRefreshTimer {
+    if (self.timer) {
+        [self.timer invalidate];
+        self.timer = nil;
+    }
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(requesList) userInfo:nil repeats:NO];
 
 }
 
@@ -227,7 +298,7 @@
         self.customerId = dic[@"customerId"];
     }else{
         [self showAlert:@"未获取到token或者customerId" confirm:^{
-            [self performSelector:@selector(requesList) withObject:nil afterDelay:0.3];
+            [self restartRefreshTimer];
         }];
         return;
     }
@@ -236,13 +307,13 @@
     [request addValue:@"https://sales.vemic.com/customer.do?method=listRobAccount" forHTTPHeaderField:@"Referer"];
     [request configDefaultRequestHeader];
     
-    NSURLSessionTask *task = [self.session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+    self.currentTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (!isDevlopping) {
                 NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding (kCFStringEncodingGB_18030_2000);
                 NSString *htmlStr = [[NSString alloc] initWithData:data encoding:encoding];
                 NSLog(@"method=showRobAcc💗💗💗💗💗💗💗💗%@",htmlStr);
-                if (response && ![response.URL.absoluteString isEqualToString:@"https://sales.vemic.com/login_error.do"]) {
+                if (!error && response && ![response.URL.absoluteString isEqualToString:@"https://sales.vemic.com/login_error.do"]) {
                     [self accountDetail];
                 }else{
                     NSLog(@"未登录:%@",response.URL.absoluteString);
@@ -252,7 +323,7 @@
             }
         });
     }];
-    [task resume];
+    [self.currentTask resume];
     
 }
 
@@ -263,13 +334,13 @@
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:curURLStr]];
     [request addValue:referer forHTTPHeaderField:@"Referer"];
     [request configDefaultRequestHeader];
-    NSURLSessionTask *task = [self.session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+    self.currentTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (!isDevlopping) {
                 NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding (kCFStringEncodingGB_18030_2000);
                 NSString *htmlStr = [[NSString alloc] initWithData:data encoding:encoding];
                 NSLog(@"method=accountDetail💗💗💗💗💗💗💗💗%@",htmlStr);
-                if (response && [response.URL.absoluteString isEqualToString:curURLStr]) {
+                if (!error && response && [response.URL.absoluteString isEqualToString:curURLStr]) {
                     TFHpple *tfhpple = [[TFHpple alloc] initWithHTMLData:data];
                     NSArray<TFHppleElement *> *array = [tfhpple searchWithXPathQuery:@"//input[@name='FORM.TOKEN']"];
                     if (array.count) {
@@ -277,7 +348,7 @@
                         [self clickNoOpen];
                     }else{
                         [self showAlert:@"未取到FORM.TOKEN" confirm:^{
-                            [self performSelector:@selector(requesList) withObject:nil afterDelay:0.3];
+                            [self restartRefreshTimer];
                         }];
                     }
                 }else{
@@ -294,7 +365,7 @@
         });
 
     }];
-    [task resume];
+    [self.currentTask resume];
 }
 
 //自动点不开放
@@ -306,13 +377,13 @@
     [request addValue:referer forHTTPHeaderField:@"Referer"];
     [request configDefaultRequestHeader];
 
-    NSURLSessionTask *task = [self.session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+    self.currentTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (!isDevlopping) {
                 NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding (kCFStringEncodingGB_18030_2000);
                 NSString *htmlStr = [[NSString alloc] initWithData:data encoding:encoding];
                 NSLog(@"method=closeOne💗💗💗💗💗💗💗💗%@",htmlStr);
-                if (response && [response.URL.absoluteString isEqualToString:urlString]) {
+                if (!error && response && [response.URL.absoluteString isEqualToString:urlString]) {
                     if ([htmlStr containsString:@"将该客户加为自己的私有客户"]) {
                         NSLog(@"将该客户加为自己的私有客户");
                         [self seeResultStepOne];
@@ -343,7 +414,7 @@
             }
         });
     }];
-    [task resume];
+    [self.currentTask resume];
 }
 
 //抢客户结果页面
@@ -354,16 +425,16 @@
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
     [request addValue:referer forHTTPHeaderField:@"Referer"];
     [request configDefaultRequestHeader];
-    NSURLSessionTask *task = [self.session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+    self.currentTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (response && ![response.URL.absoluteString isEqualToString:@"https://sales.vemic.com/login_error.do"]){
+            if (!error && response && ![response.URL.absoluteString isEqualToString:@"https://sales.vemic.com/login_error.do"]){
                 [self seeResultStepTwo];
             }else{
-                [self showAlertAndRefresh:@"将该客户加为自己的私有客户"];
+                [self alertSuccessMessage];
             }
         });
     }];
-    [task resume];
+    [self.currentTask resume];
 }
 
 -(void)seeResultStepTwo
@@ -373,12 +444,27 @@
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
     [request addValue:referer forHTTPHeaderField:@"Referer"];
     [request configDefaultRequestHeader];
-    NSURLSessionTask *task = [self.session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self showAlertAndRefresh:@"将该客户加为自己的私有客户"];
-        });
+    self.currentTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (!error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self alertSuccessMessage];
+            });
+        }
     }];
-    [task resume];
+    [self.currentTask resume];
+}
+
+- (void)alertSuccessMessage {
+    if (self.customerId && [self.customDict objectForKey:self.customerId]) {
+        NSString *customeName = [self.customDict objectForKey:self.customerId];
+        _hud.label.text = @"盯到啦";
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [self requesList];
+        });
+    }else {
+        [self showAlertAndRefresh:@"将该客户加为自己的私有客户"];
+    }
     
 }
 
@@ -412,7 +498,7 @@
 - (void)showAlertAndRefresh:(NSString *)text
 {
     [self showAlert:text confirm:^{
-        [self performSelector:@selector(requesList) withObject:nil afterDelay:0.3];
+       [self restartRefreshTimer];
     }];
 }
 
@@ -507,24 +593,49 @@ didCompleteWithError:(nullable NSError *)error
     //request
 }
 
-- (void)sortList
+- (BOOL)sortList
 {
     //筛选公司
     //1倒序
     if ([swyManage manage].invertSwitch) {
         self.dataSource =(NSMutableArray *)[[self.dataSource reverseObjectEnumerator] allObjects];
     }
+//    int randomNum1 = (arc4random() % self.dataSource.count) + 1;
+//    int randomNum2 = (arc4random() % self.dataSource.count) + 1;
+//    self.dataSource = [self.dataSource subarrayWithRange:NSMakeRange(MIN(randomNum1, randomNum2), abs(randomNum1-randomNum2))];
+    
     //2关键字和会员状态排序
     NSArray *words = [[swyManage manage].screenKeyWord componentsSeparatedByString:@"/"];
     NSInteger hasMicCount = 0;
     NSInteger hasKeyWordNOIdCount = 0;
     NSMutableArray *mutableArr = [NSMutableArray array];
+    
     for (TFHppleElement  *obj in self.dataSource) {
         NSArray<TFHppleElement *> *array = [obj searchWithXPathQuery:@"//td"];//10个数据
         NSString *industoryName = [array[3] content];
         NSString *micID = [array[2] content];
         obj.hasMicID = micID && ![micID isEqualToString:@"N/A"] ;
         obj.hasKeyWord = [self isHaveString:industoryName inArray:words];
+        //盯到客户直接抢 不进行后面的排序
+        if ([swyManage manage].settedCustomAutoClickSwitch && obj.hasKeyWord) {
+            [self.timer invalidate];
+            [self.currentTask suspend];
+            TFHppleElement *elemnent1 = [[array[3] searchWithXPathQuery:@"//a"] objectAtIndex:0];
+            NSString *urlStr = [elemnent1.attributes objectForKey:@"href"];
+            urlStr = [NSString stringWithFormat:@"https://sales.vemic.com%@",urlStr];
+            NSDictionary *dic = [self dictionaryWith:urlStr];
+            if (dic[@"token"] && dic[@"customerId"]) {
+                self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:false];
+                self.hud.label.text = [NSString stringWithFormat:@"正在抢:%@",industoryName];
+                [swyManage manage].settedCustomAutoClickSwitch = false;
+                self.token = dic[@"token"];
+                self.customerId = dic[@"customerId"];
+                [self.customDict setObject:industoryName forKey:self.customerId];
+                [self showRobAcc:urlStr];
+                return YES;
+            }
+        }
+        //排序
         if (obj.hasMicID && [swyManage manage].isRegisterSwitchStatus) {
             if ([swyManage manage].keyWordSwitchStatus && [swyManage manage].screenKeyWord.length && obj.hasKeyWord) {
                 [mutableArr insertObject:obj atIndex:0];
@@ -543,6 +654,7 @@ didCompleteWithError:(nullable NSError *)error
         }
     }
     self.dataSource = mutableArr;
+    return NO;
 }
 
 - (bool)isHaveString:(NSString *)string inArray:(NSArray *)array
