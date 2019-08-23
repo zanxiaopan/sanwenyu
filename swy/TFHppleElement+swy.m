@@ -14,6 +14,7 @@
 static char *hasKeyWordKey = "hasKeyWord";
 static char *isExpectedLastModifyKey = "isExpectedLastModify";
 static char *hasMicIDKey = "hasMicID";
+static char *customIdDKey = "customId";
 
 -(void)setHasKeyWord:(bool)hasKeyWord{
     
@@ -41,5 +42,14 @@ static char *hasMicIDKey = "hasMicID";
 - (BOOL)hasMicID
 {
    return [objc_getAssociatedObject(self, hasMicIDKey) boolValue];
+}
+
+- (NSString *)customerId
+{
+    return objc_getAssociatedObject(self, customIdDKey);
+}
+
+- (void)setCustomerId:(NSString *)customerId {
+    objc_setAssociatedObject(self, customIdDKey, customerId, OBJC_ASSOCIATION_COPY);
 }
 @end

@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL hasKeyWord;
 @property (nonatomic, assign) BOOL isExpectedLastModify;
 @property (nonatomic, assign) BOOL hasMicID;
+@property (nonatomic, copy) NSString *customerId;
 @end
 
 NS_ASSUME_NONNULL_END

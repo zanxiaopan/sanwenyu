@@ -17,7 +17,6 @@
 #import "TFHppleElement+swy.h"
 #import "MBProgressHUD.h"
 
-#define isDevlopping YES
 
 @interface customerListViewController ()<NSURLSessionDelegate,UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UIButton      *refreshBtn;
@@ -47,7 +46,7 @@
     // Do any additional setup after loading the view from its nib.
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationController.navigationBar.hidden = NO;
-    self.navigationItem.leftBarButtonItem= [[UIBarButtonItem alloc] initWithCustomView:self.refreshBtn];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.refreshBtn];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.indicator];
     self.title  = @"swy";
     self.customDict = [NSMutableDictionary dictionary];
@@ -205,6 +204,9 @@
 
 - (void)requesList
 {
+    if (self.navigationController.viewControllers.firstObject != self) {
+        return;
+    }
     [MBProgressHUD hideHUDForView:self.view animated:YES];
     [self.indicator startAnimating];
     if (!isDevlopping) {
@@ -494,6 +496,7 @@
         }
     }]];
 }
+
 
 - (void)showAlertAndRefresh:(NSString *)text
 {

@@ -13,7 +13,7 @@
 #import "swyManage.h"
 #import "webViewController.h"
 #import "MBProgressHUD.h"
-
+#import "newRigisterCustomListVC.h"
 
 @interface settingViewController ()<UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property (nonatomic ,strong) UITableView       *tableView;
@@ -210,11 +210,11 @@
         }];
     }else if (indexPath.row == 4) {
         [[swyManage manage].drawerController closeDrawerAnimated:false completion:^(BOOL finished) {
-            webViewController *vc = [webViewController new];
+            newRigisterCustomListVC *vc = [newRigisterCustomListVC new];
             UINavigationController *nav = (UINavigationController *)[swyManage manage].drawerController.centerViewController;
             [nav pushViewController:vc animated:YES];
-            vc.urlStr = @"http://sales.vemic.com/uitoolList.ui?funcID=1000931&gotoUrl=customer.do?method=operateView&isOpen=1";
         }];
+
     }
     else if (indexPath.row == 5) {
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
@@ -232,6 +232,12 @@
         [hud hideAnimated:YES afterDelay:0.5];
     
     }];
+}
+
+- (NSString *)dateString {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"YYYY-MM-dd"];
+    return [formatter stringFromDate:[NSDate date]];
 }
 
 - (void)backAction

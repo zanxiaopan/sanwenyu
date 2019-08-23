@@ -9,6 +9,9 @@
 #ifndef define_h
 #define define_h
 
+#define isDevlopping  0
+
+
 #define ScreenWidth     [UIScreen mainScreen].bounds.size.width
 #define ScreenHeight   [UIScreen mainScreen].bounds.size.height
 

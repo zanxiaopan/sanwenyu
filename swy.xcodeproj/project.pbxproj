@@ -10,6 +10,10 @@
 		334F9B902282D409000652CD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 334F9B8F2282D409000652CD /* AppDelegate.m */; };
 		334F9B982282D40B000652CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 334F9B972282D40B000652CD /* Assets.xcassets */; };
 		334F9B9E2282D40B000652CD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 334F9B9D2282D40B000652CD /* main.m */; };
+		33A3F958230C078F001A58EB /* newRigisterCustomListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 33A3F957230C078F001A58EB /* newRigisterCustomListVC.m */; };
+		33A3F95A230C0C3D001A58EB /* newCustomList.html in Resources */ = {isa = PBXBuildFile; fileRef = 33A3F959230C0C3D001A58EB /* newCustomList.html */; };
+		33A3F961230ECCC8001A58EB /* newDetail.html in Resources */ = {isa = PBXBuildFile; fileRef = 33A3F960230ECCC8001A58EB /* newDetail.html */; };
+		33A3F963230F7C03001A58EB /* newResult.html in Resources */ = {isa = PBXBuildFile; fileRef = 33A3F962230F7C03001A58EB /* newResult.html */; };
 		33CA548F22ADF4C300C1F8D9 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 33CA548E22ADF4C300C1F8D9 /* libxml2.tbd */; };
 		33CA54C822AFA88700C1F8D9 /* customerList.html in Resources */ = {isa = PBXBuildFile; fileRef = 33CA54C722AFA88700C1F8D9 /* customerList.html */; };
 		33CA54CC22AFB08C00C1F8D9 /* customerInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CA54CA22AFB08C00C1F8D9 /* customerInfoCell.m */; };
@@ -68,6 +72,11 @@
 		334F9B972282D40B000652CD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		334F9B9C2282D40B000652CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		334F9B9D2282D40B000652CD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		33A3F956230C078F001A58EB /* newRigisterCustomListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = newRigisterCustomListVC.h; sourceTree = "<group>"; };
+		33A3F957230C078F001A58EB /* newRigisterCustomListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = newRigisterCustomListVC.m; sourceTree = "<group>"; };
+		33A3F959230C0C3D001A58EB /* newCustomList.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = newCustomList.html; sourceTree = "<group>"; };
+		33A3F960230ECCC8001A58EB /* newDetail.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = newDetail.html; sourceTree = "<group>"; };
+		33A3F962230F7C03001A58EB /* newResult.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = newResult.html; sourceTree = "<group>"; };
 		33CA548E22ADF4C300C1F8D9 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		33CA549022ADF4CD00C1F8D9 /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
 		33CA54C722AFA88700C1F8D9 /* customerList.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = customerList.html; sourceTree = "<group>"; };
@@ -297,6 +306,8 @@
 		33ED6D4322B7295D00DE3003 /* customerList */ = {
 			isa = PBXGroup;
 			children = (
+				33A3F956230C078F001A58EB /* newRigisterCustomListVC.h */,
+				33A3F957230C078F001A58EB /* newRigisterCustomListVC.m */,
 				87E76EA222AE9FAA005E4EFE /* customerListViewController.h */,
 				87E76EA322AE9FAA005E4EFE /* customerListViewController.m */,
 				87E76EA422AE9FAA005E4EFE /* customerListViewController.xib */,
@@ -310,6 +321,7 @@
 		33ED6D4422B7297D00DE3003 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				33A3F962230F7C03001A58EB /* newResult.html */,
 				334F9B972282D40B000652CD /* Assets.xcassets */,
 				33ED6DE422BA462800DE3003 /* IMG_61332.JPG */,
 				33ED6DDD22BA2DF200DE3003 /* WechatIMG45.jpeg */,
@@ -320,6 +332,8 @@
 				33D1670122B0A4EC003EEE4F /* detail2.html */,
 				33D166FF22B09787003EEE4F /* detail.html */,
 				33CA54C722AFA88700C1F8D9 /* customerList.html */,
+				33A3F960230ECCC8001A58EB /* newDetail.html */,
+				33A3F959230C0C3D001A58EB /* newCustomList.html */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -435,10 +449,13 @@
 				33ED6DE522BA462800DE3003 /* IMG_61332.JPG in Resources */,
 				33CA54CD22AFB08C00C1F8D9 /* customerInfoCell.xib in Resources */,
 				33D1670022B09787003EEE4F /* detail.html in Resources */,
+				33A3F95A230C0C3D001A58EB /* newCustomList.html in Resources */,
 				33ED6DDE22BA2DF200DE3003 /* WechatIMG45.jpeg in Resources */,
+				33A3F961230ECCC8001A58EB /* newDetail.html in Resources */,
 				33ED6DE922BA547500DE3003 /* launchView.xib in Resources */,
 				33ED6DE322BA356D00DE3003 /* heightSetCell.xib in Resources */,
 				87E76EA622AE9FAA005E4EFE /* customerListViewController.xib in Resources */,
+				33A3F963230F7C03001A58EB /* newResult.html in Resources */,
 				334F9B982282D40B000652CD /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -523,6 +540,7 @@
 				33ED6DDC22BA22B000DE3003 /* swyManage.m in Sources */,
 				33D167A422B1E824003EEE4F /* UIView+WebCacheOperation.m in Sources */,
 				33D1679D22B1E824003EEE4F /* UIImage+MultiFormat.m in Sources */,
+				33A3F958230C078F001A58EB /* newRigisterCustomListVC.m in Sources */,
 				33D1679E22B1E824003EEE4F /* SDWebImageCompat.m in Sources */,
 				33D167A322B1E824003EEE4F /* UIImageView+WebCache.m in Sources */,
 				33ED6D4A22B72A4800DE3003 /* baseViewController.m in Sources */,
