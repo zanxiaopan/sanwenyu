@@ -42,6 +42,8 @@
 @implementation customerListViewController
 
 - (void)viewDidLoad {
+    
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.view.backgroundColor = [UIColor whiteColor];
@@ -50,7 +52,7 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.indicator];
     self.title  = @"swy";
     self.customDict = [NSMutableDictionary dictionary];
-    //[self.view addSubview:self.imageView];
+
     [self.view addSubview:self.tableView];
     self.tableView.mj_header = self.refreshHeader;
     self.imageView.userInteractionEnabled = NO;
