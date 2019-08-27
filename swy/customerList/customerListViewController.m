@@ -38,6 +38,7 @@
 
 - (void)viewDidLoad {
     
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.view.backgroundColor = [UIColor whiteColor];
@@ -45,7 +46,7 @@
     self.navigationItem.leftBarButtonItem= [[UIBarButtonItem alloc] initWithCustomView:self.refreshBtn];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.indicator];
     self.title  = @"swy";
-    //[self.view addSubview:self.imageView];
+
     [self.view addSubview:self.tableView];
     self.tableView.mj_header = self.refreshHeader;
     self.imageView.userInteractionEnabled = NO;
