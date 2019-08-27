@@ -188,6 +188,7 @@
                         self.dataSource = nil;
                         [self.tableView reloadData];
                         if ([swyManage manage].autoRefreshList) {
+                            
                             [self performSelector:@selector(requesList) withObject:nil afterDelay:0.3];
                         }
                     }
