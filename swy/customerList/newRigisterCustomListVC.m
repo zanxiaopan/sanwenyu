@@ -130,7 +130,7 @@
                 NSLog(@"method=operateView💗💗💗💗💗💗💗💗%@",htmlStr);
                 if (response && ![response.URL.absoluteString isEqualToString:@"https://sales.vemic.com/login_error.do"]) {
                     TFHpple *tfhpple = [[TFHpple alloc] initWithHTMLData:data];
-                    NSArray *array = [tfhpple searchWithXPathQuery:@"//tr[@class='odd']"];
+                    NSArray *array = [tfhpple searchWithXPathQuery:@"//tr[@id='data_tr']"];
                     array = [self filterArr:array];
                     if (array.count) {
                         self.dataSource = array;
@@ -155,7 +155,7 @@
             NSURL *url = [[NSBundle mainBundle] URLForResource:@"newCustomList.html" withExtension:nil];
             NSData *data = [[NSData alloc] initWithContentsOfURL:url];
             TFHpple *tfhpple = [[TFHpple alloc] initWithHTMLData:data];
-            NSArray *array = [tfhpple searchWithXPathQuery:@"//tr[@class='odd']"];
+            NSArray *array = [tfhpple searchWithXPathQuery:@"//tr[@id='data_tr']"];
             array = [self filterArr:array];
             if (array.count) {
                 self.dataSource = array;
