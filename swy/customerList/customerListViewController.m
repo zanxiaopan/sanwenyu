@@ -36,6 +36,8 @@
 @property (nonatomic, strong) NSURLSessionTask *currentTask;
 @property (nonatomic, strong) MBProgressHUD *hud;
 @property (nonatomic, strong) UIButton *floatBtn;
+@property (nonatomic, strong) UILabel  *floatSumLabel;
+@property (nonatomic, assign) NSInteger  sum;
 
 @end
 
@@ -55,6 +57,7 @@
     self.tableView.mj_header = self.refreshHeader;
     self.imageView.userInteractionEnabled = NO;
     [[UIApplication sharedApplication].keyWindow addSubview:self.floatBtn];
+    [self.view addSubview:self.floatSumLabel];
     [[swyManage manage] addObserver:self forKeyPath:@"settedCustomAutoClickSwitch" options:NSKeyValueObservingOptionNew context:nil];
 }
 
@@ -163,6 +166,18 @@
         _floatBtn.backgroundColor = [UIColor orangeColor];
     }
     return _floatBtn;
+}
+
+- (UILabel *)floatSumLabel {
+    if (!_floatSumLabel) {
+        _floatSumLabel = [[UILabel alloc] init];
+        _floatSumLabel.alpha = 0.75;
+        _floatSumLabel.font = [UIFont systemFontOfSize:15];
+        _floatSumLabel.text = @"今日抢客户总数:0";
+        _floatSumLabel.textColor = [UIColor orangeColor];
+        _floatSumLabel.frame = CGRectMake([UIScreen mainScreen].bounds.size.width-130,[UIScreen mainScreen].bounds.size.height-120,130, 50);
+    }
+    return _floatSumLabel;
 }
 
 - (UITableView *)tableView
@@ -459,13 +474,14 @@
 
 - (void)alertSuccessMessage {
     if (self.customerId && [self.customDict objectForKey:self.customerId]) {
-        NSString *customeName = [self.customDict objectForKey:self.customerId];
         _hud.label.text = @"盯到啦";
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             [self requesList];
         });
     }else {
+        self.sum = self.sum+1;
+        self.floatSumLabel.text = [NSString stringWithFormat:@"今日抢客户总数:%ld",_sum];
         [self showAlertAndRefresh:@"将该客户加为自己的私有客户"];
     }
     
