@@ -131,10 +131,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSString *userPhoneName = [[UIDevice currentDevice] name];
-    if ([userPhoneName isEqualToString:@"小不点的一点点 (2)"] || [userPhoneName isEqualToString:@"Evonne"] || [userPhoneName isEqualToString:@"iPhone XR"]) {
-        return 9;
-    }
-    return 8;
+    return 9;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -144,9 +141,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *userPhoneName = [[UIDevice currentDevice] name];
-    BOOL isShanshan = [userPhoneName isEqualToString:@"小不点的一点点 (2)"] || [userPhoneName isEqualToString:@"Evonne"] || [userPhoneName isEqualToString:@"iPhone XR"];
-
     
     UITableViewCell *cell = [UITableViewCell new];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -169,7 +163,7 @@
         [cell.contentView addSubview:self.invertSwitch];
         self.invertSwitch.center = cell.contentView.center;
         self.invertSwitch.on = [swyManage manage].invertSwitch;
-    }else if (indexPath.row == 7 && isShanshan) {
+    }else if (indexPath.row == 7) {
         cell.textLabel.text = @"盯客户";
         [cell.contentView addSubview:self.settedCustomAutoClickSwitch];
         self.settedCustomAutoClickSwitch.center = cell.contentView.center;
