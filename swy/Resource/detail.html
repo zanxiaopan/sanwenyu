@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
@@ -85,7 +84,10 @@
               }
           }
         
-        function checkPreUrl(){
+        function checkPreUrl(obj){
+            if(obj){
+                obj.disabled="true";
+            }
             if ("" == "accountCooperate") {
                 //合作单入口
                 window.history.go(-1);
@@ -105,6 +107,10 @@
             }
         }
         
+        function addExpress(selId) {
+            openwin("/express.do?method=tempSendInfo&isBatch=false&accountIds=" + selId, 1200, 600, 'op1');
+        }
+        
         function modify()
         {
             document.getElementById("subForm").submit();
@@ -114,6 +120,14 @@
             if (confirm("你确定要"+msg+"吗？")) {
                 window.parent.location.href = url;
             }
+        }
+        
+        function closeOne(obj) {
+            if (obj) {
+                obj.disabled = true;
+            }
+            var form = document.getElementById('closeOnePostForm');
+            form.submit();
         }
         
         function confirmOper1(msg, url, obj){
@@ -206,7 +220,7 @@
         }
         
         function listPublicAccountByArea(){
-            var area = "Jiangsu_Taizhou";
+            var area = "Guangdong_Guangzhou";
             if (area == null || area == "") {
                 alert("客户所在城市为空！");
                 return;
@@ -381,7 +395,7 @@
                 //第三方代码写在下面
                 if(token.eventName=="pauseUnlink"){//挂断后置忙
                     //if (confirm("是否新建联系记录？")) {
-                    //var url="contactRecord.do?method=add&customerId=" + 17025224 + "&contactName=" + URLencode('') + "&contactPhone=" + contactPhone +"&contactTitle=" +URLencode('电话联系') ;
+                    //var url="contactRecord.do?method=add&customerId=" + 754207 + "&contactName=" + URLencode('陈') + "&contactPhone=" + contactPhone +"&contactTitle=" +URLencode('电话联系') ;
                     //openwin(url,1000,600);
                     //}
                 }
@@ -413,24 +427,42 @@
             }
         }
         function checkRepeat(){
-            window.open("/customer.do?method=checkAccount&accountId="+17025224);
+            window.open("/customer.do?method=checkAccount&accountId="+754207);
         }
         
         function openOper(){
             var cat=0+"";
             if(cat==""||cat=="0"){
-                popDWindow("客户开放", 'customer.do?method=openMic&customerId=17025224' , 400, 200);
+                popDWindow("客户开放", 'customer.do?method=openMic&customerId=754207' , 400, 200);
             }
             else if (confirm("你确定要将该客户开放出去吗？")) {
-                window.parent.location.href = 'customer.do?method=openOne&customerId=17025224';
+                window.parent.location.href = 'customer.do?method=openOne&customerId=754207';
             }
         }
+        function makeScheme(accountId) {
+            ajaxRequest("/customer.do?method=checkAccountHasProductOrKeyword", "accountId=" + accountId, function() {
+                        if(arguments[0]) {
+                        var result = arguments[0];
+                        if(result[0].code == 0) {
+                        window.open("http://360.vemic.com/assistant/main.do?accountId="+accountId);
+                        }else {
+                        alert("请先完善客户关键词和所属行业！");
+                        return;
+                        }
+                        }
+                        });
+        }
         </script>
-        <form id="crmAccount" method="GET" action="/customer.do?method=accountDetails&amp;customerId=17025224&amp;token=l4KVbKv8NG">
-            <input type="hidden" name="_h_referer" id="_h_referer" value="http://sales.vemic.com/customer.do?method=details&customerId=17025224&token=l4KVbKv8NG"/>
+        <form id="closeOnePostForm" action="customer.do?customerId=754207&method=closeOne" method="post" target="_parent">
+            <input type="hidden" name="FORM.TOKEN" value="CQUVOE33YDT7SGHIFF3WFXNK3QTG284K">
+                <input type="hidden" name="token" value="lS6e7cq0YO">
+                    </form>
+        
+        <form id="crmAccount" method="GET" action="/customer.do?method=accountDetails&amp;customerId=754207&amp;token=lS6e7cq0YO">
+            <input type="hidden" name="_h_referer" id="_h_referer" value="http://sales.vemic.com/customer.do?method=details&customerId=754207&token=lS6e7cq0YO"/>
             <span id="keleyivisitorip"></span>
-            <input type="hidden" name="FORM.TOKEN" id="FORM.TOKEN" value="BYJE7PR9KOCFGIPSZD1Z3SFPCANR2ACC">
-                <input type="hidden" name="token" id="token" value="l4KVbKv8NG">
+            <input type="hidden" name="FORM.TOKEN" id="FORM.TOKEN" value="CQUVOE33YDT7SGHIFF3WFXNK3QTG284K">
+                <input type="hidden" name="token" id="token" value="lS6e7cq0YO">
                     
                     <table width="100%">
                         <caption class="x-panel-header">
@@ -443,20 +475,21 @@
                                 
                                 
                                 
-                                <input type="button" id="test" name="test" class="submitc" onclick="confirmOper1('已将该客户加为自己的私有客户','customer.do?method=closeOne&amp;customerId=17025224', this)" value=" 不开放 "/>
+                                <input type="button" id="test" name="test" class="submitc" onclick="closeOne(this)" value=" 不开放 "/>
+                                
                                 
                                 
                                 
                             </td>
                             <td align="right">
-                                <a href="customer.do?method=accountView&accountId=17025224" target="_blank" style="">
+                                <a href="customer.do?method=accountView&accountId=754207" target="_blank" style="">
                                     <span style="color:#FF0000;font-weight:bold;">新销售统一视图</span>
                                 </a>
                             </td>
                         </tr>
                         <tr>
                             <td  colspan="4" align="center" style="width:100%">
-                                2017年11月30日后上门0次
+                                2017年11月30日后上门2次
                             </td>
                         </tr>
                         <tr>
@@ -464,7 +497,8 @@
                                 客户编号：
                             </th>
                             <td colspan="3">
-                                17025224
+                                754207
+                                <a style="margin-left:15px;" id="makeScheme" name="makeScheme" onclick="makeScheme(754207)" href="#">制作方案</a>
                             </td>
                         </tr>
                         <tr>
@@ -472,8 +506,8 @@
                                 MIC会员ID：
                             </th>
                             <td colspan="3">
-                                <a href="customer.do?method=details&show=member&customerId=17025224" target="_parent">
-                                    678904645
+                                <a href="customer.do?method=details&show=member&customerId=754207" target="_parent">
+                                    N/A
                                 </a>
                                 
                                 
@@ -487,9 +521,9 @@
                                 合同信息管理：
                             </th>
                             <td colspan="3">
-                                <a id="test" name="test" onclick="window.parent.location='uitoolList.ui?funcID=681&amp;accountId=17025224'" href="#">客户合同列表</a>
+                                <a id="test" name="test" onclick="window.parent.location='uitoolList.ui?funcID=681&amp;accountId=754207'" href="#">客户合同列表</a>
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <a id="test" name="test" onclick="window.parent.location='contract.do?method=add&amp;customerId=17025224'" href="#">草拟合同</a>
+                                <a id="test" name="test" onclick="window.parent.location='contract.do?method=add&amp;customerId=754207'" href="#">草拟合同</a>
                             </td>
                         </tr>
                         <tr>
@@ -499,7 +533,7 @@
                             <td colspan="3">
                                 <table id="id_tab_cname" border="0">
                                     
-                                    <tr><td>靖江市华旺地毯针厂</td></tr>
+                                    <tr><td>广州月亮山康体设备有限公司</td></tr>
                                     
                                 </table>
                             </td>
@@ -511,7 +545,7 @@
                             <td colspan="3">
                                 <table id="id_tab_ename" border="0">
                                     
-                                    <tr><td>Jingjiang Huawang Tufted Needle Factory</td></tr>
+                                    <tr><td>Guangzhou Moon Mountain Sports Equipment Co.,Ltd</td></tr>
                                     
                                 </table>
                             </td>
@@ -535,7 +569,7 @@
                                 客户来源：
                             </th>
                             <td>
-                                普通&nbsp;&nbsp;
+                                MIC展会名片&nbsp;&nbsp;
                                 
                                 
                             </td>
@@ -546,7 +580,7 @@
                          来源类型：
                          </th>
                          <td colspan="3">
-                         <input id="originType" name="originType" disabled="disabled" type="text" value="1"/>
+                         <input id="originType" name="originType" disabled="disabled" type="text" value="2"/>
                          </td>
                          </tr>
                          <tr>
@@ -580,13 +614,13 @@
                                 <div id="china_zone" style="display: none">
                                     <i>省份：</i>
                                     
-                                    <u>江苏省
+                                    <u>广东省
                                     </u>
                                     
                                     <i> 城市：</i>
-                                    <u>泰州市 </u>
+                                    <u>广州市 </u>
                                     <i>城区：</i>
-                                    <u>靖江市
+                                    <u>萝岗区
                                     </u>
                                 </div>
                                 
@@ -630,7 +664,7 @@
                                 <span class="requiredredstar">*</span>客户级别：
                             </th>
                             <td>
-                                放弃
+                                系统开放
                             </td>
                             <th width="150">
                                 <span class="requiredredstar">*</span>客户属性：
@@ -650,8 +684,8 @@
                         <tr>
                             <th></th>
                             <td colspan="3">
-                                <a style="float: right;" href="javascript:openJqueryWindowCenter('supplierContact.do?method=add&accountId=17025224&sourceType=1&isSimplify=true', '新建联系人', 950, 600, true, false, false, false, false,closeWindow)">新建联系人</a>
-                                <!--a style="float: right;" href="javascript:popDWindow('新建联系人', 'supplierContact.do?method=add&accountId=17025224&sourceType=1', 1000, 520)">新建联系人</a-->
+                                <a style="float: right;" href="javascript:openJqueryWindowCenter('supplierContact.do?method=add&accountId=754207&sourceType=1&isSimplify=true', '新建联系人', 950, 600, true, false, false, false, false,closeWindow)">新建联系人</a>
+                                <!--a style="float: right;" href="javascript:popDWindow('新建联系人', 'supplierContact.do?method=add&accountId=754207&sourceType=1', 1000, 520)">新建联系人</a-->
                             </td>
                         </tr>
                         
@@ -661,88 +695,7 @@
                             
                             <th>
                                 <label style="font-weight: bold;">
-                                    <nobr>Susan Yan
-                                        &nbsp;女士
-                                    </nobr>
-                                    
-                                    
-                                </label>
-                            </th>
-                            <td colspan="3">
-                                <table>
-                                    <tr>
-                                        <th style="border:0px;width:5%;">电话：</th>
-                                        <td style="border:0px;width:20%;">
-                                            
-                                            <div id = "telephone_right">
-                                                
-                                                
-                                                
-                                            </div>
-                                            
-                                        </td>
-                                        
-                                        <th style="border:0px;width:5%;">手机：</th>
-                                        <td style="border:0px;width:20%;">
-                                            
-                                            <div id = "mobile_right">
-                                                
-                                                
-                                                <input type="button" onclick="outCall('','15866860524','Susan Yan');" style="background:url('images/phone.png'); border-style: none; width: 20px;height: 20px;background-repeat: no-repeat;cursor: pointer;">
-                                                    &nbsp;&nbsp;&nbsp;<input type="button" onclick="writeWorkRecord('','15866860524','Susan Yan','17025224');" style="background:url('images/note.jpg'); border-style: none; width: 20px;height: 20px;background-repeat: no-repeat;cursor: pointer;">
-                                                        
-                                                        
-                                                        15866860524
-                                                        
-                                                        </div>
-                                            
-                                        </td>
-                                        
-                                        <th style="border:0px;width:5%;">传真：</th>
-                                        <td style="border:0px;width:20%;">
-                                            
-                                            <div id = "fax_right">
-                                                <!--
-                                                 
-                                                 -->
-                                                
-                                                
-                                            </div>
-                                            
-                                        </td>
-                                        
-                                        <th style="border:0px;width:5%;">邮箱：</th>
-                                        <td style="border:0px;width:34%;">
-                                            
-                                            <div id = "mail_right">
-                                                <a href="mailTo:susan@jshuawang.com">susan@jshuawang.com</a>
-                                                
-                                            </div>
-                                            
-                                        </td>
-                                        <td style="border:0px;width:5%;">
-                                            <a style="float: right;" href="javascript:openJqueryWindowCenter('supplierContact.do?method=modify&contactId=6486260&accountId=17025224&comId=&isSimplify=true', '修改联系人', 850, 520, true, false, false, false, false,closeWindow)">编辑</a>
-                                            <!--  a style="float: right;" href="javascript:popDWindow('修改联系人', 'supplierContact.do?method=modify&contactId=6486260&accountId=17025224&comId=', 800, 520)">编辑</a>-->
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="9"
-                                            style="border-bottom: 1px #ddd solid; margin: 0px 0px 0px 0px; padding: 0px 0px 0px 0px; height: 1px; border: 0px 0px 0px 0px;">
-                                            <DIV
-                                                style="BORDER-TOP: #00686b 1px dashed; OVERFLOW: hidden; HEIGHT: 1px;"></DIV>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </td>
-                        </tr>
-                        
-                        
-                        
-                        <tr class="whiteTr">
-                            
-                            <th>
-                                <label style="font-weight: bold;">
-                                    <nobr>叶总
+                                    <nobr>陈
                                         &nbsp;先生
                                     </nobr>
                                     
@@ -757,21 +710,10 @@
                                             
                                             <div id = "telephone_right">
                                                 
-                                                <input type="button" onclick="outCall('523','84586776','叶总');" style="background:url('images/phone.png'); border-style: none; width: 20px;height: 20px;background-repeat: no-repeat;cursor: pointer;">
-                                                    &nbsp;&nbsp;&nbsp;<input type="button" onclick="writeWorkRecord('523','84586776','叶总','17025224');" style="background:url('images/note.jpg'); border-style: none; width: 20px;height: 20px;background-repeat: no-repeat;cursor: pointer;">
+                                                <input type="button" onclick="outCall('20','82302766','陈');" style="background:url('images/phone.png'); border-style: none; width: 20px;height: 20px;background-repeat: no-repeat;cursor: pointer;">
+                                                    &nbsp;&nbsp;&nbsp;<input type="button" onclick="writeWorkRecord('20','82302766','陈','754207');" style="background:url('images/note.jpg'); border-style: none; width: 20px;height: 20px;background-repeat: no-repeat;cursor: pointer;">
                                                         
-                                                        523-84586776
-                                                        
-                                                        (叶朝立)
-                                                        
-                                                        </div>
-                                            
-                                            <div id = "telephone_right">
-                                                
-                                                <input type="button" onclick="outCall('000','13815948827','叶总');" style="background:url('images/phone.png'); border-style: none; width: 20px;height: 20px;background-repeat: no-repeat;cursor: pointer;">
-                                                    &nbsp;&nbsp;&nbsp;<input type="button" onclick="writeWorkRecord('000','13815948827','叶总','17025224');" style="background:url('images/note.jpg'); border-style: none; width: 20px;height: 20px;background-repeat: no-repeat;cursor: pointer;">
-                                                        
-                                                        000-13815948827
+                                                        20-82302766
                                                         
                                                         </div>
                                             
@@ -783,10 +725,28 @@
                                             <div id = "mobile_right">
                                                 
                                                 
+                                                <input type="button" onclick="outCall('','13903065804','陈');" style="background:url('images/phone.png'); border-style: none; width: 20px;height: 20px;background-repeat: no-repeat;cursor: pointer;">
+                                                    &nbsp;&nbsp;&nbsp;<input type="button" onclick="writeWorkRecord('','13903065804','陈','754207');" style="background:url('images/note.jpg'); border-style: none; width: 20px;height: 20px;background-repeat: no-repeat;cursor: pointer;">
+                                                        
+                                                        
+                                                        13903065804
+                                                        
+                                                        (陈先生离)
+                                                        
+                                                        </div>
+                                            
+                                            <div id = "mobile_right">
                                                 
                                                 
-                                                
-                                            </div>
+                                                <input type="button" onclick="outCall('','13809813470','陈');" style="background:url('images/phone.png'); border-style: none; width: 20px;height: 20px;background-repeat: no-repeat;cursor: pointer;">
+                                                    &nbsp;&nbsp;&nbsp;<input type="button" onclick="writeWorkRecord('','13809813470','陈','754207');" style="background:url('images/note.jpg'); border-style: none; width: 20px;height: 20px;background-repeat: no-repeat;cursor: pointer;">
+                                                        
+                                                        
+                                                        13809813470
+                                                        
+                                                        (钟经理)
+                                                        
+                                                        </div>
                                             
                                         </td>
                                         
@@ -796,8 +756,10 @@
                                             <div id = "fax_right">
                                                 <!--
                                                  
+                                                 <input type="button" onclick="outCall('20','82302831','陈');" style="background:url('images/phone.png'); border-style: none; width: 20px;height: 20px;background-repeat: no-repeat;cursor: pointer;">
+                                                 
                                                  -->
-                                                
+                                                20-82302831
                                                 
                                             </div>
                                             
@@ -807,14 +769,14 @@
                                         <td style="border:0px;width:34%;">
                                             
                                             <div id = "mail_right">
-                                                <a href="mailTo:84586776@qq.com">84586776@qq.com</a>
+                                                <a href="mailTo:tsai@moonhill.jp">tsai@moonhill.jp</a>
                                                 
                                             </div>
                                             
                                         </td>
                                         <td style="border:0px;width:5%;">
-                                            <a style="float: right;" href="javascript:openJqueryWindowCenter('supplierContact.do?method=modify&contactId=6311096&accountId=17025224&comId=&isSimplify=true', '修改联系人', 850, 520, true, false, false, false, false,closeWindow)">编辑</a>
-                                            <!--  a style="float: right;" href="javascript:popDWindow('修改联系人', 'supplierContact.do?method=modify&contactId=6311096&accountId=17025224&comId=', 800, 520)">编辑</a>-->
+                                            <a style="float: right;" href="javascript:openJqueryWindowCenter('supplierContact.do?method=modify&contactId=1421784&accountId=754207&comId=&isSimplify=true', '修改联系人', 850, 520, true, false, false, false, false,closeWindow)">编辑</a>
+                                            <!--  a style="float: right;" href="javascript:popDWindow('修改联系人', 'supplierContact.do?method=modify&contactId=1421784&accountId=754207&comId=', 800, 520)">编辑</a>-->
                                         </td>
                                     </tr>
                                     <tr>
@@ -839,11 +801,23 @@
                          </th>
                          <td width="300">
                          
+                         
+                         86-20-82302766
+                         
+                         <input type="button" onclick="outCall('86-20-82302766');" style="background:url('images/phone.png'); border-style: none; width: 20px;height: 20;background-repeat: no-repeat;cursor: pointer;">
+                         
+                         <p>
+                         
+                         
                          </td>
                          <th width="150">
                          传真：
                          </th>
                          <td>
+                         
+                         
+                         86-20-82302831<p>
+                         
                          
                          </td>
                          </tr>
@@ -852,7 +826,7 @@
                          Email：
                          </th>
                          <td width="300">
-                         <a href="mailto:"></a>
+                         <a href="mailto:tsai@moonhill.jp">tsai@moonhill.jp</a>
                          </td>
                          <th width="150">
                          邮编：
@@ -867,7 +841,7 @@
                                 公司地址：
                             </th>
                             <td width="300">
-                                靖江市靖城镇昆盛村标盛圩25号
+                                广州萝岗区长平路12号
                             </td>
                             <th width="150">
                                 公司主页：
@@ -875,9 +849,9 @@
                             <td id="homepage">
                                 <table id="id_tab_homepage" border="0">
                                     
-                                    <tr><td><a href="http://jshuawang.en.alibaba.com" target="_blank">http://jshuawang.en.alibaba.com</a></td></tr>
+                                    <tr><td><a href="http://moonhill.en.alibaba.com/company_profile/trustpass_profile.html" target="_blank">http://moonhill.en.alibaba.com/company_profile/trustpass_profile.html</a></td></tr>
                                     
-                                    <tr><td><a href="http://jshuawang.com/" target="_blank">http://jshuawang.com/</a></td></tr>
+                                    <tr><td><a href="http://gzylsktsb.1688.com" target="_blank">http://gzylsktsb.1688.com</a></td></tr>
                                     
                                 </table>
                             </td>
@@ -902,10 +876,10 @@
                                             &nbsp;&nbsp;     </td><td colspan="5">
                                                 <i>地址：</i>
                                                 中国 &nbsp;&nbsp;
-                                                江苏省 &nbsp;&nbsp;
-                                                泰州市 &nbsp;&nbsp;
-                                                靖江市 &nbsp;&nbsp;
-                                                城南开发区鼎新村下五圩港北闸东路1号
+                                                广东省 &nbsp;&nbsp;
+                                                广州市 &nbsp;&nbsp;
+                                                黄埔区 &nbsp;&nbsp;
+                                                神舟路与科翔路交叉口西100米
                                             </td></tr>
                                         
                                         
@@ -941,7 +915,7 @@
                              联系人：
                              </th>
                              <td>
-                             
+                             陈
                              </td>-->
                         </tr>
                         <tr>
@@ -949,7 +923,7 @@
                                 备注：
                             </th>
                             <td colspan="3">
-                                <textarea id="remark" name="remark" readonly="readonly" rows="7" cols="80"></textarea>
+                                <textarea id="remark" name="remark" readonly="readonly" rows="7" cols="80">http://jobs.51job.com/all/co3574787.html40天未联系开放!</textarea>
                             </td>
                         </tr>
                         <tr>
@@ -957,7 +931,7 @@
                                 客户简介：
                             </th>
                             <td colspan="3">
-                                <textarea id="description" name="description" readonly="readonly" rows="8" cols="80">https://jshuawang.en.alibaba.com/</textarea>
+                                <textarea id="description" name="description" readonly="readonly" rows="8" cols="80"></textarea>
                             </td>
                             
                         </tr>
@@ -988,13 +962,13 @@
                                 最后修改人：
                             </th>
                             <td>
-                                曹佩佩
+                                system
                             </td>
                             <th>
                                 最后修改时间：
                             </th>
                             <td>
-                                2019-05-27 10:25:24
+                                2019-09-25 20:02:09
                             </td>
                         </tr>
                         <tr>
@@ -1002,13 +976,13 @@
                                 最后分配人：
                             </th>
                             <td>
-                                曹佩佩
+                                陆永祥
                             </td>
                             <th>
                                 最后分配时间：
                             </th>
                             <td>
-                                2018-09-12 20:08:02
+                                2019-01-11 11:26:39
                             </td>
                         </tr>
                         <tr class = "operate">
@@ -1016,10 +990,11 @@
                                 <input type="button" id="check" name="check" class="submitc" onclick="checkRepeat()" value="撞单检查"/>
                                 
                                 
-                                <input type="button" id="test" name="test" class="submitc" onclick="confirmOper1('已将该客户加为自己的私有客户','customer.do?method=closeOne&amp;customerId=17025224', this)" value=" 不开放 "/>
+                                <input type="button" id="test" name="test" class="submitc" onclick="closeOne(this)" value=" 不开放 "/>
                                 
                                 
-                                <input type="button" value=" 返 回 " onclick="checkPreUrl()"
+                                
+                                <input type="button" value=" 返 回 " onclick="checkPreUrl(this)"
                                     class="submitc">
                                     </td>
                         </tr>
@@ -1027,7 +1002,7 @@
                     </form>
         <form id="subForm" action="customer.do" method="get" target="_parent">
             <input type="hidden" name="customerId"
-            value="17025224" />
+            value="754207" />
             <input type="hidden" name="method" value="modify" />
         </form>
         

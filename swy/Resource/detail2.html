@@ -1,92 +1,60 @@
-
-
-
-
-
-
-
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" >
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=GBK">
-    <title>客户详细信息</title>
-    <link rel="stylesheet" type="text/css"
-      href="css/dhtmlx/dhtmlxtabbar.css" />
-    <script src="js/dhtmlx/dhtmlxcommon.js"></script>
-    <script src="js/dhtmlx/dhtmlxtabbar.js"></script>
-    <script src="js/dhtmlx/dhtmlxtabbar_start.js"></script>
-    <script type="text/javascript">
-    var urlInfo;
-    </script>
-  </head>
-  <body>
-    
-    <div id="a_tabbar" class="dhtmlxTabBar" imgpath="images/dhtmltabimgs/"
-      select="base"
-      style="width: 100%; height: 100%;" skinColors="#FCFBFC,#F4F3EE"
-      hrefmode="iframe">
-      
-      
-      <div id="base" name="客户基本信息"
-            href="/customer.do?method=accountDetails&customerId=11617360&token=ATljvgKbqD" width="*">
-        </div>
-      
-      
-      
-      <div id="finance" name="客户财务信息"
-        href="/customer.do?method=accountFinanceDetails&customerId=11617360" width="*">
-      </div>
-      
-      <div id="contact" name="联系人列表"
-        href="supplierContact.do?method=contactView&accountId=11617360&sourceType=1" width="*">
-      </div>
-      
-      
-        <div id="member" name="会员账号列表"
-             href="/uitoolList.ui?funcID=545&customerId=11617360&accountCooperateId=&contractId=&isExbtion=yes" width="*">
-        </div>
-      
-      
-      <div id="record" name="联系记录列表"
-        href="/uitoolList.ui?funcID=546&charlength=1000&customerId=11617360&area=Hubei_Wuhan&industry=&accountCooperateId=&contractId=&isExbtion=yes" width="*">
-      </div>
-      
-      <div id="slave" name="附件列表"
-        href="/uitoolList.ui?funcID=544&customerId=11617360&isExbtion=yes" width="*">
-      </div>
-      
-      <div id="auditOrderRecord" name="订单审核工作记录"
-        href="/uitoolList.ui?funcID=3719&customerId=11617360&isExbtion=yes" width="*">
-      </div>
-       
-      <div id="orderRecord" name="订单执行工作记录"
-        href="/uitoolList.ui?funcID=2121&customerId=11617360&isExbtion=yes" width="*">
-      </div>
-      
-      <div id="service" name="客服联系记录"
-        href="/uitoolList.ui?funcID=547&charlength=1000&customerId=11617360" width="*">
-      </div>
-      
-      <div id="serviceRecord" name="售后服务记录"
-        href="/uitoolList.ui?funcID=702&charlength=1000&customerId=11617360" width="*">
-      </div>
-      
-
-      
-     <div id="contend" name="竞争对手"
-        href="/uitoolList.ui?funcID=2627&customerId=11617360" width="*">
-      </div>
-      
-      
-      <div id="crash" name="客户活动"
-        href="/uitoolList.ui?funcID=968&charlength=1000&customerId=11617360" width="*">
-      </div>
-      
-       
-      <div id="supplier" name="买家匹配信息"
-        href="/uitoolList.ui?funcID=2950&charlength=1000&customerId=11617360" width="*">
-      </div>
-      
-    </div>
-  </body>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=GB18030">
+            <meta http-equiv="pragma" content="no-cache">
+                </head>
+    <body>
+        <SCRIPT language="javascript">
+            /*如果提示信息不为空,则弹出提示信息框*/
+            if(true)
+            alert("将该客户加为自己的私有客户");
+            /*如果转发链接存在,则立即转发到相应页面*/
+            if(true)
+            window.location="customer.do?method=details&token=BkRukyKDZJ&process=close&customerId=16551187";
+            /*如果没有转发链接，则认为是EXT弹出框，并要求关闭该弹出框*/
+            else
+            {
+                /*
+                 if(window.parent.Ext.getCmp('op_win2')!=null)//如果弹出框的弹出框存在,则只关闭弹出框的弹出框
+                 window.parent.Ext.getCmp('op_win2').close;
+                 else
+                 window.parent.Ext.getCmp('op_win').close;
+                 window.parent.location.reload();
+                 */
+                if(parent == top) {
+                    try{
+                        parent.closeDWindowByModule();
+                    }catch(e){
+                        if (window.opener) {
+                            if (window.opener.opener) {
+                                window.opener.opener.location.reload();
+                                window.opener = null;
+                                parent.open('', '_top');
+                                window.close();
+                                window.parent.opener = null;
+                                parent.parent.open('', '_top');
+                                window.parent.close();
+                            } else {
+                                window.opener.location.reload();
+                                window.opener = null;
+                                parent.open('', '_top');
+                                window.close();
+                            }
+                        } else {
+                            parent.opener = null;
+                            parent.open('','_top');
+                            parent.close();
+                        }
+                    }
+                } else if(parent && parent.closeDWindowByModule) {
+                    //window.parent.location.reload();
+                    parent.closeDWindowByModule();
+                }
+                else{
+                    window.history.back(-1);
+                }
+            }
+        </SCRIPT>
+    </body>
 </html>

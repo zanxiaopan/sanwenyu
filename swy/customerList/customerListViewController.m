@@ -308,20 +308,8 @@
 {
     self.dataSource = nil;
     [self.tableView reloadData];
-    
-    NSURL *url = [NSURL URLWithString:urlStr];
-    NSDictionary *dic = [self dictionaryWith:urlStr];
-    if (dic[@"token"] && dic[@"customerId"]) {
-        self.token = dic[@"token"];
-        self.customerId = dic[@"customerId"];
-    }else{
-        [self showAlert:@"未获取到token或者customerId" confirm:^{
-            [self restartRefreshTimer];
-        }];
-        return;
-    }
     //showRobAcc
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr]];
     [request addValue:@"https://sales.vemic.com/customer.do?method=listRobAccount" forHTTPHeaderField:@"Referer"];
     [request configDefaultRequestHeader];
     
@@ -332,7 +320,17 @@
                 NSString *htmlStr = [[NSString alloc] initWithData:data encoding:encoding];
                 NSLog(@"method=showRobAcc💗💗💗💗💗💗💗💗%@",htmlStr);
                 if (!error && response && ![response.URL.absoluteString isEqualToString:@"https://sales.vemic.com/login_error.do"]) {
-                    [self accountDetail];
+                    NSDictionary *dic = [self dictionaryWith:response.URL.absoluteString];
+                    if (dic[@"customerId"]) {
+                        self.token = dic[@"token"];
+                        self.customerId = dic[@"customerId"];
+                         [self accountDetail];
+                    }else{
+                        [self showAlert:@"未获取到token或者customerId" confirm:^{
+                            [self restartRefreshTimer];
+                        }];
+                        return;
+                    }
                 }else{
                     NSLog(@"未登录:%@",response.URL.absoluteString);
                 }
@@ -347,6 +345,15 @@
 
 - (void)accountDetail
 {
+    if (!isDevlopping) {
+        if (!self.customerId.length || !self.token.length) {
+            [self showAlert:@"未获取到token或者customerId" confirm:^{
+                [self restartRefreshTimer];
+            }];
+            return;
+        }
+    }
+    
     NSString *curURLStr  = [NSString stringWithFormat:@"https://sales.vemic.com/customer.do?method=accountDetails&customerId=%@&token=%@",self.customerId,self.token];
     NSString *referer = [NSString stringWithFormat:@"https://sales.vemic.com/customer.do?method=details&customerId=%@&token=%@",self.customerId,self.token];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:curURLStr]];
@@ -376,8 +383,10 @@
                 NSURL *url = [[NSBundle mainBundle] URLForResource:@"detail.html" withExtension:nil];
                 NSData *data2 = [[NSData alloc] initWithContentsOfURL:url];
                 TFHpple *tfhpple = [[TFHpple alloc] initWithHTMLData:data2];
-                NSArray<TFHppleElement *> *array = [tfhpple searchWithXPathQuery:@"//input[@name='FORM.TOKEN']"];
-                self.formToken = [array[0].attributes objectForKey:@"value"];
+                NSArray<TFHppleElement *> *array1 = [tfhpple searchWithXPathQuery:@"//input[@name='FORM.TOKEN']"];
+                NSArray<TFHppleElement *> *array2 = [tfhpple searchWithXPathQuery:@"//input[@name='token']"];
+                self.formToken = [array1[0].attributes objectForKey:@"value"];
+                self.token = [array2[0].attributes objectForKey:@"value"];
                 [self clickNoOpen];
             }
         });
@@ -389,12 +398,22 @@
 //自动点不开放
 - (void)clickNoOpen
 {
-    NSString *urlString = [NSString stringWithFormat:@"https://sales.vemic.com/customer.do?method=closeOne&customerId=%@&FORM.TOKEN=%@&token=%@",self.customerId,self.formToken,self.token];
+    NSString *urlString = [NSString stringWithFormat:@"customer.do?customerId=%@&method=closeOne",self.customerId];
     NSString *referer = [NSString stringWithFormat:@"https://sales.vemic.com/customer.do?method=accountDetails&customerId=%@&token=%@",self.customerId,self.token];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
     [request addValue:referer forHTTPHeaderField:@"Referer"];
     [request configDefaultRequestHeader];
-
+    [request addValue:@"https://sales.vemic.com" forHTTPHeaderField:@"Origin"];
+    [request addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    [request addValue:@"max-age=0" forHTTPHeaderField:@"Cache-Control"];
+    request.HTTPMethod = @"POST";
+    
+    NSString *string = [NSString stringWithFormat:@"FORM.TOKEN=%@&token=%@",self.formToken,self.token];
+    NSMutableData *totalData = [NSMutableData data];
+    NSData *parameterData = [string dataUsingEncoding:NSUTF8StringEncoding];
+    [totalData appendData:parameterData];
+    request.HTTPBody = totalData;
+    
     self.currentTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (!isDevlopping) {
@@ -404,7 +423,8 @@
                 if (!error && response && [response.URL.absoluteString isEqualToString:urlString]) {
                     if ([htmlStr containsString:@"将该客户加为自己的私有客户"]) {
                         NSLog(@"将该客户加为自己的私有客户");
-                        [self seeResultStepOne];
+                        //[self seeResultStepOne];
+                        [self alertSuccessMessage];
                     }else if ([htmlStr containsString:@"发生错误"]) {
                         [self showAlertAndRefresh:@"发生错误"];
                     }else if ([htmlStr containsString:@"客户数量已经达到了分公司负责区域限制,不能继续添加客户"]) {
@@ -421,7 +441,8 @@
                 NSString *htmlStr = [[NSString alloc] initWithData:data2 encoding:NSUTF8StringEncoding];
                 if ([htmlStr containsString:@"将该客户加为自己的私有客户"]) {
                     NSLog(@"将该客户加为自己的私有客户");
-                    [self seeResultStepOne];
+                    //[self seeResultStepOne];
+                    [self alertSuccessMessage];
                 }else if ([htmlStr containsString:@"发生错误"]) {
                     [self showAlertAndRefresh:@"发生错误"];
                 }else if ([htmlStr containsString:@"客户数量已经达到了分公司负责区域限制,不能继续添加客户"]) {
@@ -436,41 +457,41 @@
 }
 
 //抢客户结果页面
--(void)seeResultStepOne
-{
-    NSString *urlString = [NSString stringWithFormat:@"https://sales.vemic.com/customer.do?method=details&token=%@&process=close&customerId=%@",self.token,self.customerId];
-    NSString *referer = [NSString stringWithFormat:@"https://sales.vemic.com/customer.do?method=closeOne&customerId=%@&FORM.TOKEN=%@&token=%@",self.customerId,self.formToken,self.token];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
-    [request addValue:referer forHTTPHeaderField:@"Referer"];
-    [request configDefaultRequestHeader];
-    self.currentTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (!error && response && ![response.URL.absoluteString isEqualToString:@"https://sales.vemic.com/login_error.do"]){
-                [self seeResultStepTwo];
-            }else{
-                [self alertSuccessMessage];
-            }
-        });
-    }];
-    [self.currentTask resume];
-}
-
--(void)seeResultStepTwo
-{
-    NSString *urlString = [NSString stringWithFormat:@"https://sales.vemic.com/customer.do?method=accountDetails&customerId=%@&token=%@",self.customerId,self.token];
-    NSString *referer  = [NSString stringWithFormat:@"https://sales.vemic.com/customer.do?method=details&token=%@&process=close&customerId=%@",self.token,self.customerId];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
-    [request addValue:referer forHTTPHeaderField:@"Referer"];
-    [request configDefaultRequestHeader];
-    self.currentTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        if (!error) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self alertSuccessMessage];
-            });
-        }
-    }];
-    [self.currentTask resume];
-}
+//-(void)seeResultStepOne
+//{
+//    NSString *urlString = [NSString stringWithFormat:@"https://sales.vemic.com/customer.do?method=details&token=%@&process=close&customerId=%@",self.token,self.customerId];
+//    NSString *referer = [NSString stringWithFormat:@"https://sales.vemic.com/customer.do?method=closeOne&customerId=%@&FORM.TOKEN=%@&token=%@",self.customerId,self.formToken,self.token];
+//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+//    [request addValue:referer forHTTPHeaderField:@"Referer"];
+//    [request configDefaultRequestHeader];
+//    self.currentTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            if (!error && response && ![response.URL.absoluteString isEqualToString:@"https://sales.vemic.com/login_error.do"]){
+//                [self seeResultStepTwo];
+//            }else{
+//                [self alertSuccessMessage];
+//            }
+//        });
+//    }];
+//    [self.currentTask resume];
+//}
+//
+//-(void)seeResultStepTwo
+//{
+//    NSString *urlString = [NSString stringWithFormat:@"https://sales.vemic.com/customer.do?method=accountDetails&customerId=%@&token=%@",self.customerId,self.token];
+//    NSString *referer  = [NSString stringWithFormat:@"https://sales.vemic.com/customer.do?method=details&token=%@&process=close&customerId=%@",self.token,self.customerId];
+//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+//    [request addValue:referer forHTTPHeaderField:@"Referer"];
+//    [request configDefaultRequestHeader];
+//    self.currentTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+//        if (!error) {
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                [self alertSuccessMessage];
+//            });
+//        }
+//    }];
+//    [self.currentTask resume];
+//}
 
 - (void)alertSuccessMessage {
     if (self.customerId && [self.customDict objectForKey:self.customerId]) {
@@ -644,11 +665,10 @@ didCompleteWithError:(nullable NSError *)error
             NSString *urlStr = [elemnent1.attributes objectForKey:@"href"];
             urlStr = [NSString stringWithFormat:@"https://sales.vemic.com%@",urlStr];
             NSDictionary *dic = [self dictionaryWith:urlStr];
-            if (dic[@"token"] && dic[@"customerId"]) {
+            if (dic[@"customerId"]) {
                 self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:false];
                 self.hud.label.text = [NSString stringWithFormat:@"正在抢:%@",industoryName];
                 [swyManage manage].settedCustomAutoClickSwitch = false;
-                self.token = dic[@"token"];
                 self.customerId = dic[@"customerId"];
                 [self.customDict setObject:industoryName forKey:self.customerId];
                 [self showRobAcc:urlStr];
