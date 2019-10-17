@@ -398,7 +398,7 @@
 //自动点不开放
 - (void)clickNoOpen
 {
-    NSString *urlString = [NSString stringWithFormat:@"customer.do?customerId=%@&method=closeOne",self.customerId];
+    NSString *urlString = [NSString stringWithFormat:@"https://sales.vemic.com/customer.do?method=closeOne&customerId=%@",self.customerId];
     NSString *referer = [NSString stringWithFormat:@"https://sales.vemic.com/customer.do?method=accountDetails&customerId=%@&token=%@",self.customerId,self.token];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
     [request addValue:referer forHTTPHeaderField:@"Referer"];
@@ -441,8 +441,7 @@
                 NSString *htmlStr = [[NSString alloc] initWithData:data2 encoding:NSUTF8StringEncoding];
                 if ([htmlStr containsString:@"将该客户加为自己的私有客户"]) {
                     NSLog(@"将该客户加为自己的私有客户");
-                    //[self seeResultStepOne];
-                    [self alertSuccessMessage];
+                    [self seeResultStepOne];
                 }else if ([htmlStr containsString:@"发生错误"]) {
                     [self showAlertAndRefresh:@"发生错误"];
                 }else if ([htmlStr containsString:@"客户数量已经达到了分公司负责区域限制,不能继续添加客户"]) {
@@ -457,41 +456,41 @@
 }
 
 //抢客户结果页面
-//-(void)seeResultStepOne
-//{
-//    NSString *urlString = [NSString stringWithFormat:@"https://sales.vemic.com/customer.do?method=details&token=%@&process=close&customerId=%@",self.token,self.customerId];
-//    NSString *referer = [NSString stringWithFormat:@"https://sales.vemic.com/customer.do?method=closeOne&customerId=%@&FORM.TOKEN=%@&token=%@",self.customerId,self.formToken,self.token];
-//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
-//    [request addValue:referer forHTTPHeaderField:@"Referer"];
-//    [request configDefaultRequestHeader];
-//    self.currentTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            if (!error && response && ![response.URL.absoluteString isEqualToString:@"https://sales.vemic.com/login_error.do"]){
-//                [self seeResultStepTwo];
-//            }else{
-//                [self alertSuccessMessage];
-//            }
-//        });
-//    }];
-//    [self.currentTask resume];
-//}
-//
-//-(void)seeResultStepTwo
-//{
-//    NSString *urlString = [NSString stringWithFormat:@"https://sales.vemic.com/customer.do?method=accountDetails&customerId=%@&token=%@",self.customerId,self.token];
-//    NSString *referer  = [NSString stringWithFormat:@"https://sales.vemic.com/customer.do?method=details&token=%@&process=close&customerId=%@",self.token,self.customerId];
-//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
-//    [request addValue:referer forHTTPHeaderField:@"Referer"];
-//    [request configDefaultRequestHeader];
-//    self.currentTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-//        if (!error) {
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                [self alertSuccessMessage];
-//            });
-//        }
-//    }];
-//    [self.currentTask resume];
-//}
+-(void)seeResultStepOne
+{
+    NSString *urlString = [NSString stringWithFormat:@"https://sales.vemic.com/customer.do?method=details&token=%@&process=close&customerId=%@",self.token,self.customerId];
+    NSString *referer =[NSString stringWithFormat:@"https://sales.vemic.com/customer.do?method=closeOne&customerId=%@",self.customerId];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+    [request addValue:referer forHTTPHeaderField:@"Referer"];
+    [request configDefaultRequestHeader];
+    self.currentTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (!error && response && ![response.URL.absoluteString isEqualToString:@"https://sales.vemic.com/login_error.do"]){
+                [self seeResultStepTwo];
+            }else{
+                [self alertSuccessMessage];
+            }
+        });
+    }];
+    [self.currentTask resume];
+}
+
+-(void)seeResultStepTwo
+{
+    NSString *urlString = [NSString stringWithFormat:@"https://sales.vemic.com/customer.do?method=accountDetails&customerId=%@&token=%@",self.customerId,self.token];
+    NSString *referer  = [NSString stringWithFormat:@"https://sales.vemic.com/customer.do?method=details&token=%@&process=close&customerId=%@",self.token,self.customerId];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+    [request addValue:referer forHTTPHeaderField:@"Referer"];
+    [request configDefaultRequestHeader];
+    self.currentTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (!error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self alertSuccessMessage];
+            });
+        }
+    }];
+    [self.currentTask resume];
+}
 
 - (void)alertSuccessMessage {
     if (self.customerId && [self.customDict objectForKey:self.customerId]) {
