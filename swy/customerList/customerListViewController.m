@@ -227,7 +227,7 @@
     [self.indicator startAnimating];
     if (!isDevlopping) {
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://sales.vemic.com/customer.do?method=listRobAccount"]];
-        [request addValue:@"https://sales.vemic.com/customer.do?method=listRobAccount" forHTTPHeaderField:@"Referer"];
+        [request addValue:@"https://sales.vemic.com/workspace.do?aut_security_source=SAL" forHTTPHeaderField:@"Referer"];
         [request configDefaultRequestHeader];
         NSURLSessionTask *task = [self.session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
             
