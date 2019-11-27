@@ -22,7 +22,6 @@
 @property (nonatomic, strong) UIActivityIndicatorView *indicator;;
 @property (nonatomic, strong) NSArray       *dataSource;
 @property (nonatomic, strong) NSURLSession      *session;
-@property (nonatomic, strong) NSString          *token;
 @property (nonatomic, strong) NSString          *customerId;
 @property (nonatomic, strong) NSString          *formToken;
 @property (nonatomic, strong) NSString          *requestListURLString;
@@ -45,9 +44,9 @@
     urlString = [urlString stringByAppendingString:dateStr];
     urlString = [urlString stringByAppendingString:@"&E_MODIFIED_TIME2="];
     urlString = [urlString stringByAppendingString:dateStr];
-    urlString = [urlString stringByAppendingString:@"&searchOper=%3E%3D&searchOper=%3C%3D&FULLNAME1=system&searchOper=like&ADDRESS=&searchOper=like&CITY=&searchOper=like&CITYZONE=&searchOper=like&S_KEEP_DAYS=&E_KEEP_DAYS=&searchOper=%3E%3D&searchOper=%3C%3D&HAS_MIC_ID=&searchOper=%3D&AREA_CITY=&searchOper=%3D"];
+    urlString = [urlString stringByAppendingString:@"&searchOper=%3E%3D&searchOper=%3C%3D&FULLNAME1=system&searchOper=like&ADDRESS=&searchOper=like&CITY=&searchOper=like&CITYZONE=&searchOper=like&S_KEEP_DAYS=&E_KEEP_DAYS=&searchOper=%3E%3D&searchOper=%3C%3D&HAS_MIC_ID=&searchOper=%3D&AREA_CITY=&searchOper=%3D&ACTIVE_TAG_ID=&searchOper=%3D"];
     self.requestListURLString = urlString;
-    
+
     [self requesList];
     
     
@@ -238,11 +237,22 @@
 }
 
 - (void)clickNoOpen {
-    NSString *urlString = [NSString stringWithFormat:@"https://sales.vemic.com/customer.do?method=closeOne&customerId=%@&FORM.TOKEN=%@",self.customerId,self.formToken];
+        
+    NSString *urlString = [NSString stringWithFormat:@"https://sales.vemic.com/customer.do?method=closeOne&customerId=%@",self.customerId];
     NSString *referer = [NSString stringWithFormat:@"https://sales.vemic.com/customer.do?method=accountDetails&customerId=%@&token=",self.customerId];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
     [request addValue:referer forHTTPHeaderField:@"Referer"];
     [request configDefaultRequestHeader];
+    [request addValue:@"https://sales.vemic.com" forHTTPHeaderField:@"Origin"];
+    [request addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    [request addValue:@"max-age=0" forHTTPHeaderField:@"Cache-Control"];
+    request.HTTPMethod = @"POST";
+    
+    NSString *string = [NSString stringWithFormat:@"FORM.TOKEN=%@&token=",self.formToken];
+    NSMutableData *totalData = [NSMutableData data];
+    NSData *parameterData = [string dataUsingEncoding:NSUTF8StringEncoding];
+    [totalData appendData:parameterData];
+    request.HTTPBody = totalData;
     
     NSURLSessionTask *task = [self.session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -288,7 +298,7 @@
 -(void)seeResultStepOne
 {
     NSString *urlString = [NSString stringWithFormat:@"https://sales.vemic.com/customer.do?method=details&token=null&process=close&customerId=%@",self.customerId];
-    NSString *referer = [NSString stringWithFormat:@"https://sales.vemic.com/customer.do?method=closeOne&customerId=%@&FORM.TOKEN=%@",self.customerId,self.formToken];
+    NSString *referer = [NSString stringWithFormat:@"https://sales.vemic.com/customer.do?method=closeOne&customerId=%@",self.customerId];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
     [request addValue:referer forHTTPHeaderField:@"Referer"];
     [request configDefaultRequestHeader];

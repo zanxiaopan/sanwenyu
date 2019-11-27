@@ -1,100 +1,89 @@
-
-
-
-
-
-
-
-
-
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=GBK">
-            <title>客户基本信息</title>
-            <script type="text/javascript" src="/js/util.js"></script>
-            <script type="text/javascript" src="/js/jquery/jquery.min.js"></script>
-            <script type="text/javascript" src="js/pop_window.js"></script>
-            <script type="text/javascript" src="extjs/ajax_validator.js"></script>
-            <script type="text/javascript" src="/extjs/validate_form.js"></script>
-            
-            <script language="javascript" src="/js/jquery/jQueryEasyUI/jquery.easyui.min.js"></script>
-            <script language="javascript" src="/js/windowSize.js"></script>
-            <script language="javascript" src="/js/jQuery_window.js"></script>
-            
-            <link rel="stylesheet" type="text/css" href="/js/jquery/jQueryEasyUI/themes/icon.css" />
-            <link href="/js/jquery/jQueryEasyUI/themes/default/easyui.css" rel="stylesheet" type="text/css"/>
-            <link href="/css/photo_uitool.css" rel="stylesheet" type="text/css"/>
-            <link href="/css/float_window.css" rel="stylesheet" type="text/css"/>
-            <link rel="stylesheet" type="text/css" href="/css/oss.css" />
-            
-            <style>
-                #china_zone u {
-                    padding-right: 50px;
-                }
-            
-            li {
-                list-style-type: none;
-            }
-            
-            li:hover {
-                background: #4f6e9a;
-                color: white;
-            }
-            
-            table th {
-                width: 12%;
-            }
-            .more_Btn {position:relative;height:20px; width:100%;background-color:#f4f8ff;}
-            
-            .more_Btn span {
-                position:absolute;
-                margin-top:2px;
-                float:right;
-                right:48%;
-                width:50px;
-                height:15px;
-                background:url(/images/show.gif) no-repeat;
-                cursor:hand;
-            }
-            .elm_hidden {
-                display : none;
-            }
-            
-            .elm_show {
-                display : '';
-            }
-            </style>
-            </head>
-    <body onload="init();login()">
-        <script type="text/javascript">
-            $(function () {
-              if ("" == "accountCooperate") {
-              $(".operate").hide();
-              }
-              })
-              if(false){
-                  setServerUrl("callcenter.vemic.com");
-              }
-        var contactPhone ='';
-        $(function(){
-          })
-          
-          function init(){
-              if(document.getElementsByName("accountType")[1].checked)
-              {
-                  document.getElementById("contry_list").style.display='block';
-                  document.getElementById("china_zone").style.display='block';
-              }
-              else
-              {
-                  document.getElementById("contry_list").style.display='block';
-                  document.getElementById("china_zone").style.display='none';
-              }
-          }
+        <title>客户基本信息</title>
+        <script type="text/javascript" src="/js/util.js"></script>
+        <script type="text/javascript" src="/js/jquery/jquery.min.js"></script>
+        <script type="text/javascript" src="js/pop_window.js"></script>
+        <script type="text/javascript" src="extjs/ajax_validator.js"></script>
+        <script type="text/javascript" src="/extjs/validate_form.js"></script>
         
+        <script language="javascript" src="/js/jquery/jQueryEasyUI/jquery.easyui.min.js"></script>
+        <script language="javascript" src="/js/windowSize.js"></script>
+        <script language="javascript" src="/js/jQuery_window.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="/js/jquery/jQueryEasyUI/themes/icon.css" />
+        <link href="/js/jquery/jQueryEasyUI/themes/default/easyui.css" rel="stylesheet" type="text/css"/>
+        <link href="/css/photo_uitool.css" rel="stylesheet" type="text/css"/>
+        <link href="/css/float_window.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" type="text/css" href="/css/oss.css" />
+
+        <style>
+#china_zone u {
+    padding-right: 50px;
+}
+
+li {
+    list-style-type: none;
+}
+
+li:hover {
+    background: #4f6e9a;
+    color: white;
+}
+
+table th {
+    width: 12%;
+}
+.more_Btn {position:relative;height:20px; width:100%;background-color:#f4f8ff;}
+
+.more_Btn span {
+    position:absolute;
+    margin-top:2px;
+    float:right;
+    right:48%;
+    width:50px;
+    height:15px;
+    background:url(/images/show.gif) no-repeat;
+    cursor:hand;
+}
+.elm_hidden {
+    display : none;
+}
+
+.elm_show {
+    display : '';
+}
+</style>
+    </head>
+    <body onload="init();login()">
+    <script type="text/javascript">
+        $(function () {
+            if ("" == "accountCooperate") {
+                $(".operate").hide();
+            }
+        })
+    if(false){
+        setServerUrl("callcenter.vemic.com");
+        }
+    var contactPhone ='';
+        $(function(){
+        })
+
+        function init(){
+            if(document.getElementsByName("accountType")[1].checked)
+            {
+                document.getElementById("contry_list").style.display='block';
+                document.getElementById("china_zone").style.display='block';
+            }
+            else
+            {
+                document.getElementById("contry_list").style.display='block';
+                document.getElementById("china_zone").style.display='none';
+            }
+        }
+
         function checkPreUrl(obj){
             if(obj){
                 obj.disabled="true";
@@ -104,9 +93,9 @@
                 window.history.go(-1);
             } else {
                 if(window.parent.opener!=null)
-                window.parent.close();
+                    window.parent.close();
                 if(true){
-                    window.parent.location.href="http://sales.vemic.com/uitoolList.ui?orderField=&orderOper=&uplike=0&pageLimit=20&s_f=&o_f=&d_f=&gotoUrl=customer.do%3Fmethod%3DoperateView&isOpen=1&funcID=1000931&ACCOUNT_ID=&searchOper=%3D&TEMP_MIC_ID=&searchOper=%3D&ACCOUNT_NAME=&searchOper=like&ACCOUNT_LEVEL=&searchOper=%3D&HOMEPAGE=&searchOper=like&TELEPHONE=&searchOper=like&FULLNAME2=&searchOper=like&S_MODIFIED_TIME2=2019-08-22&E_MODIFIED_TIME2=2019-08-22&searchOper=%3E%3D&searchOper=%3C%3D&FULLNAME1=system&searchOper=like&ADDRESS=&searchOper=like&CITY=&searchOper=like&CITYZONE=&searchOper=like&S_KEEP_DAYS=&E_KEEP_DAYS=&searchOper=%3E%3D&searchOper=%3C%3D&HAS_MIC_ID=&searchOper=%3D&AREA_CITY=&searchOper=%3D";
+                    window.parent.location.href="http://sales.vemic.com/uitoolList.ui?orderField=&orderOper=&uplike=0&pageLimit=20&s_f=&o_f=&d_f=&gotoUrl=customer.do%3Fmethod%3DoperateView&isOpen=1&funcID=1000931&ACCOUNT_ID=&searchOper=%3D&TEMP_MIC_ID=&searchOper=%3D&ACCOUNT_NAME=&searchOper=like&ACCOUNT_LEVEL=&searchOper=%3D&HOMEPAGE=&searchOper=like&TELEPHONE=&searchOper=like&FULLNAME2=&searchOper=like&S_MODIFIED_TIME2=2019-11-01&E_MODIFIED_TIME2=2019-11-27&searchOper=%3E%3D&searchOper=%3C%3D&FULLNAME1=&searchOper=like&ADDRESS=&searchOper=like&CITY=&searchOper=like&CITYZONE=&searchOper=like&S_KEEP_DAYS=&E_KEEP_DAYS=&searchOper=%3E%3D&searchOper=%3C%3D&HAS_MIC_ID=&searchOper=%3D&AREA_CITY=&searchOper=%3D&ACTIVE_TAG_ID=&searchOper=%3D";
                 }
                 else{
                     //下面注释掉的代码暂时保留，因为我也不记得当时为什么这样设计了。等以后用了没问题再删除
@@ -117,22 +106,30 @@
                 }
             }
         }
-        
+
         function addExpress(selId) {
             openwin("/express.do?method=tempSendInfo&isBatch=false&accountIds=" + selId, 1200, 600, 'op1');
         }
-        
+
         function modify()
         {
             document.getElementById("subForm").submit();
         }
-        
+
         function confirmOper(msg,url){
             if (confirm("你确定要"+msg+"吗？")) {
                 window.parent.location.href = url;
             }
         }
-        
+
+        function closeOne(obj) {
+            if (obj) {
+                obj.disabled = true;
+            }
+            var form = document.getElementById('closeOnePostForm');
+            form.submit();
+        }
+
         function confirmOper1(msg, url, obj){
             var token = document.getElementById("FORM.TOKEN").value;
             var newtoken = document.getElementById("token").value;
@@ -147,9 +144,9 @@
             }
             window.parent.location.href = url;
         }
-        
+
         function redirectToIndustryAnaly(){
-            var industry = "1000000000";
+            var industry = "1300000000";
             if (industry != null && industry != "") {
                 industry = parseInt(industry);
                 if (isNaN(industry)) {
@@ -157,18 +154,18 @@
                     return;
                 }
             }
-            
+
             var url = "";
-            var industry = "1000000000";
+            var industry = "1300000000";
             if (industry != null && industry != "") {
-                url = "industryInfo.do?method=queryDir&searchword=1000000000&_h_referer=";
+                url = "industryInfo.do?method=queryDir&searchword=1300000000&_h_referer=";
             } else {
                 var keyword = "";
                 if (keyword != null && keyword != "") {
                     url = "industryInfo.do?method=queryKeyword&searchword=&_h_referer="
                 }
             }
-            
+
             if (url != null && url != "") {
                 popDWindow("行业分析", url, 1000, 520);
             } else {
@@ -176,9 +173,9 @@
                 return;
             }
         }
-        
+
         function redirectToIndustryRpt(){
-            var industry = "1000000000";
+            var industry = "1300000000";
             if (industry != null && industry != "") {
                 industry = parseInt(industry);
                 if (isNaN(industry)) {
@@ -186,98 +183,98 @@
                     return;
                 }
             }
-            
-            ajaxRequest("/accountRecommend.do?method=getRecordNum", "funcID=2321&_SOSH_=0&CAT_CODE=1000000000&searchOper=like&searchField=CAT_CODE", function() {
-                        if(arguments[0]) {
-                        var data = arguments[0];
-                        if (data[0].errMsg) {
+
+            ajaxRequest("/accountRecommend.do?method=getRecordNum", "funcID=2321&_SOSH_=0&CAT_CODE=1300000000&searchOper=like&searchField=CAT_CODE", function() {
+                if(arguments[0]) {
+                    var data = arguments[0];
+                    if (data[0].errMsg) {
                         alert(data[0].errMsg);
                         return;
-                        }
-                        else {
+                    }
+                    else {
                         var num = parseInt(data[0].recordNum);
                         if (num > 0) {
-                        var url = "http://cst.vemic.com/uitoolList.ui?funcID=2321&_SOSH_=0&CAT_CODE=1000000000&searchOper=like&searchField=CAT_CODE";
-                        popDWindow("行业报告", url, 1000, 520);
+                            var url = "http://cst.vemic.com/uitoolList.ui?funcID=2321&_SOSH_=0&CAT_CODE=1300000000&searchOper=like&searchField=CAT_CODE";
+                            popDWindow("行业报告", url, 1000, 520);
                         } else {
-                        alert("取得的记录数为空！");
-                        return;
+                            alert("取得的记录数为空！");
+                            return;
                         }
-                        }
-                        }
-                        });
+                    }
+                }
+            });
         }
-        
+
         /*
-         function setUrl(){
-         var text=document.getElementById("homepage").innerHTML;
-         if(text!=""&&!startWith(text.toLowerCase(),"http://") && !startWith(text.toLowerCase(),'https://')) {
-         text= "http://"+text;
-         }
-         document.getElementById("homepage").innerHTML = '<a href="'+text+'" target="_blank">'+text+'</a>';
-         }
-         */
+        function setUrl(){
+            var text=document.getElementById("homepage").innerHTML;
+            if(text!=""&&!startWith(text.toLowerCase(),"http://") && !startWith(text.toLowerCase(),'https://')) {
+                text= "http://"+text;
+            }
+            document.getElementById("homepage").innerHTML = '<a href="'+text+'" target="_blank">'+text+'</a>';
+        }
+        */
         function startWith(text,head) {
             var reg = new RegExp("^"+head,"ig");
             return reg.test(text);
         }
-        
+
         function listPublicAccountByArea(){
-            var area = "Hongkong_HongKong";
+            var area = "Jiangsu_Wuxi";
             if (area == null || area == "") {
                 alert("客户所在城市为空！");
                 return;
             }
-            
+
             ajaxRequest("/accountRecommend.do?method=getPublicAccountNum", "area=" + area, function() {
-                        if(arguments[0]) {
-                        var data = arguments[0];
-                        if (data[0].errMsg) {
+                if(arguments[0]) {
+                    var data = arguments[0];
+                    if (data[0].errMsg) {
                         alert(data[0].errMsg);
                         return;
-                        }
-                        else {
+                    }
+                    else {
                         var num = parseInt(data[0].accNum);
                         if (num > 0) {
-                        var url = "accountRecommend.do?method=listPublicAccount&area=" + area + "&_h_referer=";
-                        popDWindow("客户挖掘分析", url, 1000, 520);
+                            var url = "accountRecommend.do?method=listPublicAccount&area=" + area + "&_h_referer=";
+                            popDWindow("客户挖掘分析", url, 1000, 520);
                         } else {
-                        alert("取得的记录数为空！");
-                        return;
+                            alert("取得的记录数为空！");
+                            return;
                         }
-                        }
-                        }
-                        });
+                    }
+                }
+            });
         }
-        
+
         function listPublicAccountByIndustry(){
-            var industry = "1000000000,1800000000,3000000000,2900000000,1300000000,3300000000,1500000000,1400000000,1600000000,2700000000";
+            var industry = "1300000000";
             if (industry == null || industry == "") {
                 alert("客户行业为空！");
                 return;
             }
-            
+
             ajaxRequest("/accountRecommend.do?method=getPublicAccountNum", "industry=" + industry, function() {
-                        if(arguments[0]) {
-                        var data = arguments[0];
-                        if (data[0].errMsg) {
+                if(arguments[0]) {
+                    var data = arguments[0];
+                    if (data[0].errMsg) {
                         alert(data[0].errMsg);
                         return;
-                        }
-                        else {
+                    }
+                    else {
                         var num = parseInt(data[0].accNum);
                         if (num > 0) {
-                        var url = "accountRecommend.do?method=listPublicAccount&industry=" + industry + "&_h_referer=";
-                        popDWindow("客户挖掘分析", url, 1000, 520);
+                            var url = "accountRecommend.do?method=listPublicAccount&industry=" + industry + "&_h_referer=";
+                            popDWindow("客户挖掘分析", url, 1000, 520);
                         } else {
-                        alert("取得的记录数为空！");
-                        return;
+                            alert("取得的记录数为空！");
+                            return;
                         }
-                        }
-                        }
-                        });
+                    }
+                }
+            });
         }
-        
+
         function toAccountSmart(obj){
             var left = $(obj).offset().left+62;
             var top = $(obj).offset().top+13;
@@ -285,15 +282,15 @@
             $("#accountList").css("left",left);
             $("#accountList").toggle();
         }
-        
+
         function chooseMember(accountId){
             window.open("http://360.vemic.com/360/main.do?comId="+accountId);
             $("#accountList").hide();
         }
         
         var callStat=0;
-        
-        
+
+
         
         function outCall(countryNo, mainNo, name){
             var telePhone ;
@@ -306,8 +303,8 @@
             contactName = name;
             doCall(telePhone)
         }
-        
-        
+
+
         function doCall(tel){
             if(callStat==0){
                 callStat=1;
@@ -356,30 +353,30 @@
             }
             callStat=0;
         }
-        
+
         function writeWorkRecord(countryNo, mainNo, name, accid){
-            var telePhone ;
-            if((mainNo.length == 11 && countryNo !='') || countryNo ==''){
+              var telePhone ;
+              if((mainNo.length == 11 && countryNo !='') || countryNo ==''){
                 telePhone = mainNo;
-            }else{
+              }else{
                 telePhone = countryNo+'-'+mainNo;
-            }
-            contactPhone = telePhone;
-            contactName = name;
-            window.open("/contactRecord.do?method=addByTel&customerId=" + accid+"&contactName="+contactName+"&contactPhone="+contactPhone);
+              }
+              contactPhone = telePhone;
+              contactName = name;
+              window.open("/contactRecord.do?method=addByTel&customerId=" + accid+"&contactName="+contactName+"&contactPhone="+contactPhone);
         }
-        
+
         function login(){//登录
             if(false){
-                var params = {};
-                params.hotLine = '66606739';
-                params.cno =  '6405';
-                params.pwd =  '123456';
-                params.bindTel =  '02566775108';
-                params.bindType = '1';
-                params.initStatus =  'pause';
-                if(params.cno!='' && params.bindTel!=''){
-                    executeAction('doLogin',  params);//执行登陆 ccic2里面的js类
+            var params = {};
+            params.hotLine = '66606739';
+            params.cno =  '6405';
+            params.pwd =  '123456';
+            params.bindTel =  '02566775108';
+            params.bindType = '1';
+            params.initStatus =  'pause';
+            if(params.cno!='' && params.bindTel!=''){
+                executeAction('doLogin',  params);//执行登陆 ccic2里面的js类
                 }
             }
         }
@@ -398,7 +395,7 @@
                 //第三方代码写在下面
                 if(token.eventName=="pauseUnlink"){//挂断后置忙
                     //if (confirm("是否新建联系记录？")) {
-                    //var url="contactRecord.do?method=add&customerId=" + 22262022 + "&contactName=" + URLencode('Jonathan Wong') + "&contactPhone=" + contactPhone +"&contactTitle=" +URLencode('电话联系') ;
+                    //var url="contactRecord.do?method=add&customerId=" + 18473526 + "&contactName=" + URLencode('林') + "&contactPhone=" + contactPhone +"&contactTitle=" +URLencode('电话联系') ;
                     //openwin(url,1000,600);
                     //}
                 }
@@ -430,522 +427,570 @@
             }
         }
         function checkRepeat(){
-            window.open("/customer.do?method=checkAccount&accountId="+22262022);
+            window.open("/customer.do?method=checkAccount&accountId="+18473526);
         }
         
-        function openOper(){
-            var cat=+"";
-            if(cat==""||cat=="0"){
-                popDWindow("客户开放", 'customer.do?method=openMic&customerId=22262022' , 400, 200);
-            }
-            else if (confirm("你确定要将该客户开放出去吗？")) {
-                window.parent.location.href = 'customer.do?method=openOne&customerId=22262022';
-            }
+    function openOper(){
+        var cat=+"";
+      if(cat==""||cat=="0"){
+        popDWindow("客户开放", 'customer.do?method=openMic&customerId=18473526' , 400, 200);
+      }
+      else if (confirm("你确定要将该客户开放出去吗？")) {
+          window.parent.location.href = 'customer.do?method=openOne&customerId=18473526';
         }
-        </script>
-        <form id="crmAccount" method="GET" action="/customer.do?method=accountDetails&amp;customerId=22262022&amp;token=">
-            <input type="hidden" name="_h_referer" id="_h_referer" value="http://sales.vemic.com/customer.do?method=details&customerId=22262022&otherFields=&E_MODIFIED_TIME2=2019-08-22&d_f=&ACCOUNT_ID=&gotoUrl=customer.do?method=operateView&isOpen=1&ADDRESS=&o_f=&FULLNAME1=system&FULLNAME2=&CITYZONE=&s_f=&HAS_MIC_ID=&E_KEEP_DAYS=&AREA_CITY=&searchOper==&searchOper==&searchOper=like&searchOper==&searchOper=like&searchOper=like&searchOper=like&searchOper=>=&searchOper=<=&searchOper=like&searchOper=like&searchOper=like&searchOper=like&searchOper=>=&searchOper=<=&searchOper==&searchOper==&funcID=1000931&TELEPHONE=&S_KEEP_DAYS=&CITY=&HOMEPAGE=&uplike=0&ACCOUNT_LEVEL=&S_MODIFIED_TIME2=2019-08-22&ACCOUNT_NAME=&TEMP_MIC_ID="/>
-            <span id="keleyivisitorip"></span>
-            <input type="hidden" name="FORM.TOKEN" id="FORM.TOKEN" value="7WW17LUGJVUMV414Z8Z08Z7BIWJXS6MH">
-                <input type="hidden" name="token" id="token" value="">
+      }
+        function makeScheme(accountId) {
+            ajaxRequest("/customer.do?method=checkAccountHasProductOrKeyword", "accountId=" + accountId, function() {
+                if(arguments[0]) {
+                    var result = arguments[0];
+                    if(result[0].code == 0) {
+                        window.open("http://360.vemic.com/assistant/main.do?accountId="+accountId);
+                    }else {
+                        alert("请先完善客户关键词和所属行业！");
+                        return;
+                    }
+                }
+            });
+        }
+
+        function setCross() {
+            popDWindow("置为撞单", 'customer.do?method=openSetCross&customerId=18473526', 400, 200);
+        }
+    </script>
+        <form id="closeOnePostForm" action="customer.do?method=closeOne&customerId=18473526" method="post" target="_parent">
+            <input type="hidden" name="FORM.TOKEN" value="OQJ9EW7OKW4DNFO703I0WPYFAR72JKL3">
+            <input type="hidden" name="token" value="">
+        </form>
+
+        <form id="crmAccount" method="GET" action="/customer.do?method=accountDetails&amp;customerId=18473526&amp;token=">
+<input type="hidden" name="_h_referer" id="_h_referer" value="http://sales.vemic.com/customer.do?method=details&customerId=18473526&otherFields=&E_MODIFIED_TIME2=2019-11-27&d_f=&gotoUrl=customer.do?method=operateView&ACCOUNT_ID=&isOpen=1&ADDRESS=&o_f=&CITYZONE=&HAS_MIC_ID=&FULLNAME1=&s_f=&ACTIVE_TAG_ID=&FULLNAME2=&E_KEEP_DAYS=&searchOper==&searchOper==&searchOper=like&searchOper==&searchOper=like&searchOper=like&searchOper=like&searchOper=>=&searchOper=<=&searchOper=like&searchOper=like&searchOper=like&searchOper=like&searchOper=>=&searchOper=<=&searchOper==&searchOper==&searchOper==&funcID=1000931&AREA_CITY=&TELEPHONE=&S_KEEP_DAYS=&CITY=&HOMEPAGE=&ACCOUNT_LEVEL=&uplike=0&S_MODIFIED_TIME2=2019-11-01&ACCOUNT_NAME=&TEMP_MIC_ID="/>
+<span id="keleyivisitorip"></span>
+            <input type="hidden" name="FORM.TOKEN" id="FORM.TOKEN" value="OQJ9EW7OKW4DNFO703I0WPYFAR72JKL3">
+            <input type="hidden" name="token" id="token" value="">
+
+            <table width="100%">
+                <caption class="x-panel-header">
+                
                     
-                    <table width="100%">
-                        <caption class="x-panel-header">
-                            
-                            
-                            
-                        </caption>
-                        <tr class = "operate">
-                            <td colspan="3" align="center" style="width:80%">
-                                
-                                <input type="button" id="check" name="check" class="submitc" onclick="checkRepeat()" value="撞单检查"/>
-                                
-                                
-                                
-                                <input type="button" id="test" name="test" class="submitc" onclick="confirmOper1('已将该客户加为自己的私有客户','customer.do?method=closeOne&amp;customerId=22262022', this)" value=" 不开放 "/>
-                                
-                                
-                                
-                                
-                                <input type="button" value=" 返 回 " onclick="checkPreUrl(this)"
-                                    class="submitc">
-                                    
-                                    </td>
-                            <td align="right">
-                                <a href="customer.do?method=accountView&accountId=22262022" target="_blank" style="">
-                                    <span style="color:#FF0000;font-weight:bold;">新销售统一视图</span>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td  colspan="4" align="center" style="width:100%">
-                                2017年11月30日后上门0次
-                            </td>
-                        </tr>
-                        <tr>
-                            <th width="150">
-                                客户编号：
-                            </th>
-                            <td colspan="3">
-                                22262022
-                            </td>
-                        </tr>
-                        <tr>
-                            <th width="150">
-                                MIC会员ID：
-                            </th>
-                            <td colspan="3">
-                                <a href="customer.do?method=details&show=member&customerId=22262022" target="_parent">
-                                    741023781,741031241
-                                </a>
-                                
-                                
-                                <span style="margin-left:15px;color:gray;">客户360</span><span style="color:red;">(此客户下无符合规则的高级会员)</span>
-                                
-                            </td>
-                        </tr>
+                
+                </caption>
+                <tr class = "operate">
+                    <td colspan="3" align="center" style="width:80%">
                         
-                        <tr>
-                            <th width="150">
-                                合同信息管理：
-                            </th>
-                            <td colspan="3">
-                                <a id="test" name="test" onclick="window.parent.location='uitoolList.ui?funcID=681&amp;accountId=22262022'" href="#">客户合同列表</a>
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <a id="test" name="test" onclick="window.parent.location='contract.do?method=add&amp;customerId=22262022'" href="#">草拟合同</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th width="150">
-                                客户中文名称：
-                            </th>
-                            <td colspan="3">
-                                <table id="id_tab_cname" border="0">
-                                    
-                                    <tr><td>Synaty-CGM物流（中国）有限公司</td></tr>
-                                    
-                                </table>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th width="150">
-                                客户英文名称：
-                            </th>
-                            <td colspan="3">
-                                <table id="id_tab_ename" border="0">
-                                    
-                                    <tr><td>Synaty-Cgm Logistics (China) Co., Ltd.</td></tr>
-                                    
-                                </table>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th width="150">
-                                自定义标签：
-                            </th>
-                            <td colspan="3">
-                                
-                            </td>
-                        </tr>
-                        <tr>
-                            <th width="150">
-                                客户类型：
-                            </th>
-                            <td>
-                                <label for="accountType_1" id="lable_accountType_1"><input type="radio" value="1" name="accountType" id="accountType_1"  disabled/>贸易服务客户</label><label for="accountType_0" id="lable_accountType_0"><input type="radio" value="0" name="accountType" id="accountType_0"  checked disabled/>MIC客户</label>
-                            </td>
-                            <th width="150">
-                                客户来源：
-                            </th>
-                            <td>
-                                MIC免费会员&nbsp;&nbsp;
-                                
-                                
-                            </td>
-                        </tr>
-                        <!--
-                         <tr>
-                         <th width="150">
-                         来源类型：
-                         </th>
-                         <td colspan="3">
-                         <input id="originType" name="originType" disabled="disabled" type="text" value="3"/>
-                         </td>
-                         </tr>
-                         <tr>
-                         <th width="150">
-                         来源ID：
-                         </th>
-                         <td colspan="3">
-                         <input id="originId" name="originId" disabled="disabled" type="text" value="741023781"/>
-                         </td>
-                         </tr>
-                         <tr>
-                         <th width="150">
-                         来源信息：
-                         </th>
-                         <td colspan="3">
-                         <input id="originInformation" name="originInformation" disabled="disabled" type="text" value="0"/>
-                         </td>
-                         </tr>
-                         -->
-                        <tr>
-                            <th width="150">
-                                地区：
-                            </th>
-                            <td>
-                                <div id="contry_list" style="display: none">
-                                    
-                                    
-                                    
-                                    香港(中国)
-                                </div>
-                                <div id="china_zone" style="display: none">
-                                    <i>省份：</i>
-                                    
-                                    <u>香港(中国)
-                                    </u>
-                                    
-                                    <i> 城市：</i>
-                                    <u>香港特别行政区 </u>
-                                    <i>城区：</i>
-                                    <u>
-                                    </u>
-                                </div>
-                                
-                                <a href="javascript:listPublicAccountByArea();" >
-                                    同区域客户
-                                </a>
-                                
-                            </td>
-                            <th width="150">
-                                外部客户签约状态：
-                            </th>
-                            <td>
-                                
-                            </td>
-                            
-                        </tr>
+                        <input type="button" id="check" name="check" class="submitc" onclick="checkRepeat()" value="撞单检查"/>
                         
-                        <tr>
-                            <th width="150">
-                                所属行业：
-                            </th>
-                            <td colspan="3">
-                                <table><tr><td><input type="text" name="industry" id="industry" value="1000000000,1800000000,3000000000,2900000000,1300000000,3300000000,1500000000,1400000000,1600000000,2700000000" size="50" readonly=true  /></td><td></td></tr><tr><td colspan='2'><span id="divViewCatName_industry">农业食品/Agriculture & Food,轻工日用品/Light Industry & Daily Use,照明/Lights & Lighting,汽摩及配件/Auto, Motorcycle Parts & Accessories,化工/Chemicals,计算机产品/Computer Products,建筑和装饰材料/Construction & Decoration,消费电子/Consumer Electronics,电气电子/Electrical & Electronics,家具/Furniture</span></td></tr></table>
-                                    
-                                    <a href="javascript:listPublicAccountByIndustry();">
-                                    同行业客户
-                                    </a>&nbsp;&nbsp;&nbsp;
-                                    
-                                    <img alt="行业分析" src="/images/industryAnalysis.gif" onclick="redirectToIndustryAnaly();" />&nbsp;&nbsp;&nbsp;
-                                    
-                                    <img alt="行业报告" src="/images/industryReport.gif" onclick="redirectToIndustryRpt();" />
-                                    
-                                    </td>
-                                </tr>
+                        
+                        
+                                <input type="button" id="test" name="test" class="submitc" onclick="closeOne(this)" value=" 不开放 "/>
+                            
+                        
+                        
+                        
+                        <input type="button" value=" 返 回 " onclick="checkPreUrl(this)"
+                            class="submitc">
+                        
+                    </td>
+                        <td align="right">
+                        <a href="customer.do?method=accountView&accountId=18473526" target="_blank" style="">
+                            <span style="color:#FF0000;font-weight:bold;">新销售统一视图</span>
+                        </a>
+                        </td>
+                </tr>
+                <tr>
+          <td  colspan="4" align="center" style="width:100%">
+          2017年11月30日后上门3次
+          </td>
+        </tr>
+                <tr>
+                    <th width="150">
+                        客户编号：
+                    </th>
+                    <td colspan="3">
+                        18473526
+                        <a style="margin-left:15px;" id="makeScheme" name="makeScheme" onclick="makeScheme(18473526)" href="#">制作方案</a>
+                    </td>
+                </tr>
+                <tr>
+                    <th width="150">
+                        MIC会员ID：
+                    </th>
+                    <td colspan="3">
+                        <a href="customer.do?method=details&show=member&customerId=18473526" target="_parent">
+                            679193235
+                        </a>
+                        
+                        
+                            <span style="margin-left:15px;color:gray;">客户360</span><span style="color:red;">(此客户下无符合规则的高级会员)</span>
+                        
+                    </td>
+                </tr>
+
+        <tr>
+          <th width="150">
+            合同信息管理：
+          </th>
+          <td colspan="3">
+            <a id="test" name="test" onclick="window.parent.location='uitoolList.ui?funcID=681&amp;accountId=18473526'" href="#">客户合同列表</a>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a id="test" name="test" onclick="window.parent.location='contract.do?method=add&amp;customerId=18473526'" href="#">草拟合同</a>
+          </td>
+        </tr>
+        <tr>
+          <th width="150">
+            客户中文名称：
+          </th>
+          <td colspan="3">
+           <table id="id_tab_cname" border="0">
+              
+              <tr><td>江阴市财有道化工有限公司</td></tr>
+              
+            </table>
+                    </td>
+                </tr>
+                <tr>
+                    <th width="150">
+                        客户英文名称：
+                    </th>
+                    <td colspan="3">
+           <table id="id_tab_ename" border="0">
+              
+              <tr><td>Jiangyin Caiyoudao Chemical Co., Ltd</td></tr>
+              
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <th width="150">
+            自定义标签：
+          </th>
+          <td colspan="3">
+              
+          </td>
+        </tr>
+        <tr>
+          <th width="150">
+            客户类型：
+          </th>
+          <td>
+            <label for="accountType_1" id="lable_accountType_1"><input type="radio" value="1" name="accountType" id="accountType_1"  disabled/>贸易服务客户</label><label for="accountType_0" id="lable_accountType_0"><input type="radio" value="0" name="accountType" id="accountType_0"  checked disabled/>MIC客户</label>
+          </td>
+          <th width="150">
+            客户来源：
+          </th>
+          <td>
+            MIC免费会员&nbsp;&nbsp;
+            
+             
+          </td>
+        </tr>
+        <!--
+        <tr>
+          <th width="150">
+            来源类型：
+          </th>
+          <td colspan="3">
+            <input id="originType" name="originType" disabled="disabled" type="text" value="3"/>
+          </td>
+        </tr>
+        <tr>
+          <th width="150">
+            来源ID：
+          </th>
+          <td colspan="3">
+            <input id="originId" name="originId" disabled="disabled" type="text" value="679193235"/>
+          </td>
+        </tr>
+        <tr>
+          <th width="150">
+            来源信息：
+          </th>
+          <td colspan="3">
+            <input id="originInformation" name="originInformation" disabled="disabled" type="text" value=""/>
+          </td>
+        </tr>
+         -->
+        <tr>
+          <th width="150">
+            地区：
+          </th>
+          <td>
+            <div id="contry_list" style="display: none">
+                
+                
+                
+              中国
+            </div>
+            <div id="china_zone" style="display: none">
+              <i>省份：</i>
+              
+              <u>江苏省
+              </u>
+              
+              <i> 城市：</i>
+              <u>无锡市 </u>
+              <i>城区：</i>
+              <u>
+              </u>
+            </div>
+            
+            <a href="javascript:listPublicAccountByArea();" >
+            同区域客户
+            </a>
+            
+          </td>
+          <th width="150">
+                                                                外部客户签约状态：
+                    </th>
+                    <td>
+                        
+                    </td>
+
+        </tr>
+
+        <tr>
+          <th width="150">
+                                      所属行业：
+          </th>
+          <td colspan="3">
+            <table><tr><td><input type="text" name="industry" id="industry" value="1300000000" size="50" readonly=true  /></td><td></td></tr><tr><td colspan='2'><span id="divViewCatName_industry">化工/Chemicals</span></td></tr></table>
+            
+      <a href="javascript:listPublicAccountByIndustry();">
+      同行业客户
+      </a>&nbsp;&nbsp;&nbsp;
+      
+      <img alt="行业分析" src="/images/industryAnalysis.gif" onclick="redirectToIndustryAnaly();" />&nbsp;&nbsp;&nbsp;
+      
+      <img alt="行业报告" src="/images/industryReport.gif" onclick="redirectToIndustryRpt();" />
+      
+          </td>
+        </tr>
+
+    <tr>
+      <th width="150">
+        客户关键词：
+      </th>
+      <td colspan="3">
+          
+      </td>
+    </tr>
+
+        <tr>
+          <th width="150">
+            <span class="requiredredstar">*</span>客户级别：
+          </th>
+          <td>
+            未联系
+          </td>
+          <th width="150">
+            <span class="requiredredstar">*</span>客户属性：
+          </th>
+          <td>
+            开放
+          </td>
+        </tr>
+        <tr>
+          <th width="150">
+            关联客户：
+          </th>
+          <td colspan="3">
+              
+          </td>
+        </tr>
+        <tr>
+        <th></th>
+        <td colspan="3">
+            <a style="float: right;" href="javascript:openJqueryWindowCenter('supplierContact.do?method=add&accountId=18473526&sourceType=1&isSimplify=true', '新建联系人', 950, 600, true, false, false, false, false,closeWindow)">新建联系人</a>
+            <!--a style="float: right;" href="javascript:popDWindow('新建联系人', 'supplierContact.do?method=add&accountId=18473526&sourceType=1', 1000, 520)">新建联系人</a-->
+        </td>
+        </tr>
+         
+         
+        
+            <tr class="whiteTr">
+        
+        <th>
+       <label style="font-weight: bold;">
+                <nobr>林
+               &nbsp;先生
+                </nobr>
+                
+                
+        </label>
+        </th>
+        <td colspan="3">
+            <table>
+                <tr>
+                <th style="border:0px;width:5%;">电话：</th>
+                    <td style="border:0px;width:20%;">
+                        
+                            <div id = "telephone_right">
                                 
-                                <tr>
-                                    <th width="150">
-                                        客户关键词：
-                                    </th>
-                                    <td colspan="3">
-                                        
-                                    </td>
-                                </tr>
+                                    <input type="button" onclick="outCall('000','13616167047','林');" style="background:url('images/phone.png'); border-style: none; width: 20px;height: 20px;background-repeat: no-repeat;cursor: pointer;">
+                                    &nbsp;&nbsp;&nbsp;<input type="button" onclick="writeWorkRecord('000','13616167047','林','18473526');" style="background:url('images/note.jpg'); border-style: none; width: 20px;height: 20px;background-repeat: no-repeat;cursor: pointer;">
                                 
-                                <tr>
-                                    <th width="150">
-                                        <span class="requiredredstar">*</span>客户级别：
-                                    </th>
-                                    <td>
-                                        系统开放
-                                    </td>
-                                    <th width="150">
-                                        <span class="requiredredstar">*</span>客户属性：
-                                    </th>
-                                    <td>
-                                        开放
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th width="150">
-                                        关联客户：
-                                    </th>
-                                    <td colspan="3">
-                                        
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th></th>
-                                    <td colspan="3">
-                                        <a style="float: right;" href="javascript:openJqueryWindowCenter('supplierContact.do?method=add&accountId=22262022&sourceType=1&isSimplify=true', '新建联系人', 950, 600, true, false, false, false, false,closeWindow)">新建联系人</a>
-                                        <!--a style="float: right;" href="javascript:popDWindow('新建联系人', 'supplierContact.do?method=add&accountId=22262022&sourceType=1', 1000, 520)">新建联系人</a-->
-                                    </td>
-                                </tr>
+                                000-13616167047
                                 
+                            </div>
+                        
+                            <div id = "telephone_right">
                                 
+                                    <input type="button" onclick="outCall('510','86211123','林');" style="background:url('images/phone.png'); border-style: none; width: 20px;height: 20px;background-repeat: no-repeat;cursor: pointer;">
+                                    &nbsp;&nbsp;&nbsp;<input type="button" onclick="writeWorkRecord('510','86211123','林','18473526');" style="background:url('images/note.jpg'); border-style: none; width: 20px;height: 20px;background-repeat: no-repeat;cursor: pointer;">
                                 
-                                <tr class="whiteTr">
+                                510-86211123
+                                
+                            </div>
+                        
+                    </td>
+
+                    <th style="border:0px;width:5%;">手机：</th>
+                    <td style="border:0px;width:20%;">
+                        
+                            <div id = "mobile_right">
+                                
                                     
-                                    <th>
-                                        <label style="font-weight: bold;">
-                                            <nobr>Jonathan Wong
-                                                &nbsp;先生
-                                            </nobr>
-                                            
-                                            
-                                        </label>
-                                    </th>
-                                    <td colspan="3">
-                                        <table>
-                                            <tr>
-                                                <th style="border:0px;width:5%;">电话：</th>
-                                                <td style="border:0px;width:20%;">
-                                                    
-                                                    <div id = "telephone_right">
-                                                        
-                                                        
-                                                        
-                                                    </div>
-                                                    
-                                                </td>
-                                                
-                                                <th style="border:0px;width:5%;">手机：</th>
-                                                <td style="border:0px;width:20%;">
-                                                    
-                                                    <div id = "mobile_right">
-                                                        
-                                                        
-                                                        
-                                                        
-                                                        
-                                                    </div>
-                                                    
-                                                </td>
-                                                
-                                                <th style="border:0px;width:5%;">传真：</th>
-                                                <td style="border:0px;width:20%;">
-                                                    
-                                                    <div id = "fax_right">
-                                                        <!--
-                                                         
-                                                         <input type="button" onclick="outCall('852','564376548','Jonathan Wong');" style="background:url('images/phone.png'); border-style: none; width: 20px;height: 20px;background-repeat: no-repeat;cursor: pointer;">
-                                                         
-                                                         -->
-                                                        852-564376548
-                                                        
-                                                    </div>
-                                                    
-                                                </td>
-                                                
-                                                <th style="border:0px;width:5%;">邮箱：</th>
-                                                <td style="border:0px;width:34%;">
-                                                    
-                                                    <div id = "mail_right">
-                                                        <a href="mailTo:jonathan.wong24@yahoo.com">jonathan.wong24@yahoo.com</a>
-                                                        
-                                                    </div>
-                                                    
-                                                </td>
-                                                <td style="border:0px;width:5%;">
-                                                    <a style="float: right;" href="javascript:openJqueryWindowCenter('supplierContact.do?method=modify&contactId=11328699&accountId=22262022&comId=&isSimplify=true', '修改联系人', 850, 520, true, false, false, false, false,closeWindow)">编辑</a>
-                                                    <!--  a style="float: right;" href="javascript:popDWindow('修改联系人', 'supplierContact.do?method=modify&contactId=11328699&accountId=22262022&comId=', 800, 520)">编辑</a>-->
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="9"
-                                                    style="border-bottom: 1px #ddd solid; margin: 0px 0px 0px 0px; padding: 0px 0px 0px 0px; height: 1px; border: 0px 0px 0px 0px;">
-                                                    <DIV
-                                                        style="BORDER-TOP: #00686b 1px dashed; OVERFLOW: hidden; HEIGHT: 1px;"></DIV>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                                
-                                <tr>
-                                    <td colspan="4">
-                                        <div></div>
-                                    </td>
-                                </tr>
-                                <!--<tr>
-                                 <th width="150">
-                                 电话：
-                                 </th>
-                                 <td width="300">
-                                 
-                                 </td>
-                                 <th width="150">
-                                 传真：
-                                 </th>
-                                 <td>
-                                 
-                                 
-                                 86-852-564376548<p>
-                                 
-                                 
-                                 </td>
-                                 </tr>
-                                 <tr>
-                                 <th width="150">
-                                 Email：
-                                 </th>
-                                 <td width="300">
-                                 <a href="mailto:jonathan.wong24@yahoo.com">jonathan.wong24@yahoo.com</a>
-                                 </td>
-                                 <th width="150">
-                                 邮编：
-                                 </th>
-                                 <td>
-                                 321300
-                                 </td>
-                                 </tr>
-                                 -->
-                                <tr>
-                                    <th width="150">
-                                        公司地址：
-                                    </th>
-                                    <td width="300">
-                                        No. 15, Qingyuan Road, Economic Development Zone, Yongkang, Hong Kong
-                                    </td>
-                                    <th width="150">
-                                        公司主页：
-                                    </th>
-                                    <td id="homepage">
-                                        <table id="id_tab_homepage" border="0">
-                                            
-                                            <tr><td><a href="http://" target="_blank"></a></td></tr>
-                                            
-                                        </table>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th width="150">
-                                        其它地址：
-                                    </th>
-                                    <td colspan="3">
-                                        <table id ='id_tab_address'  border="0">
-                                            <tr><td colspan="6">
-                                                
-                                                </table>
-                                        
-                                    </td>
-                                </tr>
-                                <!--<tr>
-                                 <th width="150">
-                                 自定义地址：
-                                 </th>
-                                 <td colspan="3">
-                                 
-                                 </td>
-                                 </tr>-->
-                                <tr>
-                                    <th width="150">
-                                        自定义地址：
-                                    </th>
-                                    <td width="300">
-                                        
-                                    </td>
-                                    <th width="150">
-                                        员工数：
-                                    </th>
-                                    <td>
-                                        0
-                                    </td>
-                                    <!--
-                                     <th width="150">
-                                     联系人：
-                                     </th>
-                                     <td>
-                                     Jonathan Wong
-                                     </td>-->
-                                </tr>
-                                <tr>
-                                    <th width="150">
-                                        备注：
-                                    </th>
-                                    <td colspan="3">
-                                        <textarea id="remark" name="remark" readonly="readonly" rows="7" cols="80">2天未分配的MIC新加入客户系统开放！</textarea>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th width="150">
-                                        客户简介：
-                                    </th>
-                                    <td colspan="3">
-                                        <textarea id="description" name="description" readonly="readonly" rows="8" cols="80">Synaty-CGM() Is a trading and logistics company with a a great records for successful sales and purchases. For over 12years Synaty-CGM() has been involved in trading with foreign countries and companies. We lead the pack with our innovative style and ethics towards contracts and services we render.</textarea>
-                                    </td>
+                                        <input type="button" onclick="outCall('','13179656516','林');" style="background:url('images/phone.png'); border-style: none; width: 20px;height: 20px;background-repeat: no-repeat;cursor: pointer;">
+                                        &nbsp;&nbsp;&nbsp;<input type="button" onclick="writeWorkRecord('','13179656516','林','18473526');" style="background:url('images/note.jpg'); border-style: none; width: 20px;height: 20px;background-repeat: no-repeat;cursor: pointer;">
                                     
-                                </tr>
-                                <tr>
-                                    <th width="150">
-                                        MIC客服人员：
-                                    </th>
-                                    <td>
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-                                    </td>
-                                    <th>
-                                        MIC区域客服人员：
-                                    </th>
-                                    <td>
-                                        
-                                        
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th width="150">
-                                        最后修改人：
-                                    </th>
-                                    <td>
-                                        system
-                                    </td>
-                                    <th>
-                                        最后修改时间：
-                                    </th>
-                                    <td>
-                                        2019-08-22 20:03:27
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th width="150">
-                                        最后分配人：
-                                    </th>
-                                    <td>
-                                        system
-                                    </td>
-                                    <th>
-                                        最后分配时间：
-                                    </th>
-                                    <td>
-                                        2019-08-19 23:40:01
-                                    </td>
-                                </tr>
-                                <tr class = "operate">
-                                    <td colspan="5" align="center">
-                                        <input type="button" id="check" name="check" class="submitc" onclick="checkRepeat()" value="撞单检查"/>
-                                        
-                                        
-                                        <input type="button" id="test" name="test" class="submitc" onclick="confirmOper1('已将该客户加为自己的私有客户','customer.do?method=closeOne&amp;customerId=22262022', this)" value=" 不开放 "/>
-                                        
-                                        
-                                        
-                                        <input type="button" value=" 返 回 " onclick="checkPreUrl(this)"
-                                            class="submitc">
-                                            </td>
-                                </tr>
-                                </table>
-                                </form>
+                                
+                                13179656516
+                                
+                            </div>
+                        
+                    </td>
+
+                    <th style="border:0px;width:5%;">传真：</th>
+                    <td style="border:0px;width:20%;">
+                        
+                            <div id = "fax_right">
+                                <!--
+                                
+                                -->
+                                
+                                
+                            </div>
+                        
+                    </td>
+
+                    <th style="border:0px;width:5%;">邮箱：</th>
+                    <td style="border:0px;width:34%;">
+                        
+                            <div id = "mail_right">
+                                <a href="mailTo:13179656516@163.com">13179656516@163.com</a>
+                                
+                            </div>
+                        
+                    </td>
+                    <td style="border:0px;width:5%;">
+                        <a style="float: right;" href="javascript:openJqueryWindowCenter('supplierContact.do?method=modify&contactId=7388837&accountId=18473526&comId=&isSimplify=true', '修改联系人', 850, 520, true, false, false, false, false,closeWindow)">编辑</a>
+                        <!--  a style="float: right;" href="javascript:popDWindow('修改联系人', 'supplierContact.do?method=modify&contactId=7388837&accountId=18473526&comId=', 800, 520)">编辑</a>-->
+                    </td>
+                </tr>
+            <tr>
+                <td colspan="9"
+                    style="border-bottom: 1px #ddd solid; margin: 0px 0px 0px 0px; padding: 0px 0px 0px 0px; height: 1px; border: 0px 0px 0px 0px;">
+                <DIV
+                    style="BORDER-TOP: #00686b 1px dashed; OVERFLOW: hidden; HEIGHT: 1px;"></DIV>
+                </td>
+            </tr>
+            </table>
+        </td>
+        </tr>
+        
+        <tr>
+        <td colspan="4">
+            <div></div>
+        </td>
+        </tr>
+        <!--<tr>
+          <th width="150">
+            电话：
+          </th>
+          <td width="300">
+            
+              
+                86-000-13616167047
+                
+                    <input type="button" onclick="outCall('86-000-13616167047');" style="background:url('images/phone.png'); border-style: none; width: 20px;height: 20;background-repeat: no-repeat;cursor: pointer;">
+                
+                <p>
+              
+                86-510-86211123
+                
+                    <input type="button" onclick="outCall('86-510-86211123');" style="background:url('images/phone.png'); border-style: none; width: 20px;height: 20;background-repeat: no-repeat;cursor: pointer;">
+                
+                <p>
+              
+            
+          </td>
+          <th width="150">
+            传真：
+          </th>
+          <td>
+            
+          </td>
+        </tr>
+        <tr>
+          <th width="150">
+            Email：
+          </th>
+          <td width="300">
+            <a href="mailto:13179656516@163.com">13179656516@163.com</a>
+          </td>
+          <th width="150">
+            邮编：
+          </th>
+          <td>
+            
+          </td>
+        </tr>
+        -->
+        <tr>
+          <th width="150">
+            公司地址：
+          </th>
+          <td width="300">
+              江阴市华士镇华西村双桥路32号
+          </td>
+          <th width="150">
+            公司主页：
+          </th>
+          <td id="homepage">
+            <table id="id_tab_homepage" border="0">
+              
+              <tr><td><a href="http://www.cydhglv.com" target="_blank">www.cydhglv.com</a></td></tr>
+              
+            </table>
+          </td>
+        </tr>
+<tr>
+          <th width="150">
+                                     其它地址：
+          </th>
+          <td colspan="3">
+            <table id ='id_tab_address'  border="0">
+              <tr><td colspan="6">
+              
+              
+              
+            </table>
+              
+          </td>
+        </tr>
+        <!--<tr>
+          <th width="150">
+                                     自定义地址：
+          </th>
+          <td colspan="3">
+            
+          </td>
+        </tr>-->
+        <tr>
+         <th width="150">
+                                     自定义地址：
+          </th>
+          <td width="300">
+              
+          </td>
+          <th width="150">
+            员工数：
+          </th>
+          <td>
+            0
+          </td>
+          <!--
+          <th width="150">
+            联系人：
+          </th>
+          <td>
+            林
+          </td>-->
+          </tr>
+        <tr>
+            <th width="150">
+                备注：
+            </th>
+            <td colspan="3">
+                <textarea id="remark" name="remark" readonly="readonly" rows="7" cols="80"></textarea>
+            </td>
+        </tr>
+                <tr>
+                    <th width="150">
+                        客户简介：
+                    </th>
+                    <td colspan="3">
+                        <textarea id="description" name="description" readonly="readonly" rows="8" cols="80">Jiangyin caiyoudao chemical Co., Ltd is a company specializing in the production and sales of White oil. Aromatic hydrocarbon. Solvent oil. Industrial cleaning agent. Viscosity reducer, with hight quality, Good price and best service, Welcome friends from all over the world to inquire and negotiate business</textarea>
+                    </td>
+
+                </tr>
+                <tr>
+                    <th width="150">
+                        MIC客服人员：
+                    </th>
+                    <td>
+                        
+                        
+                        
+                            
+                                    
+                                
+                        
+                        
+                    </td>
+                    <th>
+            MIC区域客服人员：
+          </th>
+          <td>
+            
+            
+          </td>
+                </tr>
+                <tr>
+                    <th width="150">
+                        最后修改人：
+                    </th>
+                    <td>
+                        董宏娟
+                    </td>
+                    <th>
+                        最后修改时间：
+                    </th>
+                    <td>
+                        2019-11-26 19:56:22
+                    </td>
+                </tr>
+                <tr>
+                    <th width="150">
+                        最后分配人：
+                    </th>
+                    <td>
+                        董宏娟
+                    </td>
+                    <th>
+                        最后分配时间：
+                    </th>
+                    <td>
+                        2019-11-26 10:32:32
+                    </td>
+                </tr>
+                <tr class = "operate">
+                    <td colspan="5" align="center">
+                        <input type="button" id="check" name="check" class="submitc" onclick="checkRepeat()" value="撞单检查"/>
+                        
+                        
+                                <input type="button" id="test" name="test" class="submitc" onclick="closeOne(this)" value=" 不开放 "/>
+                            
+                        
+                        
+                        <input type="button" value=" 返 回 " onclick="checkPreUrl(this)"
+                            class="submitc">
+                    </td>
+                </tr>
+            </table>
+        </form>
         <form id="subForm" action="customer.do" method="get" target="_parent">
             <input type="hidden" name="customerId"
-            value="22262022" />
+                value="18473526" />
             <input type="hidden" name="method" value="modify" />
         </form>
         

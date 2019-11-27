@@ -197,10 +197,12 @@
         }];
     }else if (indexPath.row == 3) {
         [[swyManage manage].drawerController closeDrawerAnimated:false completion:^(BOOL finished) {
-            webViewController *vc = [webViewController new];
+//            webViewController *vc = [webViewController new];
             UINavigationController *nav = (UINavigationController *)[swyManage manage].drawerController.centerViewController;
+//            [nav pushViewController:vc animated:YES];
+//            vc.urlStr = @"http://sales.vemic.com/uitoolList.ui?funcID=40015&_i_f_k_=true&charlength=1000&pageLimit=50";
+            newRigisterCustomListVC *vc = [[newRigisterCustomListVC alloc] init];
             [nav pushViewController:vc animated:YES];
-            vc.urlStr = @"http://sales.vemic.com/uitoolList.ui?funcID=40015&_i_f_k_=true&charlength=1000&pageLimit=50";
         }];
     }else if (indexPath.row == 4) {
         [[swyManage manage].drawerController closeDrawerAnimated:false completion:^(BOOL finished) {

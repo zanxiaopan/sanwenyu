@@ -13,26 +13,26 @@
             我的区域的开放客户
         </title>
         <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
-            <link href="css/uitool.css" rel="stylesheet" type="text/css">
-                <script language="JavaScript" src="js/uitool.js"></script>
-                
-                
-                
-                
-                
-                
-                <!-- css with func_id -->
-                
-                <!-- js with func_id -->
-                
-                <script language="javascript" src="/js/show_account_idandemail.js"></script>
-                
-                <script language="javascript" src="js/removeSearchKeyField.js"></script>
-                
-                <script language="javascript" src="js/hiddenAdd.js"></script>
-                
-                </head>
-    
+        <link href="css/uitool.css" rel="stylesheet" type="text/css">
+        <script language="JavaScript" src="js/uitool.js"></script>
+        
+
+
+
+
+
+<!-- css with func_id -->
+
+<!-- js with func_id -->
+
+<script language="javascript" src="/js/show_account_idandemail.js"></script>
+
+<script language="javascript" src="js/removeSearchKeyField.js"></script>
+
+<script language="javascript" src="js/hiddenAdd.js"></script>
+
+    </head>
+
     <body>
         <table width="98%" border="0" align="center" cellpadding="2" cellspacing="1" bgcolor="#C4D7FF">
             <tr bgcolor="#FFFFFF">
@@ -42,799 +42,763 @@
             </tr>
             
             
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script language="javascript">
+function openCatalogWindow(url,value)
+{
+  var opener = window.open(url+value) ;
+}
+<!--
+var currViewObj ;
+function resetSearchByText(obj,defaultValue) {
+//    alert(defaultValue);
+    if(obj == undefined) return ;
+    obj.value = defaultValue ;
+}
+-->
+</script>
+<form action="?" method="get" name="searchForm" id="searchForm">
+<input type="hidden" id="orderField" name="orderField" value="">
+<input type="hidden" id="orderOper" name="orderOper" value="">
+<input type="hidden" id="uplike" name="uplike" value="0">
+<input type="hidden" id="pageLimit" name="pageLimit" value="20">
+<input type="hidden" name="s_f" id="s_f" value="">
+<input type="hidden" name="o_f" id="o_f" value="">
+<input type="hidden" name="d_f" id="d_f" value="">
+
+<input type="hidden" name="gotoUrl" value="customer.do?method=operateView">
+
+<input type="hidden" name="isOpen" value="1">
+
+<input type="hidden" name="funcID" value="1000931">
+
+<tr class="searchTr">
+    <td>
+    <table width="95%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#C4D7FF" class="searchTab">
+        <tr bgcolor="#FFFFFF">
+
+    <td width="10%" align="center" nowrap>客户编号:</td>
+    <td width="15%">
+
+      <input type="text" id="searchValue_0" name="ACCOUNT_ID" value="" >
+
+    <input type="hidden" name="searchOper" value="=">
+    <input type="hidden" name="searchField" value="ACCOUNT_ID">
+    </td>
+
+    <td width="10%" align="center" nowrap>MIC会员ID:</td>
+    <td width="15%">
+
+      <input type="text" id="searchValue_0" name="TEMP_MIC_ID" value="" >
+
+    <input type="hidden" name="searchOper" value="=">
+    <input type="hidden" name="searchField" value="TEMP_MIC_ID">
+    </td>
+
+    <td width="10%" align="center" nowrap>客户名称:</td>
+    <td width="15%">
+
+      <input type="text" id="searchValue_0" name="ACCOUNT_NAME" value="" >
+
+    <input type="hidden" name="searchOper" value="like">
+    <input type="hidden" name="searchField" value="ACCOUNT_NAME">
+    </td>
+
+    <td width="10%" align="center" nowrap>客户级别:</td>
+    <td width="15%">
+
+            <select name="ACCOUNT_LEVEL" id="searchValue_0" >
+                <option value="">全部</option>
+
+                <option value="0" >空</option>
+
+                <option value="10" >过期流失</option>
+
+                <option value="2" >放弃</option>
+
+                <option value="3" >流失</option>
+
+                <option value="4" >未联系</option>
+
+                <option value="5" >一般潜在</option>
+
+                <option value="6" >优质潜在</option>
+
+                <option value="7" >待签</option>
+
+                <option value="8" >签约</option>
+
+                <option value="9" >系统开放</option>
+
+            </select>
+
+    <input type="hidden" name="searchOper" value="=">
+    <input type="hidden" name="searchField" value="ACCOUNT_LEVEL">
+    </td>
+
+    </tr><tr>
+
+    <td width="10%" align="center" nowrap>公司主页:</td>
+    <td width="15%">
+
+      <input type="text" id="searchValue_0" name="HOMEPAGE" value="" >
+
+    <input type="hidden" name="searchOper" value="like">
+    <input type="hidden" name="searchField" value="HOMEPAGE">
+    </td>
+
+    <td width="10%" align="center" nowrap>公司电话:</td>
+    <td width="15%">
+
+      <input type="text" id="searchValue_0" name="TELEPHONE" value="" >
+
+    <input type="hidden" name="searchOper" value="like">
+    <input type="hidden" name="searchField" value="TELEPHONE">
+    </td>
+
+    <td width="10%" align="center" nowrap>销售人员姓名:</td>
+    <td width="15%">
+
+      <input type="text" id="searchValue_0" name="FULLNAME2" value="" >
+
+    <input type="hidden" name="searchOper" value="like">
+    <input type="hidden" name="searchField" value="FULLNAME2">
+    </td>
+
+    <td width="10%" align="center" nowrap>最后修改时间:</td>
+    <td width="15%">
+
+        <input type="text" id="searchValue" class="f_field_rang_s" name="S_MODIFIED_TIME2" value="2019-08-22" ><input type="text" id="searchValue" class="f_field_rang_e" name="E_MODIFIED_TIME2" value="2019-08-22" >
+        <input type="hidden" name="searchOper" value=">=">
+        <input type="hidden" name="searchField" value="MODIFIED_TIME2">
+
+    <input type="hidden" name="searchOper" value="<=">
+    <input type="hidden" name="searchField" value="MODIFIED_TIME2">
+    </td>
+
+    </tr><tr>
+
+    <td width="10%" align="center" nowrap>最后修改人:</td>
+    <td width="15%">
+
+      <input type="text" id="searchValue_0" name="FULLNAME1" value="system" >
+
+    <input type="hidden" name="searchOper" value="like">
+    <input type="hidden" name="searchField" value="FULLNAME1">
+    </td>
+
+    <td width="10%" align="center" nowrap>公司地址:</td>
+    <td width="15%">
+
+      <input type="text" id="searchValue_0" name="ADDRESS" value="" >
+
+    <input type="hidden" name="searchOper" value="like">
+    <input type="hidden" name="searchField" value="ADDRESS">
+    </td>
+
+    <td width="10%" align="center" nowrap>城市:</td>
+    <td width="15%">
+
+      <input type="text" id="searchValue_0" name="CITY" value="" >
+
+    <input type="hidden" name="searchOper" value="like">
+    <input type="hidden" name="searchField" value="CITY">
+    </td>
+
+    <td width="10%" align="center" nowrap>城区:</td>
+    <td width="15%">
+
+      <input type="text" id="searchValue_0" name="CITYZONE" value="" >
+
+    <input type="hidden" name="searchOper" value="like">
+    <input type="hidden" name="searchField" value="CITYZONE">
+    </td>
+
+    </tr><tr>
+
+    <td width="10%" align="center" nowrap>上次私有时间(天):</td>
+    <td width="15%">
+
+        <input type="text" id="searchValue" class="f_field_rang_s" name="S_KEEP_DAYS" value="" ><input type="text" id="searchValue" class="f_field_rang_e" name="E_KEEP_DAYS" value="" >
+        <input type="hidden" name="searchOper" value=">=">
+        <input type="hidden" name="searchField" value="KEEP_DAYS">
+
+    <input type="hidden" name="searchOper" value="<=">
+    <input type="hidden" name="searchField" value="KEEP_DAYS">
+    </td>
+
+    <td width="10%" align="center" nowrap>是否有MIC会员ID:</td>
+    <td width="15%">
+
+            <select name="HAS_MIC_ID" id="searchValue_0" >
+                <option value="">全部</option>
+
+                <option value="0" >否</option>
+
+                <option value="1" >是</option>
+
+            </select>
+
+    <input type="hidden" name="searchOper" value="=">
+    <input type="hidden" name="searchField" value="HAS_MIC_ID">
+    </td>
+
+    <td width="10%" align="center" nowrap>是否分公司客户:</td>
+    <td width="15%">
+
+            <select name="AREA_CITY" id="searchValue_0" >
+                <option value="">全部</option>
+
+                <option value="1" >是</option>
+
+                <option value="0" >否</option>
+
+            </select>
+
+    <input type="hidden" name="searchOper" value="=">
+    <input type="hidden" name="searchField" value="AREA_CITY">
+    </td>
+
+            <td colspan="2">&nbsp;</td>
+
+        </tr>
+        <tr><td colspan="8" align="right">
+            <input name="searchBtn" type="submit" value="查询">
+            <span id="searchLoading" name="searchLoading" class="searchLoading" style="display:none;">
+                <img src="/images/portal/loading.gif" class="searchLoading searchLoading_img"/>
+                <span class="bg-red searchLoading">正在查询...&nbsp;</span>
+            </span>
+
+        </td></tr>
+    </table>
+    </td>
+</tr>
+</form>
+<script id="id_JsBackView">
+</script>
+
             
             
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            <script language="javascript">
-                function openCatalogWindow(url,value)
-                {
-                    var opener = window.open(url+value) ;
-                }
-            <!--
-            var currViewObj ;
-            function resetSearchByText(obj,defaultValue) {
-                //    alert(defaultValue);
-                if(obj == undefined) return ;
-                obj.value = defaultValue ;
-            }
-            -->
-                </script>
-            <form action="?" method="get" name="searchForm" id="searchForm">
-                <input type="hidden" id="orderField" name="orderField" value="">
-                    <input type="hidden" id="orderOper" name="orderOper" value="">
-                        <input type="hidden" id="uplike" name="uplike" value="0">
-                            <input type="hidden" id="pageLimit" name="pageLimit" value="20">
-                                <input type="hidden" name="s_f" id="s_f" value="">
-                                    <input type="hidden" name="o_f" id="o_f" value="">
-                                        <input type="hidden" name="d_f" id="d_f" value="">
-                                            
-                                            <input type="hidden" name="gotoUrl" value="customer.do?method=operateView">
-                                                
-                                                <input type="hidden" name="isOpen" value="1">
-                                                    
-                                                    <input type="hidden" name="funcID" value="1000931">
-                                                        
-                                                        <tr class="searchTr">
-                                                            <td>
-                                                                <table width="95%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#C4D7FF" class="searchTab">
-                                                                    <tr bgcolor="#FFFFFF">
-                                                                        
-                                                                        <td width="10%" align="center" nowrap>客户编号:</td>
-                                                                        <td width="15%">
-                                                                            
-                                                                            <input type="text" id="searchValue_0" name="ACCOUNT_ID" value="" >
-                                                                                
-                                                                                <input type="hidden" name="searchOper" value="=">
-                                                                                    <input type="hidden" name="searchField" value="ACCOUNT_ID">
-                                                                                        </td>
-                                                                        
-                                                                        <td width="10%" align="center" nowrap>MIC会员ID:</td>
-                                                                        <td width="15%">
-                                                                            
-                                                                            <input type="text" id="searchValue_0" name="TEMP_MIC_ID" value="" >
-                                                                                
-                                                                                <input type="hidden" name="searchOper" value="=">
-                                                                                    <input type="hidden" name="searchField" value="TEMP_MIC_ID">
-                                                                                        </td>
-                                                                        
-                                                                        <td width="10%" align="center" nowrap>客户名称:</td>
-                                                                        <td width="15%">
-                                                                            
-                                                                            <input type="text" id="searchValue_0" name="ACCOUNT_NAME" value="" >
-                                                                                
-                                                                                <input type="hidden" name="searchOper" value="like">
-                                                                                    <input type="hidden" name="searchField" value="ACCOUNT_NAME">
-                                                                                        </td>
-                                                                        
-                                                                        <td width="10%" align="center" nowrap>客户级别:</td>
-                                                                        <td width="15%">
-                                                                            
-                                                                            <select name="ACCOUNT_LEVEL" id="searchValue_0" >
-                                                                                <option value="">全部</option>
-                                                                                
-                                                                                <option value="0" >空</option>
-                                                                                
-                                                                                <option value="10" >过期流失</option>
-                                                                                
-                                                                                <option value="2" >放弃</option>
-                                                                                
-                                                                                <option value="3" >流失</option>
-                                                                                
-                                                                                <option value="4" >未联系</option>
-                                                                                
-                                                                                <option value="5" >一般潜在</option>
-                                                                                
-                                                                                <option value="6" >优质潜在</option>
-                                                                                
-                                                                                <option value="7" >待签</option>
-                                                                                
-                                                                                <option value="8" >签约</option>
-                                                                                
-                                                                                <option value="9" >系统开放</option>
-                                                                                
-                                                                            </select>
-                                                                            
-                                                                            <input type="hidden" name="searchOper" value="=">
-                                                                                <input type="hidden" name="searchField" value="ACCOUNT_LEVEL">
-                                                                                    </td>
-                                                                        
-                                                                    </tr><tr>
-                                                                        
-                                                                        <td width="10%" align="center" nowrap>公司主页:</td>
-                                                                        <td width="15%">
-                                                                            
-                                                                            <input type="text" id="searchValue_0" name="HOMEPAGE" value="" >
-                                                                                
-                                                                                <input type="hidden" name="searchOper" value="like">
-                                                                                    <input type="hidden" name="searchField" value="HOMEPAGE">
-                                                                                        </td>
-                                                                        
-                                                                        <td width="10%" align="center" nowrap>公司电话:</td>
-                                                                        <td width="15%">
-                                                                            
-                                                                            <input type="text" id="searchValue_0" name="TELEPHONE" value="" >
-                                                                                
-                                                                                <input type="hidden" name="searchOper" value="like">
-                                                                                    <input type="hidden" name="searchField" value="TELEPHONE">
-                                                                                        </td>
-                                                                        
-                                                                        <td width="10%" align="center" nowrap>销售人员姓名:</td>
-                                                                        <td width="15%">
-                                                                            
-                                                                            <input type="text" id="searchValue_0" name="FULLNAME2" value="" >
-                                                                                
-                                                                                <input type="hidden" name="searchOper" value="like">
-                                                                                    <input type="hidden" name="searchField" value="FULLNAME2">
-                                                                                        </td>
-                                                                        
-                                                                        <td width="10%" align="center" nowrap>最后修改时间:</td>
-                                                                        <td width="15%">
-                                                                            
-                                                                            <input type="text" id="searchValue" class="f_field_rang_s" name="S_MODIFIED_TIME2" value="2019-08-22" ><input type="text" id="searchValue" class="f_field_rang_e" name="E_MODIFIED_TIME2" value="2019-08-22" >
-                                                                                <input type="hidden" name="searchOper" value=">=">
-                                                                                    <input type="hidden" name="searchField" value="MODIFIED_TIME2">
-                                                                                        
-                                                                                        <input type="hidden" name="searchOper" value="<=">
-                                                                                            <input type="hidden" name="searchField" value="MODIFIED_TIME2">
-                                                                                                </td>
-                                                                        
-                                                                    </tr><tr>
-                                                                        
-                                                                        <td width="10%" align="center" nowrap>最后修改人:</td>
-                                                                        <td width="15%">
-                                                                            
-                                                                            <input type="text" id="searchValue_0" name="FULLNAME1" value="system" >
-                                                                                
-                                                                                <input type="hidden" name="searchOper" value="like">
-                                                                                    <input type="hidden" name="searchField" value="FULLNAME1">
-                                                                                        </td>
-                                                                        
-                                                                        <td width="10%" align="center" nowrap>公司地址:</td>
-                                                                        <td width="15%">
-                                                                            
-                                                                            <input type="text" id="searchValue_0" name="ADDRESS" value="" >
-                                                                                
-                                                                                <input type="hidden" name="searchOper" value="like">
-                                                                                    <input type="hidden" name="searchField" value="ADDRESS">
-                                                                                        </td>
-                                                                        
-                                                                        <td width="10%" align="center" nowrap>城市:</td>
-                                                                        <td width="15%">
-                                                                            
-                                                                            <input type="text" id="searchValue_0" name="CITY" value="" >
-                                                                                
-                                                                                <input type="hidden" name="searchOper" value="like">
-                                                                                    <input type="hidden" name="searchField" value="CITY">
-                                                                                        </td>
-                                                                        
-                                                                        <td width="10%" align="center" nowrap>城区:</td>
-                                                                        <td width="15%">
-                                                                            
-                                                                            <input type="text" id="searchValue_0" name="CITYZONE" value="" >
-                                                                                
-                                                                                <input type="hidden" name="searchOper" value="like">
-                                                                                    <input type="hidden" name="searchField" value="CITYZONE">
-                                                                                        </td>
-                                                                        
-                                                                    </tr><tr>
-                                                                        
-                                                                        <td width="10%" align="center" nowrap>上次私有时间(天):</td>
-                                                                        <td width="15%">
-                                                                            
-                                                                            <input type="text" id="searchValue" class="f_field_rang_s" name="S_KEEP_DAYS" value="" ><input type="text" id="searchValue" class="f_field_rang_e" name="E_KEEP_DAYS" value="" >
-                                                                                <input type="hidden" name="searchOper" value=">=">
-                                                                                    <input type="hidden" name="searchField" value="KEEP_DAYS">
-                                                                                        
-                                                                                        <input type="hidden" name="searchOper" value="<=">
-                                                                                            <input type="hidden" name="searchField" value="KEEP_DAYS">
-                                                                                                </td>
-                                                                        
-                                                                        <td width="10%" align="center" nowrap>是否有MIC会员ID:</td>
-                                                                        <td width="15%">
-                                                                            
-                                                                            <select name="HAS_MIC_ID" id="searchValue_0" >
-                                                                                <option value="">全部</option>
-                                                                                
-                                                                                <option value="0" >否</option>
-                                                                                
-                                                                                <option value="1" >是</option>
-                                                                                
-                                                                            </select>
-                                                                            
-                                                                            <input type="hidden" name="searchOper" value="=">
-                                                                                <input type="hidden" name="searchField" value="HAS_MIC_ID">
-                                                                                    </td>
-                                                                        
-                                                                        <td width="10%" align="center" nowrap>是否分公司客户:</td>
-                                                                        <td width="15%">
-                                                                            
-                                                                            <select name="AREA_CITY" id="searchValue_0" >
-                                                                                <option value="">全部</option>
-                                                                                
-                                                                                <option value="1" >是</option>
-                                                                                
-                                                                                <option value="0" >否</option>
-                                                                                
-                                                                            </select>
-                                                                            
-                                                                            <input type="hidden" name="searchOper" value="=">
-                                                                                <input type="hidden" name="searchField" value="AREA_CITY">
-                                                                                    </td>
-                                                                        
-                                                                        <td colspan="2">&nbsp;</td>
-                                                                        
-                                                                    </tr>
-                                                                    <tr><td colspan="8" align="right">
-                                                                        <input name="searchBtn" type="submit" value="查询">
-                                                                            <span id="searchLoading" name="searchLoading" class="searchLoading" style="display:none;">
-                                                                                <img src="/images/portal/loading.gif" class="searchLoading searchLoading_img"/>
-                                                                                <span class="bg-red searchLoading">正在查询...&nbsp;</span>
-                                                                            </span>
-                                                                            
-                                                                            </td></tr>
-                                                                </table>
-                                                            </td>
-                                                        </tr>
-            </form>
-            <script id="id_JsBackView">
-                </script>
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            <script>
-                function doOrder(fieldName,orderStr) {
-                    document.getElementById("id_orderField").value = fieldName;
-                    document.getElementById("id_orderOper").value = orderStr;
-                    document.getElementById("theForm").submit();
-                }
-            </script>
-            
-            <tr class="orderTr">
-                <td>
-                    
-                </td></tr>
+
+
+
+
+
+<script>
+function doOrder(fieldName,orderStr) {
+    document.getElementById("id_orderField").value = fieldName;
+    document.getElementById("id_orderOper").value = orderStr;
+    document.getElementById("theForm").submit();
+}
+</script>
+
+<tr class="orderTr">
+    <td>
+
+</td></tr>
         </table>
         <!-- display table -->
-        <form name="nextForm" action="customer.do?method=operateView" method="post" style="border:none;padding: 0px;margin: 0px;" target="_blank">
-            
-            <input type="hidden" name="gotoUrl" value="customer.do?method=operateView">
-                
-                <input type="hidden" name="isOpen" value="1">
-                    
-                    <input type="hidden" name="funcID" value="1000931">
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        <script>
-                            function deleteConfirm(url) {
-                                if(confirm("你确定要删除当前信息吗？")) {
-                                    window.location.href = url;
-                                }
-                            }
-                        
-                        function doNext() {
-                            var checked = false;
-                            var selIds = document.getElementsByName("sel_id");
-                            for(var i = 0 ; i < selIds.length ; i++) {
-                                if(selIds[i].checked) {
-                                    checked = true;
-                                    break;
-                                }
-                            }
-                            if(checked)
-                            document.nextForm.submit();
-                            else
-                            alert("请先在多选框进行选择！");
-                        }
-                        function doSelAll() {
-                            var items = document.getElementsByName("sel_id");
-                            for(var i = 0 ; i < items.length ;i++) {
-                                items[i].checked = true;
-                            }
-                        }
-                        function doUnSelAll() {
-                            var items = document.getElementsByName("sel_id");
-                            for(var i = 0 ; i < items.length ;i++) {
-                                items[i].checked = !items[i].checked;
-                            }
-                        }
-                        
-                            </script>
-                        
-                        <table id="list00_rectable" width="98%" border="0" align="center" cellpadding="1" cellspacing="0" bgcolor="#C4D7FF">
-                            <tr><td>当前页数/总页数：1/461168601842738791 总记录数：<font color="red">9223372036854775807</font></td></tr>
-                        </table>
-                        
-                        <table id="list00_table" width="98%" border="0" align="center" cellpadding="2" cellspacing="1" bgcolor="#C4D7FF">
-                            
-                            
-                            
-                            <tr id="id_tr_0" class="title">
-                                <td  id="id_td_0_0" align="center" colspan="1" rowspan="1" class=""  ><a href="javascript:doSelAll()">全选</a>/<a href="javascript:doUnSelAll()">反选</a></td>
-                                <td  id="id_td_0_0" align="center" colspan="1" rowspan="1" class=""  >序号</td>
-                                <td  id="id_td_ACCOUNT_ID" align="center" colspan="1" rowspan="1" class=""  >客户编号</td>
-                                <td  id="id_td_TEMP_MIC_ID" align="center" colspan="1" rowspan="1" class=""  >MIC会员ID</td>
-                                <td  id="id_td_ACCOUNT_NAME" align="center" colspan="1" rowspan="1" class=""  >客户名称</td>
-                                <td  id="id_td_ACCOUNT_LEVEL" align="center" colspan="1" rowspan="1" class=""  >客户级别</td>
-                                <td  id="id_td_HOMEPAGE" align="center" colspan="1" rowspan="1" class=""  >公司主页</td>
-                                <td  id="id_td_TELEPHONE" align="center" colspan="1" rowspan="1" class=""  >公司电话</td>
-                                <td  id="id_td_FULLNAME2" align="center" colspan="1" rowspan="1" class=""  >销售人员姓名</td>
-                                <td  id="id_td_MODIFIED_TIME2" align="center" colspan="1" rowspan="1" class=""  >最后修改时间</td>
-                                <td  id="id_td_FULLNAME1" align="center" colspan="1" rowspan="1" class=""  >最后修改人</td>
-                                <td  id="id_td_EMAIL" align="center" colspan="1" rowspan="1" class=""  >Email</td>
-                                <td  id="id_td_KEEP_DAYS" align="center" colspan="1" rowspan="1" class=""  >上次私有时间(天)</td>
-                                <td  id="id_td__oper_" align="center" colspan="1" rowspan="1" class=""  ></td>
-                            </tr>
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            <tr align="center" bgcolor="#FFFFFF" class="odd" id="data_tr" >
-                                
-                                <td style="width:30px;"><input type="checkbox" index="0" value="" text="" name="sel_id" ></td>
-                                
-                                <td>1</td>
-                                
-                                <td class="lisTdACCOUNT_ID" title="" align="" ></td>
-                                
-                                <td class="lisTdTEMP_MIC_ID" align="" title=""><a href="customer.do?method=details&show=member&customerId=" ></a></td>
-                                
-                                <td class="lisTdACCOUNT_NAME" align="" title=""><a href="/customer.do?method=details&customerId=" ></a></td>
-                                
-                                <td class="lisTdACCOUNT_LEVEL" title="" align="" ></td>
-                                
-                                <td class="lisTdHOMEPAGE" title="" align="" ></td>
-                                
-                                <td class="lisTdTELEPHONE" title="" align="" ></td>
-                                
-                                <td class="lisTdFULLNAME2" title="" align="" ></td>
-                                
-                                <td class="lisTdMODIFIED_TIME2" title="" align="" ></td>
-                                
-                                <td class="lisTdFULLNAME1" title="" align="" ></td>
-                                
-                                <td class="lisTdEMAIL" title="" align="" ></td>
-                                
-                                <td class="lisTdKEEP_DAYS" title="" align="" ></td>
-                                
-                                <td nowrap >
-                                    
-                                    <a href="/customer.do?method=details&customerId=&otherFields=%26E_MODIFIED_TIME2=2019-08-22%26d_f=%26ACCOUNT_ID=%26gotoUrl=customer.do?method=operateView%26isOpen=1%26ADDRESS=%26o_f=%26FULLNAME1=system%26FULLNAME2=%26CITYZONE=%26s_f=%26HAS_MIC_ID=%26E_KEEP_DAYS=%26AREA_CITY=%26searchOper==%26searchOper==%26searchOper=like%26searchOper==%26searchOper=like%26searchOper=like%26searchOper=like%26searchOper=>=%26searchOper=<=%26searchOper=like%26searchOper=like%26searchOper=like%26searchOper=like%26searchOper=>=%26searchOper=<=%26searchOper==%26searchOper==%26funcID=1000931%26TELEPHONE=%26S_KEEP_DAYS=%26CITY=%26HOMEPAGE=%26uplike=0%26ACCOUNT_LEVEL=%26S_MODIFIED_TIME2=2019-08-22%26ACCOUNT_NAME=%26TEMP_MIC_ID=">查看</a>
-                                    
-                                </td>
-                                
-                            </tr>
-                            
-                            <tr align="center" bgcolor="#FFFFFF" class="even" id="data_tr" >
-                                
-                                <td style="width:30px;"><input type="checkbox" index="1" value="10620915" text="" name="sel_id" ></td>
-                                
-                                <td>2</td>
-                                
-                                <td class="lisNumTd" title="10620915" align="" >10620915</td>
-                                
-                                <td class="lisTdTEMP_MIC_ID" align="" title="678001075,679713345"><a href="customer.do?method=details&show=member&customerId=10620915" >678001075,679713345</a></td>
-                                
-                                <td class="lisTdACCOUNT_NAME" align="" title="东莞市企石大视野汽车雨刷厂    Dongguan Dashiye Auto Parts Factory"><a href="/customer.do?method=details&customerId=10620915" >东莞市企石大视野汽车雨刷厂    Dongguan......</a></td>
-                                
-                                <td class="lisTdACCOUNT_LEVEL" title="过期流失" align="" >过期流失</td>
-                                
-                                <td class="lisTdHOMEPAGE" title="www.dasye.com    http://dasye.en.alibaba.com/" align="" ><a href='http://www.dasye.com' target='_blank'>www.dasye.com</a><br><a href='http://dasye.en.alibaba.com/' target='_blank'>http://dasye.en.alibaba.com/</a><br></td>
-                                    
-                                    <td class="lisTdTELEPHONE" title="86-769-86782968-王建立外贸部,86-769-86663978" align="" >86-769-86782968-王建立外贸部......</td>
-                                    
-                                    <td class="lisTdFULLNAME2" title="王卫军" align="" >王卫军</td>
-                                    
-                                    <td class="lisTdMODIFIED_TIME2" title="2019-08-22" align="" >2019-08-22</td>
-                                    
-                                    <td class="lisTdFULLNAME1" title="system" align="" >system</td>
-                                    
-                                    <td class="lisTdEMAIL" title="simon-520@qq.com,sabrinayang05101@hotmail.com,dgdashiye@yahoo.cn" align="" >simon-520@qq.com,sabri......</td>
-                                    
-                                    <td class="lisNumTd" title="0" align="" >0</td>
-                                    
-                                    <td nowrap >
-                                    
-                                    <a href="/customer.do?method=details&customerId=10620915&otherFields=%26E_MODIFIED_TIME2=2019-08-22%26d_f=%26ACCOUNT_ID=%26gotoUrl=customer.do?method=operateView%26isOpen=1%26ADDRESS=%26o_f=%26FULLNAME1=system%26FULLNAME2=%26CITYZONE=%26s_f=%26HAS_MIC_ID=%26E_KEEP_DAYS=%26AREA_CITY=%26searchOper==%26searchOper==%26searchOper=like%26searchOper==%26searchOper=like%26searchOper=like%26searchOper=like%26searchOper=>=%26searchOper=<=%26searchOper=like%26searchOper=like%26searchOper=like%26searchOper=like%26searchOper=>=%26searchOper=<=%26searchOper==%26searchOper==%26funcID=1000931%26TELEPHONE=%26S_KEEP_DAYS=%26CITY=%26HOMEPAGE=%26uplike=0%26ACCOUNT_LEVEL=%26S_MODIFIED_TIME2=2019-08-22%26ACCOUNT_NAME=%26TEMP_MIC_ID=">查看</a>
-                                    
-                                    </td>
-                                    
-                                    </tr>
-                                    
-                                    <tr align="center" bgcolor="#FFFFFF" class="odd" id="data_tr" >
-                                    
-                                    <td style="width:30px;"><input type="checkbox" index="2" value="11159882" text="" name="sel_id" ></td>
-                                    
-                                    <td>3</td>
-                                    
-                                    <td class="lisNumTd" title="11159882" align="" >11159882</td>
-                                    
-                                    <td class="lisTdTEMP_MIC_ID" align="" title="642847555,656902485,668104445,676585585,678505895,679563715,679713325"><a href="customer.do?method=details&show=member&customerId=11159882" >642847555,656902485,66......</a></td>
-                                    
-                                    <td class="lisTdACCOUNT_NAME" align="" title="台州华通水产冷藏有限公司    taizhou huatong shuichan co.ltd."><a href="/customer.do?method=details&customerId=11159882" >台州华通水产冷藏有限公司    taizhou h......</a></td>
-                                    
-                                    <td class="lisTdACCOUNT_LEVEL" title="未联系" align="" >未联系</td>
-                                    
-                                    <td class="lisTdHOMEPAGE" title="http://www.huatongseafood.com/econtact.asp    http://seafood.en.alibaba.com/contactinfo.html    http://seafood.en.alibaba.com/" align="" ><a href='http://www.huatongseafood.com/econtact.asp' target='_blank'>http://www.huatongseafood.com/econtact.asp</a><br><a href='http://seafood.en.alibaba.com/contactinfo.html' target='_blank'>http://seafood.en.alibaba.com/contactinfo.html</a><br><a href='http://seafood.en.alibaba.com/' target='_blank'>http://seafood.en.alibaba.com/</a><br></td>
-                                    
-                                    <td class="lisTdTELEPHONE" title="86-576-81898188,86-000-13806586963-陆老板,86-000-15657621261-吴经理" align="" >86-576-81898188,86-000......</td>
-                                    
-                                    <td class="lisTdFULLNAME2" title="李小利" align="" >李小利</td>
-                                    
-                                    <td class="lisTdMODIFIED_TIME2" title="2019-08-22" align="" >2019-08-22</td>
-                                    
-                                    <td class="lisTdFULLNAME1" title="system" align="" >system</td>
-                                    
-                                    <td class="lisTdEMAIL" title="huatongseafood@126.com" align="" >huatongseafood@126.com</td>
-                                    
-                                    <td class="lisNumTd" title="21" align="" >21</td>
-                                    
-                                    <td nowrap >
-                                    
-                                    <a href="/customer.do?method=details&customerId=11159882&otherFields=%26E_MODIFIED_TIME2=2019-08-22%26d_f=%26ACCOUNT_ID=%26gotoUrl=customer.do?method=operateView%26isOpen=1%26ADDRESS=%26o_f=%26FULLNAME1=system%26FULLNAME2=%26CITYZONE=%26s_f=%26HAS_MIC_ID=%26E_KEEP_DAYS=%26AREA_CITY=%26searchOper==%26searchOper==%26searchOper=like%26searchOper==%26searchOper=like%26searchOper=like%26searchOper=like%26searchOper=>=%26searchOper=<=%26searchOper=like%26searchOper=like%26searchOper=like%26searchOper=like%26searchOper=>=%26searchOper=<=%26searchOper==%26searchOper==%26funcID=1000931%26TELEPHONE=%26S_KEEP_DAYS=%26CITY=%26HOMEPAGE=%26uplike=0%26ACCOUNT_LEVEL=%26S_MODIFIED_TIME2=2019-08-22%26ACCOUNT_NAME=%26TEMP_MIC_ID=">查看</a>
-                                    
-                                    </td>
-                                    
-                                    </tr>
-                                    
-                                    <tr align="center" bgcolor="#FFFFFF" class="even" id="data_tr" >
-                                    
-                                    <td style="width:30px;"><input type="checkbox" index="3" value="16147131" text="" name="sel_id" ></td>
-                                    
-                                    <td>4</td>
-                                    
-                                    <td class="lisNumTd" title="16147131" align="" >16147131</td>
-                                    
-                                    <td class="lisTdTEMP_MIC_ID" align="" title="677450975,677520865,677552655,679712225"><a href="customer.do?method=details&show=member&customerId=16147131" >677450975,677520865,67......</a></td>
-                                    
-                                    <td class="lisTdACCOUNT_NAME" align="" title="上海商展国际货运代理有限公司    Shanghai Shangzhan"><a href="/customer.do?method=details&customerId=16147131" >上海商展国际货运代理有限公司    Shangha......</a></td>
-                                    
-                                    <td class="lisTdACCOUNT_LEVEL" title="空" align="" >空</td>
-                                    
-                                    <td class="lisTdHOMEPAGE" title="" align="" ></td>
-                                    
-                                    <td class="lisTdTELEPHONE" title="86-21-31787174" align="" >86-21-31787174</td>
-                                    
-                                    <td class="lisTdFULLNAME2" title="苑竞月(离)" align="" >苑竞月(离)</td>
-                                    
-                                    <td class="lisTdMODIFIED_TIME2" title="2019-08-22" align="" >2019-08-22</td>
-                                    
-                                    <td class="lisTdFULLNAME1" title="system" align="" >system</td>
-                                    
-                                    <td class="lisTdEMAIL" title="616560557@qq.com,406484191@qq.com,18061471257@163.com" align="" >616560557@qq.com,40648......</td>
-                                    
-                                    <td class="lisNumTd" title="101" align="" >101</td>
-                                    
-                                    <td nowrap >
-                                    
-                                    <a href="/customer.do?method=details&customerId=16147131&otherFields=%26E_MODIFIED_TIME2=2019-08-22%26d_f=%26ACCOUNT_ID=%26gotoUrl=customer.do?method=operateView%26isOpen=1%26ADDRESS=%26o_f=%26FULLNAME1=system%26FULLNAME2=%26CITYZONE=%26s_f=%26HAS_MIC_ID=%26E_KEEP_DAYS=%26AREA_CITY=%26searchOper==%26searchOper==%26searchOper=like%26searchOper==%26searchOper=like%26searchOper=like%26searchOper=like%26searchOper=>=%26searchOper=<=%26searchOper=like%26searchOper=like%26searchOper=like%26searchOper=like%26searchOper=>=%26searchOper=<=%26searchOper==%26searchOper==%26funcID=1000931%26TELEPHONE=%26S_KEEP_DAYS=%26CITY=%26HOMEPAGE=%26uplike=0%26ACCOUNT_LEVEL=%26S_MODIFIED_TIME2=2019-08-22%26ACCOUNT_NAME=%26TEMP_MIC_ID=">查看</a>
-                                    
-                                    </td>
-                                    
-                                    </tr>
-                                    
-                                    <tr align="center" bgcolor="#FFFFFF" class="odd" id="data_tr" >
-                                    
-                                    <td style="width:30px;"><input type="checkbox" index="4" value="20156681" text="" name="sel_id" ></td>
-                                    
-                                    <td>5</td>
-                                    
-                                    <td class="lisNumTd" title="20156681" align="" >20156681</td>
-                                    
-                                    <td class="lisTdTEMP_MIC_ID" align="" title="741075481"><a href="customer.do?method=details&show=member&customerId=20156681" >741075481</a></td>
-                                    
-                                    <td class="lisTdACCOUNT_NAME" align="" title="宁波普瑞供应链服务有限公司    "><a href="/customer.do?method=details&customerId=20156681" >宁波普瑞供应链服务有限公司    </a></td>
-                                    
-                                    <td class="lisTdACCOUNT_LEVEL" title="空" align="" >空</td>
-                                    
-                                    <td class="lisTdHOMEPAGE" title="" align="" ></td>
-                                    
-                                    <td class="lisTdTELEPHONE" title="" align="" ></td>
-                                    
-                                    <td class="lisTdFULLNAME2" title="屠卓辉" align="" >屠卓辉</td>
-                                    
-                                    <td class="lisTdMODIFIED_TIME2" title="2019-08-22" align="" >2019-08-22</td>
-                                    
-                                    <td class="lisTdFULLNAME1" title="system" align="" >system</td>
-                                    
-                                    <td class="lisTdEMAIL" title="" align="" ></td>
-                                    
-                                    <td class="lisNumTd" title="83" align="" >83</td>
-                                    
-                                    <td nowrap >
-                                    
-                                    <a href="/customer.do?method=details&customerId=20156681&otherFields=%26E_MODIFIED_TIME2=2019-08-22%26d_f=%26ACCOUNT_ID=%26gotoUrl=customer.do?method=operateView%26isOpen=1%26ADDRESS=%26o_f=%26FULLNAME1=system%26FULLNAME2=%26CITYZONE=%26s_f=%26HAS_MIC_ID=%26E_KEEP_DAYS=%26AREA_CITY=%26searchOper==%26searchOper==%26searchOper=like%26searchOper==%26searchOper=like%26searchOper=like%26searchOper=like%26searchOper=>=%26searchOper=<=%26searchOper=like%26searchOper=like%26searchOper=like%26searchOper=like%26searchOper=>=%26searchOper=<=%26searchOper==%26searchOper==%26funcID=1000931%26TELEPHONE=%26S_KEEP_DAYS=%26CITY=%26HOMEPAGE=%26uplike=0%26ACCOUNT_LEVEL=%26S_MODIFIED_TIME2=2019-08-22%26ACCOUNT_NAME=%26TEMP_MIC_ID=">查看</a>
-                                    
-                                    </td>
-                                    
-                                    </tr>
-                                    
-                                    <tr align="center" bgcolor="#FFFFFF" class="even" id="data_tr" >
-                                    
-                                    <td style="width:30px;"><input type="checkbox" index="5" value="12204689" text="" name="sel_id" ></td>
-                                    
-                                    <td>6</td>
-                                    
-                                    <td class="lisNumTd" title="12204689" align="" >12204689</td>
-                                    
-                                    <td class="lisTdTEMP_MIC_ID" align="" title="654755105,661326332"><a href="customer.do?method=details&show=member&customerId=12204689" >654755105,661326332</a></td>
-                                    
-                                    <td class="lisTdACCOUNT_NAME" align="" title="豪凯装饰材料有限公司    "><a href="/customer.do?method=details&customerId=12204689" >豪凯装饰材料有限公司    </a></td>
-                                    
-                                    <td class="lisTdACCOUNT_LEVEL" title="系统开放" align="" >系统开放</td>
-                                    
-                                    <td class="lisTdHOMEPAGE" title="" align="" ></td>
-                                    
-                                    <td class="lisTdTELEPHONE" title="86-519-88509788" align="" >86-519-88509788</td>
-                                    
-                                    <td class="lisTdFULLNAME2" title="system" align="" >system</td>
-                                    
-                                    <td class="lisTdMODIFIED_TIME2" title="2019-08-22" align="" >2019-08-22</td>
-                                    
-                                    <td class="lisTdFULLNAME1" title="system" align="" >system</td>
-                                    
-                                    <td class="lisTdEMAIL" title="564953928@qq.com" align="" >564953928@qq.com</td>
-                                    
-                                    <td class="lisNumTd" title="2852" align="" >2852</td>
-                                    
-                                    <td nowrap >
-                                    
-                                    <a href="/customer.do?method=details&customerId=12204689&otherFields=%26E_MODIFIED_TIME2=2019-08-22%26d_f=%26ACCOUNT_ID=%26gotoUrl=customer.do?method=operateView%26isOpen=1%26ADDRESS=%26o_f=%26FULLNAME1=system%26FULLNAME2=%26CITYZONE=%26s_f=%26HAS_MIC_ID=%26E_KEEP_DAYS=%26AREA_CITY=%26searchOper==%26searchOper==%26searchOper=like%26searchOper==%26searchOper=like%26searchOper=like%26searchOper=like%26searchOper=>=%26searchOper=<=%26searchOper=like%26searchOper=like%26searchOper=like%26searchOper=like%26searchOper=>=%26searchOper=<=%26searchOper==%26searchOper==%26funcID=1000931%26TELEPHONE=%26S_KEEP_DAYS=%26CITY=%26HOMEPAGE=%26uplike=0%26ACCOUNT_LEVEL=%26S_MODIFIED_TIME2=2019-08-22%26ACCOUNT_NAME=%26TEMP_MIC_ID=">查看</a>
-                                    
-                                    </td>
-                                    
-                                    </tr>
-                                    
-                                    <tr align="center" bgcolor="#FFFFFF" class="odd" id="data_tr" >
-                                    
-                                    <td style="width:30px;"><input type="checkbox" index="6" value="22262022" text="" name="sel_id" ></td>
-                                    
-                                    <td>7</td>
-                                    
-                                    <td class="lisNumTd" title="22262022" align="" >22262022</td>
-                                    
-                                    <td class="lisTdTEMP_MIC_ID" align="" title="741023781,741031241"><a href="customer.do?method=details&show=member&customerId=22262022" >741023781,741031241</a></td>
-                                    
-                                    <td class="lisTdACCOUNT_NAME" align="" title="Synaty-CGM物流（中国）有限公司    Synaty-Cgm Logistics (China) Co., Ltd."><a href="/customer.do?method=details&customerId=22262022" >Synaty-CGM物流（中国）有限公司    S......</a></td>
-                                    
-                                    <td class="lisTdACCOUNT_LEVEL" title="系统开放" align="" >系统开放</td>
-                                    
-                                    <td class="lisTdHOMEPAGE" title="" align="" ></td>
-                                    
-                                    <td class="lisTdTELEPHONE" title="" align="" ></td>
-                                    
-                                    <td class="lisTdFULLNAME2" title="system" align="" >system</td>
-                                    
-                                    <td class="lisTdMODIFIED_TIME2" title="2019-08-22" align="" >2019-08-22</td>
-                                    
-                                    <td class="lisTdFULLNAME1" title="system" align="" >system</td>
-                                    
-                                    <td class="lisTdEMAIL" title="jonathan.wong24@yahoo.com" align="" >jonathan.wong24@yahoo.......</td>
-                                    
-                                    <td class="lisNumTd" title="3" align="" >3</td>
-                                    
-                                    <td nowrap >
-                                    
-                                    <a href="/customer.do?method=details&customerId=22262022&otherFields=%26E_MODIFIED_TIME2=2019-08-22%26d_f=%26ACCOUNT_ID=%26gotoUrl=customer.do?method=operateView%26isOpen=1%26ADDRESS=%26o_f=%26FULLNAME1=system%26FULLNAME2=%26CITYZONE=%26s_f=%26HAS_MIC_ID=%26E_KEEP_DAYS=%26AREA_CITY=%26searchOper==%26searchOper==%26searchOper=like%26searchOper==%26searchOper=like%26searchOper=like%26searchOper=like%26searchOper=>=%26searchOper=<=%26searchOper=like%26searchOper=like%26searchOper=like%26searchOper=like%26searchOper=>=%26searchOper=<=%26searchOper==%26searchOper==%26funcID=1000931%26TELEPHONE=%26S_KEEP_DAYS=%26CITY=%26HOMEPAGE=%26uplike=0%26ACCOUNT_LEVEL=%26S_MODIFIED_TIME2=2019-08-22%26ACCOUNT_NAME=%26TEMP_MIC_ID=">查看</a>
-                                    
-                                    </td>
-                                    
-                                    </tr>
-                                    
-                                    <tr align="center" bgcolor="#FFFFFF" class="even" id="data_tr" >
-                                    
-                                    <td style="width:30px;"><input type="checkbox" index="7" value="22264996" text="" name="sel_id" ></td>
-                                    
-                                    <td>8</td>
-                                    
-                                    <td class="lisNumTd" title="22264996" align="" >22264996</td>
-                                    
-                                    <td class="lisTdTEMP_MIC_ID" align="" title="677187465"><a href="customer.do?method=details&show=member&customerId=22264996" >677187465</a></td>
-                                    
-                                    <td class="lisTdACCOUNT_NAME" align="" title="个人用户(王俊明)    Individual User (Kevin)"><a href="/customer.do?method=details&customerId=22264996" >个人用户(王俊明)    Individual U......</a></td>
-                                    
-                                    <td class="lisTdACCOUNT_LEVEL" title="系统开放" align="" >系统开放</td>
-                                    
-                                    <td class="lisTdHOMEPAGE" title="" align="" ></td>
-                                    
-                                    <td class="lisTdTELEPHONE" title="" align="" ></td>
-                                    
-                                    <td class="lisTdFULLNAME2" title="system" align="" >system</td>
-                                    
-                                    <td class="lisTdMODIFIED_TIME2" title="2019-08-22" align="" >2019-08-22</td>
-                                    
-                                    <td class="lisTdFULLNAME1" title="system" align="" >system</td>
-                                    
-                                    <td class="lisTdEMAIL" title="52318765@qq.com" align="" >52318765@qq.com</td>
-                                    
-                                    <td class="lisNumTd" title="2" align="" >2</td>
-                                    
-                                    <td nowrap >
-                                    
-                                    <a href="/customer.do?method=details&customerId=22264996&otherFields=%26E_MODIFIED_TIME2=2019-08-22%26d_f=%26ACCOUNT_ID=%26gotoUrl=customer.do?method=operateView%26isOpen=1%26ADDRESS=%26o_f=%26FULLNAME1=system%26FULLNAME2=%26CITYZONE=%26s_f=%26HAS_MIC_ID=%26E_KEEP_DAYS=%26AREA_CITY=%26searchOper==%26searchOper==%26searchOper=like%26searchOper==%26searchOper=like%26searchOper=like%26searchOper=like%26searchOper=>=%26searchOper=<=%26searchOper=like%26searchOper=like%26searchOper=like%26searchOper=like%26searchOper=>=%26searchOper=<=%26searchOper==%26searchOper==%26funcID=1000931%26TELEPHONE=%26S_KEEP_DAYS=%26CITY=%26HOMEPAGE=%26uplike=0%26ACCOUNT_LEVEL=%26S_MODIFIED_TIME2=2019-08-22%26ACCOUNT_NAME=%26TEMP_MIC_ID=">查看</a>
-                                    
-                                    </td>
-                                    
-                                    </tr>
-                                    
-                                    </table>
-                                    
-                                    <table><tr bgcolor="#E7F0FE"><td align="right" id="selOperTd">
-                                    <input type="button" name="selbtn" value="下一步>>" onclick="doNext()"/>
-                                    </td></tr></table>
-                                    
-                                    
-                                    
-                                    </form>
-                                    <!-- display pagination page -->
-                                    <table>
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    <tr align="right">
-                                    <td height="25" colspan="4" align="right" valign="bottom">
-                                    <form name="theForm" id="theForm" method="get" action="?">
-                                    <input type="hidden" id="id_orderField" name="orderField" value="">
-                                    <input type="hidden" id="id_orderOper" name="orderOper" value="">
-                                    <input type="hidden" name="totalRec" value="9223372036854775807">
-                                    <input type="hidden" name="nextStep" value="">
-                                    <input type="hidden" id="hid_E_MODIFIED_TIME2" name="E_MODIFIED_TIME2" value="2019-08-22" />
-                                    <input type="hidden" id="hid_d_f" name="d_f" value="" />
-                                    <input type="hidden" id="hid_ACCOUNT_ID" name="ACCOUNT_ID" value="" />
-                                    <input type="hidden" id="hid_gotoUrl" name="gotoUrl" value="customer.do?method=operateView" />
-                                    <input type="hidden" id="hid_isOpen" name="isOpen" value="1" />
-                                    <input type="hidden" id="hid_ADDRESS" name="ADDRESS" value="" />
-                                    <input type="hidden" id="hid_o_f" name="o_f" value="" />
-                                    <input type="hidden" id="hid_FULLNAME1" name="FULLNAME1" value="system" />
-                                    <input type="hidden" id="hid_FULLNAME2" name="FULLNAME2" value="" />
-                                    <input type="hidden" id="hid_CITYZONE" name="CITYZONE" value="" />
-                                    <input type="hidden" id="hid_s_f" name="s_f" value="" />
-                                    <input type="hidden" id="hid_HAS_MIC_ID" name="HAS_MIC_ID" value="" />
-                                    <input type="hidden" id="hid_E_KEEP_DAYS" name="E_KEEP_DAYS" value="" />
-                                    <input type="hidden" id="hid_AREA_CITY" name="AREA_CITY" value="" />
-                                    <input type="hidden" id="hid_searchOper" name="searchOper" value="=" />
-                                    <input type="hidden" id="hid_searchOper" name="searchOper" value="=" />
-                                    <input type="hidden" id="hid_searchOper" name="searchOper" value="like" />
-                                    <input type="hidden" id="hid_searchOper" name="searchOper" value="=" />
-                                    <input type="hidden" id="hid_searchOper" name="searchOper" value="like" />
-                                    <input type="hidden" id="hid_searchOper" name="searchOper" value="like" />
-                                    <input type="hidden" id="hid_searchOper" name="searchOper" value="like" />
-                                    <input type="hidden" id="hid_searchOper" name="searchOper" value=">=" />
-                                    <input type="hidden" id="hid_searchOper" name="searchOper" value="<=" />
-                                    <input type="hidden" id="hid_searchOper" name="searchOper" value="like" />
-                                    <input type="hidden" id="hid_searchOper" name="searchOper" value="like" />
-                                    <input type="hidden" id="hid_searchOper" name="searchOper" value="like" />
-                                    <input type="hidden" id="hid_searchOper" name="searchOper" value="like" />
-                                    <input type="hidden" id="hid_searchOper" name="searchOper" value=">=" />
-                                    <input type="hidden" id="hid_searchOper" name="searchOper" value="<=" />
-                                    <input type="hidden" id="hid_searchOper" name="searchOper" value="=" />
-                                    <input type="hidden" id="hid_searchOper" name="searchOper" value="=" />
-                                    <input type="hidden" id="hid_funcID" name="funcID" value="1000931" />
-                                    <input type="hidden" id="hid_TELEPHONE" name="TELEPHONE" value="" />
-                                    <input type="hidden" id="hid_S_KEEP_DAYS" name="S_KEEP_DAYS" value="" />
-                                    <input type="hidden" id="hid_CITY" name="CITY" value="" />
-                                    <input type="hidden" id="hid_HOMEPAGE" name="HOMEPAGE" value="" />
-                                    <input type="hidden" id="hid_uplike" name="uplike" value="0" />
-                                    <input type="hidden" id="hid_ACCOUNT_LEVEL" name="ACCOUNT_LEVEL" value="" />
-                                    <input type="hidden" id="hid_S_MODIFIED_TIME2" name="S_MODIFIED_TIME2" value="2019-08-22" />
-                                    <input type="hidden" id="hid_ACCOUNT_NAME" name="ACCOUNT_NAME" value="" />
-                                    <input type="hidden" id="hid_TEMP_MIC_ID" name="TEMP_MIC_ID" value="" />
-                                    
-                                    <a disabled>首页</a>
-                                    <a disabled>上一页</a>
-                                    
-                                    <a href="?pageLimit=20&totalRec=9223372036854775807&currPage=2&orderField=&orderOper=&nextStep=&E_MODIFIED_TIME2=2019-08-22&d_f=&ACCOUNT_ID=&gotoUrl=customer.do?method=operateView&isOpen=1&ADDRESS=&o_f=&FULLNAME1=system&FULLNAME2=&CITYZONE=&s_f=&HAS_MIC_ID=&E_KEEP_DAYS=&AREA_CITY=&searchOper==&searchOper==&searchOper=like&searchOper==&searchOper=like&searchOper=like&searchOper=like&searchOper=>=&searchOper=<=&searchOper=like&searchOper=like&searchOper=like&searchOper=like&searchOper=>=&searchOper=<=&searchOper==&searchOper==&funcID=1000931&TELEPHONE=&S_KEEP_DAYS=&CITY=&HOMEPAGE=&uplike=0&ACCOUNT_LEVEL=&S_MODIFIED_TIME2=2019-08-22&ACCOUNT_NAME=&TEMP_MIC_ID=">下一页</a>
-                                    <a href="?pageLimit=20&totalRec=9223372036854775807&currPage=461168601842738791&orderField=&orderOper=&nextStep=&E_MODIFIED_TIME2=2019-08-22&d_f=&ACCOUNT_ID=&gotoUrl=customer.do?method=operateView&isOpen=1&ADDRESS=&o_f=&FULLNAME1=system&FULLNAME2=&CITYZONE=&s_f=&HAS_MIC_ID=&E_KEEP_DAYS=&AREA_CITY=&searchOper==&searchOper==&searchOper=like&searchOper==&searchOper=like&searchOper=like&searchOper=like&searchOper=>=&searchOper=<=&searchOper=like&searchOper=like&searchOper=like&searchOper=like&searchOper=>=&searchOper=<=&searchOper==&searchOper==&funcID=1000931&TELEPHONE=&S_KEEP_DAYS=&CITY=&HOMEPAGE=&uplike=0&ACCOUNT_LEVEL=&S_MODIFIED_TIME2=2019-08-22&ACCOUNT_NAME=&TEMP_MIC_ID=">尾页</a>
-                                    
-                                    
-                                    转到第<input type="text" id="currPage" name="currPage" value="1" size="3" maxlength="3" onkeypress="doPageKeyPress(event)">页&nbsp;共461168601842738791页；每页显示条数：<input type="text" name="pageLimit" value="20" size="3" maxlength="3" onkeypress="doPageKeyPress(event)">
-                                    </form>
-                                    </td>
-                                    </tr>
-                                    
-                                    <script>
-                                    function doPageKeyPress(e) {
-                                    e = e? e : window.event;
-                                    var code = e.keyCode;
-                                    if(code >=0 && code !=13) {
-                                    return ;
-                                    }
-                                    if(code == 13 || code == 0) {
-                                    var currPage = document.getElementById("currPage").value;
-                                    var total = 461168601842738791;
-                                    if( currPage > total) {
-                                    currPage = total;
-                                    }
-                                    document.getElementById("currPage").value = currPage ;
-                                    document.theForm.submit();
-                                    }
-                                    }
-                                    </script>
-                                    
-                                    </table>
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    </body>
-                                    </html>
+<form name="nextForm" action="customer.do?method=operateView" method="post" style="border:none;padding: 0px;margin: 0px;" target="_blank">
+
+<input type="hidden" name="gotoUrl" value="customer.do?method=operateView">
+
+<input type="hidden" name="isOpen" value="1">
+
+<input type="hidden" name="funcID" value="1000931">
+        
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+function deleteConfirm(url) {
+  if(confirm("你确定要删除当前信息吗？")) {
+    window.location.href = url;
+  }
+}
+
+function doNext() {
+  var checked = false;
+  var selIds = document.getElementsByName("sel_id");
+  for(var i = 0 ; i < selIds.length ; i++) {
+    if(selIds[i].checked) {
+      checked = true;
+      break;
+    }
+  }
+  if(checked)
+    document.nextForm.submit();
+  else
+    alert("请先在多选框进行选择！");
+}
+function doSelAll() {
+  var items = document.getElementsByName("sel_id");
+  for(var i = 0 ; i < items.length ;i++) {
+    items[i].checked = true;
+  }
+}
+function doUnSelAll() {
+  var items = document.getElementsByName("sel_id");
+  for(var i = 0 ; i < items.length ;i++) {
+    items[i].checked = !items[i].checked;
+  }
+}
+
+</script>
+
+<table id="list00_rectable" width="98%" border="0" align="center" cellpadding="1" cellspacing="0" bgcolor="#C4D7FF">
+<tr><td>当前页数/总页数：1/461168601842738791 总记录数：<font color="red">9223372036854775807</font></td></tr>
+</table>
+
+<table id="list00_table" width="98%" border="0" align="center" cellpadding="2" cellspacing="1" bgcolor="#C4D7FF">
+
+
+
+<tr id="id_tr_0" class="title">
+<td  id="id_td_0_0" align="center" colspan="1" rowspan="1" class=""  ><a href="javascript:doSelAll()">全选</a>/<a href="javascript:doUnSelAll()">反选</a></td>
+<td  id="id_td_0_0" align="center" colspan="1" rowspan="1" class=""  >序号</td>
+<td  id="id_td_ACCOUNT_ID" align="center" colspan="1" rowspan="1" class=""  >客户编号</td>
+<td  id="id_td_TEMP_MIC_ID" align="center" colspan="1" rowspan="1" class=""  >MIC会员ID</td>
+<td  id="id_td_ACCOUNT_NAME" align="center" colspan="1" rowspan="1" class=""  >客户名称</td>
+<td  id="id_td_ACCOUNT_LEVEL" align="center" colspan="1" rowspan="1" class=""  >客户级别</td>
+<td  id="id_td_HOMEPAGE" align="center" colspan="1" rowspan="1" class=""  >公司主页</td>
+<td  id="id_td_TELEPHONE" align="center" colspan="1" rowspan="1" class=""  >公司电话</td>
+<td  id="id_td_FULLNAME2" align="center" colspan="1" rowspan="1" class=""  >销售人员姓名</td>
+<td  id="id_td_MODIFIED_TIME2" align="center" colspan="1" rowspan="1" class=""  >最后修改时间</td>
+<td  id="id_td_FULLNAME1" align="center" colspan="1" rowspan="1" class=""  >最后修改人</td>
+<td  id="id_td_EMAIL" align="center" colspan="1" rowspan="1" class=""  >Email</td>
+<td  id="id_td_KEEP_DAYS" align="center" colspan="1" rowspan="1" class=""  >上次私有时间(天)</td>
+<td  id="id_td__oper_" align="center" colspan="1" rowspan="1" class=""  ></td>
+</tr>
+
+
+
+
+
+
+
+
+
+
+      <tr align="center" bgcolor="#FFFFFF" class="odd" id="data_tr" >
+
+        <td style="width:30px;"><input type="checkbox" index="0" value="" text="" name="sel_id" ></td>
+
+      <td>1</td>
+
+        <td class="lisTdACCOUNT_ID" title="" align="" ></td>
+
+        <td class="lisTdTEMP_MIC_ID" align="" title=""><a href="customer.do?method=details&show=member&customerId=" ></a></td>
+
+        <td class="lisTdACCOUNT_NAME" align="" title=""><a href="/customer.do?method=details&customerId=" ></a></td>
+
+        <td class="lisTdACCOUNT_LEVEL" title="" align="" ></td>
+
+        <td class="lisTdHOMEPAGE" title="" align="" ></td>
+
+        <td class="lisTdTELEPHONE" title="" align="" ></td>
+
+        <td class="lisTdFULLNAME2" title="" align="" ></td>
+
+        <td class="lisTdMODIFIED_TIME2" title="" align="" ></td>
+
+        <td class="lisTdFULLNAME1" title="" align="" ></td>
+
+        <td class="lisTdEMAIL" title="" align="" ></td>
+
+        <td class="lisTdKEEP_DAYS" title="" align="" ></td>
+
+        <td nowrap >
+        
+          <a href="/customer.do?method=details&customerId=&otherFields=%26E_MODIFIED_TIME2=2019-08-22%26d_f=%26ACCOUNT_ID=%26gotoUrl=customer.do?method=operateView%26isOpen=1%26ADDRESS=%26o_f=%26FULLNAME1=system%26FULLNAME2=%26CITYZONE=%26s_f=%26HAS_MIC_ID=%26E_KEEP_DAYS=%26AREA_CITY=%26searchOper==%26searchOper==%26searchOper=like%26searchOper==%26searchOper=like%26searchOper=like%26searchOper=like%26searchOper=>=%26searchOper=<=%26searchOper=like%26searchOper=like%26searchOper=like%26searchOper=like%26searchOper=>=%26searchOper=<=%26searchOper==%26searchOper==%26funcID=1000931%26TELEPHONE=%26S_KEEP_DAYS=%26CITY=%26HOMEPAGE=%26uplike=0%26ACCOUNT_LEVEL=%26S_MODIFIED_TIME2=2019-08-22%26ACCOUNT_NAME=%26TEMP_MIC_ID=">查看</a>
+        
+        </td>
+
+      </tr>
+
+      <tr align="center" bgcolor="#FFFFFF" class="even" id="data_tr" >
+
+        <td style="width:30px;"><input type="checkbox" index="1" value="" text="" name="sel_id" ></td>
+
+      <td>2</td>
+
+        <td class="lisTdACCOUNT_ID" title="" align="" ></td>
+
+        <td class="lisTdTEMP_MIC_ID" align="" title=""><a href="customer.do?method=details&show=member&customerId=" ></a></td>
+
+        <td class="lisTdACCOUNT_NAME" align="" title=""><a href="/customer.do?method=details&customerId=" ></a></td>
+
+        <td class="lisTdACCOUNT_LEVEL" title="" align="" ></td>
+
+        <td class="lisTdHOMEPAGE" title="" align="" ></td>
+
+        <td class="lisTdTELEPHONE" title="" align="" ></td>
+
+        <td class="lisTdFULLNAME2" title="" align="" ></td>
+
+        <td class="lisTdMODIFIED_TIME2" title="" align="" ></td>
+
+        <td class="lisTdFULLNAME1" title="" align="" ></td>
+
+        <td class="lisTdEMAIL" title="" align="" ></td>
+
+        <td class="lisTdKEEP_DAYS" title="" align="" ></td>
+
+        <td nowrap >
+        
+          <a href="/customer.do?method=details&customerId=&otherFields=%26E_MODIFIED_TIME2=2019-08-22%26d_f=%26ACCOUNT_ID=%26gotoUrl=customer.do?method=operateView%26isOpen=1%26ADDRESS=%26o_f=%26FULLNAME1=system%26FULLNAME2=%26CITYZONE=%26s_f=%26HAS_MIC_ID=%26E_KEEP_DAYS=%26AREA_CITY=%26searchOper==%26searchOper==%26searchOper=like%26searchOper==%26searchOper=like%26searchOper=like%26searchOper=like%26searchOper=>=%26searchOper=<=%26searchOper=like%26searchOper=like%26searchOper=like%26searchOper=like%26searchOper=>=%26searchOper=<=%26searchOper==%26searchOper==%26funcID=1000931%26TELEPHONE=%26S_KEEP_DAYS=%26CITY=%26HOMEPAGE=%26uplike=0%26ACCOUNT_LEVEL=%26S_MODIFIED_TIME2=2019-08-22%26ACCOUNT_NAME=%26TEMP_MIC_ID=">查看</a>
+        
+        </td>
+
+      </tr>
+
+      <tr align="center" bgcolor="#FFFFFF" class="odd" id="data_tr" >
+
+        <td style="width:30px;"><input type="checkbox" index="2" value="" text="" name="sel_id" ></td>
+
+      <td>3</td>
+
+        <td class="lisTdACCOUNT_ID" title="" align="" ></td>
+
+        <td class="lisTdTEMP_MIC_ID" align="" title=""><a href="customer.do?method=details&show=member&customerId=" ></a></td>
+
+        <td class="lisTdACCOUNT_NAME" align="" title=""><a href="/customer.do?method=details&customerId=" ></a></td>
+
+        <td class="lisTdACCOUNT_LEVEL" title="" align="" ></td>
+
+        <td class="lisTdHOMEPAGE" title="" align="" ></td>
+
+        <td class="lisTdTELEPHONE" title="" align="" ></td>
+
+        <td class="lisTdFULLNAME2" title="" align="" ></td>
+
+        <td class="lisTdMODIFIED_TIME2" title="" align="" ></td>
+
+        <td class="lisTdFULLNAME1" title="" align="" ></td>
+
+        <td class="lisTdEMAIL" title="" align="" ></td>
+
+        <td class="lisTdKEEP_DAYS" title="" align="" ></td>
+
+        <td nowrap >
+        
+          <a href="/customer.do?method=details&customerId=&otherFields=%26E_MODIFIED_TIME2=2019-08-22%26d_f=%26ACCOUNT_ID=%26gotoUrl=customer.do?method=operateView%26isOpen=1%26ADDRESS=%26o_f=%26FULLNAME1=system%26FULLNAME2=%26CITYZONE=%26s_f=%26HAS_MIC_ID=%26E_KEEP_DAYS=%26AREA_CITY=%26searchOper==%26searchOper==%26searchOper=like%26searchOper==%26searchOper=like%26searchOper=like%26searchOper=like%26searchOper=>=%26searchOper=<=%26searchOper=like%26searchOper=like%26searchOper=like%26searchOper=like%26searchOper=>=%26searchOper=<=%26searchOper==%26searchOper==%26funcID=1000931%26TELEPHONE=%26S_KEEP_DAYS=%26CITY=%26HOMEPAGE=%26uplike=0%26ACCOUNT_LEVEL=%26S_MODIFIED_TIME2=2019-08-22%26ACCOUNT_NAME=%26TEMP_MIC_ID=">查看</a>
+        
+        </td>
+
+      </tr>
+
+      <tr align="center" bgcolor="#FFFFFF" class="even" id="data_tr" >
+
+        <td style="width:30px;"><input type="checkbox" index="3" value="" text="" name="sel_id" ></td>
+
+      <td>4</td>
+
+        <td class="lisTdACCOUNT_ID" title="" align="" ></td>
+
+        <td class="lisTdTEMP_MIC_ID" align="" title=""><a href="customer.do?method=details&show=member&customerId=" ></a></td>
+
+        <td class="lisTdACCOUNT_NAME" align="" title=""><a href="/customer.do?method=details&customerId=" ></a></td>
+
+        <td class="lisTdACCOUNT_LEVEL" title="" align="" ></td>
+
+        <td class="lisTdHOMEPAGE" title="" align="" ></td>
+
+        <td class="lisTdTELEPHONE" title="" align="" ></td>
+
+        <td class="lisTdFULLNAME2" title="" align="" ></td>
+
+        <td class="lisTdMODIFIED_TIME2" title="" align="" ></td>
+
+        <td class="lisTdFULLNAME1" title="" align="" ></td>
+
+        <td class="lisTdEMAIL" title="" align="" ></td>
+
+        <td class="lisTdKEEP_DAYS" title="" align="" ></td>
+
+        <td nowrap >
+        
+          <a href="/customer.do?method=details&customerId=&otherFields=%26E_MODIFIED_TIME2=2019-08-22%26d_f=%26ACCOUNT_ID=%26gotoUrl=customer.do?method=operateView%26isOpen=1%26ADDRESS=%26o_f=%26FULLNAME1=system%26FULLNAME2=%26CITYZONE=%26s_f=%26HAS_MIC_ID=%26E_KEEP_DAYS=%26AREA_CITY=%26searchOper==%26searchOper==%26searchOper=like%26searchOper==%26searchOper=like%26searchOper=like%26searchOper=like%26searchOper=>=%26searchOper=<=%26searchOper=like%26searchOper=like%26searchOper=like%26searchOper=like%26searchOper=>=%26searchOper=<=%26searchOper==%26searchOper==%26funcID=1000931%26TELEPHONE=%26S_KEEP_DAYS=%26CITY=%26HOMEPAGE=%26uplike=0%26ACCOUNT_LEVEL=%26S_MODIFIED_TIME2=2019-08-22%26ACCOUNT_NAME=%26TEMP_MIC_ID=">查看</a>
+        
+        </td>
+
+      </tr>
+
+      <tr align="center" bgcolor="#FFFFFF" class="odd" id="data_tr" >
+
+        <td style="width:30px;"><input type="checkbox" index="4" value="" text="" name="sel_id" ></td>
+
+      <td>5</td>
+
+        <td class="lisTdACCOUNT_ID" title="" align="" ></td>
+
+        <td class="lisTdTEMP_MIC_ID" align="" title=""><a href="customer.do?method=details&show=member&customerId=" ></a></td>
+
+        <td class="lisTdACCOUNT_NAME" align="" title=""><a href="/customer.do?method=details&customerId=" ></a></td>
+
+        <td class="lisTdACCOUNT_LEVEL" title="" align="" ></td>
+
+        <td class="lisTdHOMEPAGE" title="" align="" ></td>
+
+        <td class="lisTdTELEPHONE" title="" align="" ></td>
+
+        <td class="lisTdFULLNAME2" title="" align="" ></td>
+
+        <td class="lisTdMODIFIED_TIME2" title="" align="" ></td>
+
+        <td class="lisTdFULLNAME1" title="" align="" ></td>
+
+        <td class="lisTdEMAIL" title="" align="" ></td>
+
+        <td class="lisTdKEEP_DAYS" title="" align="" ></td>
+
+        <td nowrap >
+        
+          <a href="/customer.do?method=details&customerId=&otherFields=%26E_MODIFIED_TIME2=2019-08-22%26d_f=%26ACCOUNT_ID=%26gotoUrl=customer.do?method=operateView%26isOpen=1%26ADDRESS=%26o_f=%26FULLNAME1=system%26FULLNAME2=%26CITYZONE=%26s_f=%26HAS_MIC_ID=%26E_KEEP_DAYS=%26AREA_CITY=%26searchOper==%26searchOper==%26searchOper=like%26searchOper==%26searchOper=like%26searchOper=like%26searchOper=like%26searchOper=>=%26searchOper=<=%26searchOper=like%26searchOper=like%26searchOper=like%26searchOper=like%26searchOper=>=%26searchOper=<=%26searchOper==%26searchOper==%26funcID=1000931%26TELEPHONE=%26S_KEEP_DAYS=%26CITY=%26HOMEPAGE=%26uplike=0%26ACCOUNT_LEVEL=%26S_MODIFIED_TIME2=2019-08-22%26ACCOUNT_NAME=%26TEMP_MIC_ID=">查看</a>
+        
+        </td>
+
+      </tr>
+
+      <tr align="center" bgcolor="#FFFFFF" class="even" id="data_tr" >
+
+        <td style="width:30px;"><input type="checkbox" index="5" value="22262022" text="" name="sel_id" ></td>
+
+      <td>6</td>
+
+        <td class="lisNumTd" title="22262022" align="" >22262022</td>
+
+        <td class="lisTdTEMP_MIC_ID" align="" title="741023781,741031241"><a href="customer.do?method=details&show=member&customerId=22262022" >741023781,741031241</a></td>
+
+        <td class="lisTdACCOUNT_NAME" align="" title="Synaty-CGM物流（中国）有限公司    Synaty-Cgm Logistics (China) Co., Ltd."><a href="/customer.do?method=details&customerId=22262022" >Synaty-CGM物流（中国）有限公司    S......</a></td>
+
+        <td class="lisTdACCOUNT_LEVEL" title="系统开放" align="" >系统开放</td>
+
+        <td class="lisTdHOMEPAGE" title="" align="" ></td>
+
+        <td class="lisTdTELEPHONE" title="" align="" ></td>
+
+        <td class="lisTdFULLNAME2" title="system" align="" >system</td>
+
+        <td class="lisTdMODIFIED_TIME2" title="2019-08-22" align="" >2019-08-22</td>
+
+        <td class="lisTdFULLNAME1" title="system" align="" >system</td>
+
+        <td class="lisTdEMAIL" title="jonathan.wong24@yahoo.com" align="" >jonathan.wong24@yahoo.......</td>
+
+        <td class="lisNumTd" title="3" align="" >3</td>
+
+        <td nowrap >
+        
+          <a href="/customer.do?method=details&customerId=22262022&otherFields=%26E_MODIFIED_TIME2=2019-08-22%26d_f=%26ACCOUNT_ID=%26gotoUrl=customer.do?method=operateView%26isOpen=1%26ADDRESS=%26o_f=%26FULLNAME1=system%26FULLNAME2=%26CITYZONE=%26s_f=%26HAS_MIC_ID=%26E_KEEP_DAYS=%26AREA_CITY=%26searchOper==%26searchOper==%26searchOper=like%26searchOper==%26searchOper=like%26searchOper=like%26searchOper=like%26searchOper=>=%26searchOper=<=%26searchOper=like%26searchOper=like%26searchOper=like%26searchOper=like%26searchOper=>=%26searchOper=<=%26searchOper==%26searchOper==%26funcID=1000931%26TELEPHONE=%26S_KEEP_DAYS=%26CITY=%26HOMEPAGE=%26uplike=0%26ACCOUNT_LEVEL=%26S_MODIFIED_TIME2=2019-08-22%26ACCOUNT_NAME=%26TEMP_MIC_ID=">查看</a>
+        
+        </td>
+
+      </tr>
+
+      <tr align="center" bgcolor="#FFFFFF" class="odd" id="data_tr" >
+
+        <td style="width:30px;"><input type="checkbox" index="6" value="22264996" text="" name="sel_id" ></td>
+
+      <td>7</td>
+
+        <td class="lisNumTd" title="22264996" align="" >22264996</td>
+
+        <td class="lisTdTEMP_MIC_ID" align="" title="677187465"><a href="customer.do?method=details&show=member&customerId=22264996" >677187465</a></td>
+
+        <td class="lisTdACCOUNT_NAME" align="" title="个人用户(王俊明)    Individual User (Kevin)"><a href="/customer.do?method=details&customerId=22264996" >个人用户(王俊明)    Individual U......</a></td>
+
+        <td class="lisTdACCOUNT_LEVEL" title="系统开放" align="" >系统开放</td>
+
+        <td class="lisTdHOMEPAGE" title="" align="" ></td>
+
+        <td class="lisTdTELEPHONE" title="" align="" ></td>
+
+        <td class="lisTdFULLNAME2" title="system" align="" >system</td>
+
+        <td class="lisTdMODIFIED_TIME2" title="2019-08-22" align="" >2019-08-22</td>
+
+        <td class="lisTdFULLNAME1" title="system" align="" >system</td>
+
+        <td class="lisTdEMAIL" title="52318765@qq.com" align="" >52318765@qq.com</td>
+
+        <td class="lisNumTd" title="2" align="" >2</td>
+
+        <td nowrap >
+        
+          <a href="/customer.do?method=details&customerId=22264996&otherFields=%26E_MODIFIED_TIME2=2019-08-22%26d_f=%26ACCOUNT_ID=%26gotoUrl=customer.do?method=operateView%26isOpen=1%26ADDRESS=%26o_f=%26FULLNAME1=system%26FULLNAME2=%26CITYZONE=%26s_f=%26HAS_MIC_ID=%26E_KEEP_DAYS=%26AREA_CITY=%26searchOper==%26searchOper==%26searchOper=like%26searchOper==%26searchOper=like%26searchOper=like%26searchOper=like%26searchOper=>=%26searchOper=<=%26searchOper=like%26searchOper=like%26searchOper=like%26searchOper=like%26searchOper=>=%26searchOper=<=%26searchOper==%26searchOper==%26funcID=1000931%26TELEPHONE=%26S_KEEP_DAYS=%26CITY=%26HOMEPAGE=%26uplike=0%26ACCOUNT_LEVEL=%26S_MODIFIED_TIME2=2019-08-22%26ACCOUNT_NAME=%26TEMP_MIC_ID=">查看</a>
+        
+        </td>
+
+      </tr>
+
+</table>
+
+<table><tr bgcolor="#E7F0FE"><td align="right" id="selOperTd">
+<input type="button" name="selbtn" value="下一步>>" onclick="doNext()"/>
+</td></tr></table>
+
+
+
+</form>
+        <!-- display pagination page -->
+        <table>
+        
+
+
+
+
+
+
+
+
+
+    <tr align="right">
+        <td height="25" colspan="4" align="right" valign="bottom">
+            <form name="theForm" id="theForm" method="get" action="?">
+<input type="hidden" id="id_orderField" name="orderField" value="">
+<input type="hidden" id="id_orderOper" name="orderOper" value="">
+<input type="hidden" name="totalRec" value="9223372036854775807">
+<input type="hidden" name="nextStep" value="">
+<input type="hidden" id="hid_E_MODIFIED_TIME2" name="E_MODIFIED_TIME2" value="2019-08-22" />
+<input type="hidden" id="hid_d_f" name="d_f" value="" />
+<input type="hidden" id="hid_ACCOUNT_ID" name="ACCOUNT_ID" value="" />
+<input type="hidden" id="hid_gotoUrl" name="gotoUrl" value="customer.do?method=operateView" />
+<input type="hidden" id="hid_isOpen" name="isOpen" value="1" />
+<input type="hidden" id="hid_ADDRESS" name="ADDRESS" value="" />
+<input type="hidden" id="hid_o_f" name="o_f" value="" />
+<input type="hidden" id="hid_FULLNAME1" name="FULLNAME1" value="system" />
+<input type="hidden" id="hid_FULLNAME2" name="FULLNAME2" value="" />
+<input type="hidden" id="hid_CITYZONE" name="CITYZONE" value="" />
+<input type="hidden" id="hid_s_f" name="s_f" value="" />
+<input type="hidden" id="hid_HAS_MIC_ID" name="HAS_MIC_ID" value="" />
+<input type="hidden" id="hid_E_KEEP_DAYS" name="E_KEEP_DAYS" value="" />
+<input type="hidden" id="hid_AREA_CITY" name="AREA_CITY" value="" />
+<input type="hidden" id="hid_searchOper" name="searchOper" value="=" />
+<input type="hidden" id="hid_searchOper" name="searchOper" value="=" />
+<input type="hidden" id="hid_searchOper" name="searchOper" value="like" />
+<input type="hidden" id="hid_searchOper" name="searchOper" value="=" />
+<input type="hidden" id="hid_searchOper" name="searchOper" value="like" />
+<input type="hidden" id="hid_searchOper" name="searchOper" value="like" />
+<input type="hidden" id="hid_searchOper" name="searchOper" value="like" />
+<input type="hidden" id="hid_searchOper" name="searchOper" value=">=" />
+<input type="hidden" id="hid_searchOper" name="searchOper" value="<=" />
+<input type="hidden" id="hid_searchOper" name="searchOper" value="like" />
+<input type="hidden" id="hid_searchOper" name="searchOper" value="like" />
+<input type="hidden" id="hid_searchOper" name="searchOper" value="like" />
+<input type="hidden" id="hid_searchOper" name="searchOper" value="like" />
+<input type="hidden" id="hid_searchOper" name="searchOper" value=">=" />
+<input type="hidden" id="hid_searchOper" name="searchOper" value="<=" />
+<input type="hidden" id="hid_searchOper" name="searchOper" value="=" />
+<input type="hidden" id="hid_searchOper" name="searchOper" value="=" />
+<input type="hidden" id="hid_funcID" name="funcID" value="1000931" />
+<input type="hidden" id="hid_TELEPHONE" name="TELEPHONE" value="" />
+<input type="hidden" id="hid_S_KEEP_DAYS" name="S_KEEP_DAYS" value="" />
+<input type="hidden" id="hid_CITY" name="CITY" value="" />
+<input type="hidden" id="hid_HOMEPAGE" name="HOMEPAGE" value="" />
+<input type="hidden" id="hid_uplike" name="uplike" value="0" />
+<input type="hidden" id="hid_ACCOUNT_LEVEL" name="ACCOUNT_LEVEL" value="" />
+<input type="hidden" id="hid_S_MODIFIED_TIME2" name="S_MODIFIED_TIME2" value="2019-08-22" />
+<input type="hidden" id="hid_ACCOUNT_NAME" name="ACCOUNT_NAME" value="" />
+<input type="hidden" id="hid_TEMP_MIC_ID" name="TEMP_MIC_ID" value="" />
+
+                <a disabled>首页</a>
+                <a disabled>上一页</a>
+
+                <a href="?pageLimit=20&totalRec=9223372036854775807&currPage=2&orderField=&orderOper=&nextStep=&E_MODIFIED_TIME2=2019-08-22&d_f=&ACCOUNT_ID=&gotoUrl=customer.do?method=operateView&isOpen=1&ADDRESS=&o_f=&FULLNAME1=system&FULLNAME2=&CITYZONE=&s_f=&HAS_MIC_ID=&E_KEEP_DAYS=&AREA_CITY=&searchOper==&searchOper==&searchOper=like&searchOper==&searchOper=like&searchOper=like&searchOper=like&searchOper=>=&searchOper=<=&searchOper=like&searchOper=like&searchOper=like&searchOper=like&searchOper=>=&searchOper=<=&searchOper==&searchOper==&funcID=1000931&TELEPHONE=&S_KEEP_DAYS=&CITY=&HOMEPAGE=&uplike=0&ACCOUNT_LEVEL=&S_MODIFIED_TIME2=2019-08-22&ACCOUNT_NAME=&TEMP_MIC_ID=">下一页</a>
+                <a href="?pageLimit=20&totalRec=9223372036854775807&currPage=461168601842738791&orderField=&orderOper=&nextStep=&E_MODIFIED_TIME2=2019-08-22&d_f=&ACCOUNT_ID=&gotoUrl=customer.do?method=operateView&isOpen=1&ADDRESS=&o_f=&FULLNAME1=system&FULLNAME2=&CITYZONE=&s_f=&HAS_MIC_ID=&E_KEEP_DAYS=&AREA_CITY=&searchOper==&searchOper==&searchOper=like&searchOper==&searchOper=like&searchOper=like&searchOper=like&searchOper=>=&searchOper=<=&searchOper=like&searchOper=like&searchOper=like&searchOper=like&searchOper=>=&searchOper=<=&searchOper==&searchOper==&funcID=1000931&TELEPHONE=&S_KEEP_DAYS=&CITY=&HOMEPAGE=&uplike=0&ACCOUNT_LEVEL=&S_MODIFIED_TIME2=2019-08-22&ACCOUNT_NAME=&TEMP_MIC_ID=">尾页</a>
+
+
+                转到第<input type="text" id="currPage" name="currPage" value="1" size="3" maxlength="3" onkeypress="doPageKeyPress(event)">页&nbsp;共461168601842738791页；每页显示条数：<input type="text" name="pageLimit" value="20" size="3" maxlength="3" onkeypress="doPageKeyPress(event)">
+            </form>
+        </td>
+    </tr>
+
+<script>
+function doPageKeyPress(e) {
+    e = e? e : window.event;
+    var code = e.keyCode;
+    if(code >=0 && code !=13) {
+        return ;
+    }
+    if(code == 13 || code == 0) {
+        var currPage = document.getElementById("currPage").value;
+        var total = 461168601842738791;
+        if( currPage > total) {
+            currPage = total;
+        }
+        document.getElementById("currPage").value = currPage ;
+        document.theForm.submit();
+    }
+}
+</script>
+    
+        </table>
+        
+        
+
+
+
+
+
+
+
+
+    </body>
+</html>
