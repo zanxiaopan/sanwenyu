@@ -11,7 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface loginViewController : UIViewController
-
+@property (nonatomic, strong) NSMutableArray *formInfo;
+@property (nonatomic, copy) NSString *requestURLString;
 @end
 
 NS_ASSUME_NONNULL_END

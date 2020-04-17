@@ -35,10 +35,6 @@
     self.loginBtn.layer.masksToBounds = YES;
     self.passwordTF.secureTextEntry = YES;
     [self.loginBtn addTarget:self action:@selector(loginAction) forControlEvents:UIControlEventTouchUpInside];
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(refreshCode)];
-    self.verifyImage.userInteractionEnabled = YES;
-    [self.verifyImage addGestureRecognizer:tap];
-    [self refreshCode];
     
     self.userNameTF.text = [swyManage manage].userName;
     if (self.userNameTF.text) {
@@ -63,29 +59,30 @@
     return _session;
 }
 
-- (void)refreshCode
-{
-    NSTimeInterval interval = [[NSDate date]timeIntervalSince1970]*1000;
-    NSString *urlStr =[NSString stringWithFormat:@"https://sales.vemic.com/validateimage/%.0f.gif",interval];
-    NSString *referer = @"https://sales.vemic.com/login_error.do?aut_security_source=SAL";
-    
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr]];
-    request.HTTPMethod = @"GET";
-    [request addValue:@"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36" forHTTPHeaderField:@"User-Agent"];
-    [request addValue:@"gzip, deflate, br" forHTTPHeaderField:@"Accept-Encoding"];
-    [request addValue:@"zh-CN,zh;q=0.9" forHTTPHeaderField:@"Accept-Language"];
-    [request addValue:@"keep-alive" forHTTPHeaderField:@"Connection"];
-    [request addValue:@"image/webp,image/apng,image/*,*/*;q=0.8" forHTTPHeaderField:@"Accept"];
-    [request addValue:referer forHTTPHeaderField:@"Referer"];
-    
-    NSURLSessionTask *task = [self.session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.verifyImage setImage:[UIImage sd_animatedGIFWithData:data]];
-                });
-    }];
-    [task resume];
-
-}
+//- (void)refreshCode
+//{
+//    NSTimeInterval interval = [[NSDate date]timeIntervalSince1970]*1000;
+//    NSString *urlStr =[NSString stringWithFormat:@"https://sales.vemic.com/validateimage/%.0f.gif",interval];
+//    NSString *referer = @"https://sales.vemic.com/login_error.do?aut_security_source=SAL";
+//
+//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr]];
+//    request.HTTPMethod = @"GET";
+//    [request addValue:@"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36" forHTTPHeaderField:@"User-Agent"];
+//    [request addValue:@"gzip, deflate, br" forHTTPHeaderField:@"Accept-Encoding"];
+//    [request addValue:@"zh-CN,zh;q=0.9" forHTTPHeaderField:@"Accept-Language"];
+//    [request addValue:@"keep-alive" forHTTPHeaderField:@"Connection"];
+//    [request addValue:@"image/webp,image/apng,image/*,*/*;q=0.8" forHTTPHeaderField:@"Accept"];
+//    [request addValue:referer forHTTPHeaderField:@"Referer"];
+//
+//    NSURLSessionTask *task = [self.session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    [self.verifyImage setImage:[UIImage sd_animatedGIFWithData:data]];
+//                });
+//    }];
+//    [task resume];
+//
+//}
+//
 
 - (BOOL)localValidate
 {
@@ -97,11 +94,6 @@
     }else if (!_passwordTF.text.length){
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         hud.label.text = @"请输入用户密码";
-        [hud hideAnimated:YES afterDelay:1];
-        return NO;
-    } else if (!_verifyCodeTF.text.length) {
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        hud.label.text = @"请输入验证码";
         [hud hideAnimated:YES afterDelay:1];
         return NO;
     }else if(!_dynamicCodeTF.text.length){
@@ -120,7 +112,7 @@
         return;
     }
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://sales.vemic.com/login.do"]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:self.requestURLString]];
     [request configDefaultRequestHeader];
     NSString *refer = @"https://sales.vemic.com/login_error.do?aut_security_source=SAL";
     [request addValue:refer forHTTPHeaderField:@"Referer"];
@@ -128,61 +120,54 @@
     [request addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     [request addValue:@"max-age=0" forHTTPHeaderField:@"Cache-Control"];
     request.HTTPMethod = @"POST";
-    
-    NSString *string = [NSString stringWithFormat:@"aut_security_source=SAL&j_username=%@&j_password=%@&validateNumber=%@&dynPassword=%@",_userNameTF.text,_passwordTF.text,_verifyCodeTF.text,_dynamicCodeTF.text];
+    //account=dongwei&password=112233&mickey=223321&logincli=1&mickstatus=1
+    NSMutableString *mutableString = [NSMutableString string];
+    for (NSInteger i=0; i<_formInfo.count; i++) {
+        NSString *key = [_formInfo[i] allKeys].firstObject;
+        NSString *value = _formInfo[i][key];
+        if ([key isEqualToString:@"account"]) {
+            value = _userNameTF.text;
+        }else if ([key isEqualToString:@"password"]) {
+            value = _passwordTF.text;
+        }else if ([key isEqualToString:@"mickey"]) {
+            value = _dynamicCodeTF.text;
+        }
+        if (i == 0) {
+            [mutableString appendFormat:@"%@=%@",key,value];
+        }else {
+            [mutableString appendFormat:@"&%@=%@",key,value];
+        }
+    }
     NSMutableData *totalData = [NSMutableData data];
-    NSData *parameterData = [string dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *parameterData = [mutableString dataUsingEncoding:NSUTF8StringEncoding];
     [totalData appendData:parameterData];
     request.HTTPBody = totalData;
     
     NSURLSessionTask *task = [self.session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            
-            if ([response.URL.absoluteString isEqualToString:@"https://sales.vemic.com/workspace.do?aut_security_source=SAL"] || [response.URL.absoluteString isEqualToString:@"http://sales.vemic.com/workspace.do?aut_security_source=SAL"]) {
+            NSString *htmlStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            NSLog(@"loginResponse💗💗💗💗💗💗💗💗%@",htmlStr);
+            TFHpple *tfhpple = [[TFHpple alloc] initWithHTMLData:data];
+            TFHppleElement  *titleObj = [[tfhpple searchWithXPathQuery:@"//head/title"] firstObject];
+            TFHppleElement  *loginErrorObj = [[tfhpple searchWithXPathQuery:@"//div[@id='login_error']"] firstObject];
+            //login_error
+            if (loginErrorObj) {
+                TFHppleElement  *loginErrorMessageObj = [[loginErrorObj searchWithXPathQuery:@"//div"]firstObject];
+                NSString *errorMessage =  [loginErrorMessageObj.content stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+                errorMessage = [errorMessage stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+                errorMessage = [errorMessage stringByReplacingOccurrencesOfString:@"\t" withString:@""];
+                hud.label.text = loginErrorMessageObj ? errorMessage : @"登录失败";
+                [hud hideAnimated:YES afterDelay:1];
+                self.dynamicCodeTF.text = nil;
+            }else if (titleObj && [titleObj.content isEqualToString:@""]){
+                hud.label.text =  @"登录失败";
+                [hud hideAnimated:YES afterDelay:1];
+                self.dynamicCodeTF.text = nil;
+            }else {
                 [hud hideAnimated:YES afterDelay:0.5];
                 [self dismissViewControllerAnimated:YES completion:nil];
                 [[swyManage manage] setUserName:self->_userNameTF.text];
                 [[swyManage manage] setPassWord:self->_passwordTF.text];
-            }else if ([response.URL.absoluteString isEqualToString:@"https://sales.vemic.com/login_error.do?aut_security_source=SAL"]) {
-                NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding (kCFStringEncodingGB_18030_2000);
-                NSString *htmlStr = [[NSString alloc] initWithData:data encoding:encoding];
-                if ( [htmlStr containsString:@"showHide('echo','用户不存在或密码不正确或用户已被禁用!');"]) {
-                    hud.label.text = @"用户不存在或密码不正确或用户已被禁用!";
-                    [hud hideAnimated:YES afterDelay:1];
-                    [self refreshCode];
-                    self.userNameTF.text = nil;
-                    self.passwordTF.text = nil;
-                    self.verifyCodeTF.text = nil;
-                    self.dynamicCodeTF.text = nil;
-                }else if ( [htmlStr containsString:@"showHide('echo','验证码输入不正确!');"]){
-                    hud.label.text = @"验证码输入不正确!";
-                    [hud hideAnimated:YES afterDelay:1];
-                    [self refreshCode];
-                    self.verifyCodeTF.text = nil;
-                    self.dynamicCodeTF.text = nil;
-                }else if ( [htmlStr containsString:@"showHide('echo','动态密码不正确');"]){
-                    hud.label.text = @"动态密码不正确";
-                    [hud hideAnimated:YES afterDelay:1];
-                    [self refreshCode];
-                    self.verifyCodeTF.text = nil;
-                    self.dynamicCodeTF.text = nil;
-                }else{
-                    hud.label.text = @"登录失败";
-                    [hud hideAnimated:YES afterDelay:1];
-                    [self refreshCode];
-                    self.userNameTF.text = nil;
-                    self.passwordTF.text = nil;
-                    self.verifyCodeTF.text = nil;
-                    self.dynamicCodeTF.text = nil;
-                }
-            }else{
-                hud.label.text = @"登录失败";
-                [hud hideAnimated:YES afterDelay:1];
-                [self refreshCode];
-                self.userNameTF.text = nil;
-                self.passwordTF.text = nil;
-                self.verifyCodeTF.text = nil;
-                self.dynamicCodeTF.text = nil;
             }
         });
     }];

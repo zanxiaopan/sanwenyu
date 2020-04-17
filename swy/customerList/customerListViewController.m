@@ -29,6 +29,7 @@
 @property (nonatomic, strong) NSString          *customerId;
 @property (nonatomic, strong) NSMutableDictionary      *customDict;//customerId:customName
 @property (nonatomic, strong) NSString          *formToken;
+@property (nonatomic, strong) NSString          *successUrlString;
 @property (nonatomic, strong) NSURLSession      *session;
 @property (nonatomic, strong) MJRefreshStateHeader     *refreshHeader;
 @property (nonatomic, strong) UIActivityIndicatorView *indicator;
@@ -227,7 +228,6 @@
     [self.indicator startAnimating];
     if (!isDevlopping) {
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://sales.vemic.com/customer.do?method=listRobAccount"]];
-        [request addValue:@"https://sales.vemic.com/workspace.do?aut_security_source=SAL" forHTTPHeaderField:@"Referer"];
         [request configDefaultRequestHeader];
         NSURLSessionTask *task = [self.session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
             
@@ -237,8 +237,8 @@
                 NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding (kCFStringEncodingGB_18030_2000);
                 NSString *htmlStr = [[NSString alloc] initWithData:data encoding:encoding];
                 NSLog(@"method=listRobAccount💗💗💗💗💗💗💗💗%@",htmlStr);
-                if (response && ![response.URL.absoluteString isEqualToString:@"https://sales.vemic.com/login_error.do"]) {
-                    TFHpple *tfhpple = [[TFHpple alloc] initWithHTMLData:data];
+                TFHpple *tfhpple = [[TFHpple alloc] initWithHTMLData:data];
+                if (![self presentLogin:tfhpple url:response.URL.absoluteString]) {
                     NSArray *array = [tfhpple searchWithXPathQuery:@"//tr[@class='odd']"];
                     if (array.count) {
                         self.dataSource = array;
@@ -319,7 +319,8 @@
                 NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding (kCFStringEncodingGB_18030_2000);
                 NSString *htmlStr = [[NSString alloc] initWithData:data encoding:encoding];
                 NSLog(@"method=showRobAcc💗💗💗💗💗💗💗💗%@",htmlStr);
-                if (!error && response && ![response.URL.absoluteString isEqualToString:@"https://sales.vemic.com/login_error.do"]) {
+                TFHpple *tfhpple = [[TFHpple alloc] initWithHTMLData:data];
+                if (![self presentLogin:tfhpple url:response.URL.absoluteString]) {
                     NSDictionary *dic = [self dictionaryWith:response.URL.absoluteString];
                     if (dic[@"customerId"]) {
                         self.token = dic[@"token"];
@@ -365,7 +366,8 @@
                 NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding (kCFStringEncodingGB_18030_2000);
                 NSString *htmlStr = [[NSString alloc] initWithData:data encoding:encoding];
                 NSLog(@"method=accountDetail💗💗💗💗💗💗💗💗%@",htmlStr);
-                if (!error && response && [response.URL.absoluteString isEqualToString:curURLStr]) {
+                TFHpple *tfhpple = [[TFHpple alloc] initWithHTMLData:data];
+                if (![self presentLogin:tfhpple url:response.URL.absoluteString]) {
                     TFHpple *tfhpple = [[TFHpple alloc] initWithHTMLData:data];
                     NSArray<TFHppleElement *> *array = [tfhpple searchWithXPathQuery:@"//input[@name='FORM.TOKEN']"];
                     if (array.count) {
@@ -420,10 +422,14 @@
                 NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding (kCFStringEncodingGB_18030_2000);
                 NSString *htmlStr = [[NSString alloc] initWithData:data encoding:encoding];
                 NSLog(@"method=closeOne💗💗💗💗💗💗💗💗%@",htmlStr);
-                if (!error && response && [response.URL.absoluteString isEqualToString:urlString]) {
-                    if ([htmlStr containsString:@"将该客户加为自己的私有客户"]) {
-                        NSLog(@"将该客户加为自己的私有客户");
-                        //[self seeResultStepOne];
+                TFHpple *tfhpple = [[TFHpple alloc] initWithHTMLData:data];
+                if (![self presentLogin:tfhpple url:response.URL.absoluteString]) {
+                    NSDictionary *dic = [self dictionaryWith:response.URL.absoluteString];
+                    NSLog(@"closeoneResultDic💗💗💗💗💗💗💗💗%@",dic);
+                    NSLog(@"closeoneResultURL💗💗💗💗💗💗💗💗%@",response.URL.absoluteString);
+                    if ([dic objectForKey:@"showMessage"]) {
+                        self.successUrlString = [dic objectForKey:@"showMessage"];
+                        [self seeResultStepOne];
                         [self alertSuccessMessage];
                     }else if ([htmlStr containsString:@"发生错误"]) {
                         [self showAlertAndRefresh:@"发生错误"];
@@ -458,27 +464,8 @@
 //抢客户结果页面
 -(void)seeResultStepOne
 {
-    NSString *urlString = [NSString stringWithFormat:@"https://sales.vemic.com/customer.do?method=details&token=%@&process=close&customerId=%@",self.token,self.customerId];
-    NSString *referer =[NSString stringWithFormat:@"https://sales.vemic.com/customer.do?method=closeOne&customerId=%@",self.customerId];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
-    [request addValue:referer forHTTPHeaderField:@"Referer"];
-    [request configDefaultRequestHeader];
-    self.currentTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (!error && response && ![response.URL.absoluteString isEqualToString:@"https://sales.vemic.com/login_error.do"]){
-                [self seeResultStepTwo];
-            }else{
-                [self alertSuccessMessage];
-            }
-        });
-    }];
-    [self.currentTask resume];
-}
-
--(void)seeResultStepTwo
-{
     NSString *urlString = [NSString stringWithFormat:@"https://sales.vemic.com/customer.do?method=accountDetails&customerId=%@&token=%@",self.customerId,self.token];
-    NSString *referer  = [NSString stringWithFormat:@"https://sales.vemic.com/customer.do?method=details&token=%@&process=close&customerId=%@",self.token,self.customerId];
+    NSString *referer  = self.successUrlString;
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
     [request addValue:referer forHTTPHeaderField:@"Referer"];
     [request configDefaultRequestHeader];
@@ -558,17 +545,30 @@ willPerformHTTPRedirection:(NSHTTPURLResponse *)response
     
     NSDictionary *dic = urlResponse.allHeaderFields;
     NSLog(@"%@",dic[@"Location"]);
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if ([dic[@"Location"] isEqualToString:@"https://sales.vemic.com/login_error.do"]) {
-            if (!isDevlopping) {
+    completionHandler(request);
+}
+
+- (BOOL)presentLogin:(TFHpple *)tfhpple url:(NSString *)url {
+    TFHppleElement  *titleObj = [[tfhpple searchWithXPathQuery:@"//head/title"] firstObject];
+    TFHppleElement  *formObj = [[tfhpple searchWithXPathQuery:@"//form[@id='login_form']"] firstObject];
+    NSArray *inputs = [formObj searchWithXPathQuery:@"//input"];
+    NSMutableArray *mutableArr = [NSMutableArray array];
+    for (TFHppleElement  *titleObj in inputs ) {
+        NSString *value = titleObj.attributes[@"value"] ? titleObj.attributes[@"value"]:@"";
+        [mutableArr addObject:@{titleObj.attributes[@"name"]:value}];
+    }
+    if (titleObj && [titleObj.content isEqualToString:@"焦点统一认证系统"]) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (!self.presentingViewController) {
                 loginViewController *loginVC = [[loginViewController alloc] initWithNibName:@"loginViewController" bundle:nil];
+                loginVC.formInfo = mutableArr;
+                loginVC.requestURLString = url;
                 [self.navigationController presentViewController:loginVC animated:YES completion:nil];
             }
-        }
-        completionHandler(request);
-    });
-
-
+        });
+        return YES;
+    }
+    return NO;
 }
 
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task
