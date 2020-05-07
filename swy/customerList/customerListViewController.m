@@ -428,9 +428,8 @@
                     NSLog(@"closeoneResultDic💗💗💗💗💗💗💗💗%@",dic);
                     NSLog(@"closeoneResultURL💗💗💗💗💗💗💗💗%@",response.URL.absoluteString);
                     if ([dic objectForKey:@"showMessage"]) {
-                        self.successUrlString = [dic objectForKey:@"showMessage"];
+                        self.successUrlString = response.URL.absoluteString;
                         [self seeResultStepOne];
-                        [self alertSuccessMessage];
                     }else if ([htmlStr containsString:@"发生错误"]) {
                         [self showAlertAndRefresh:@"发生错误"];
                     }else if ([htmlStr containsString:@"客户数量已经达到了分公司负责区域限制,不能继续添加客户"]) {
@@ -474,6 +473,7 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self alertSuccessMessage];
             });
+
         }
     }];
     [self.currentTask resume];

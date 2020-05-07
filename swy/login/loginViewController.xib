@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -47,7 +47,7 @@
                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PYn-wJ-Vpo">
-                    <rect key="frame" x="60" y="327.5" width="304" height="40"/>
+                    <rect key="frame" x="60" y="492" width="304" height="40"/>
                     <color key="backgroundColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="Atd-so-bzN"/>
@@ -111,7 +111,7 @@
                 <constraint firstItem="PYn-wJ-Vpo" firstAttribute="trailing" secondItem="VBU-yR-qcS" secondAttribute="trailing" id="k6v-lA-bZt"/>
                 <constraint firstItem="Jzk-bU-npz" firstAttribute="width" secondItem="wHH-R8-lRY" secondAttribute="width" id="pgz-lE-TZu"/>
                 <constraint firstItem="VBU-yR-qcS" firstAttribute="top" secondItem="Uje-ek-Buf" secondAttribute="bottom" constant="35.5" id="qTW-dd-x6o"/>
-                <constraint firstItem="PYn-wJ-Vpo" firstAttribute="top" secondItem="SnF-2k-iF8" secondAttribute="bottom" constant="-134.5" id="qkB-fd-rhD"/>
+                <constraint firstItem="PYn-wJ-Vpo" firstAttribute="top" secondItem="SnF-2k-iF8" secondAttribute="bottom" constant="30" id="qkB-fd-rhD"/>
                 <constraint firstItem="VBU-yR-qcS" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="60" id="t1h-aQ-BHx"/>
                 <constraint firstItem="Uje-ek-Buf" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="50" id="xfo-rl-moh"/>
                 <constraint firstItem="Jzk-bU-npz" firstAttribute="top" secondItem="wHH-R8-lRY" secondAttribute="bottom" constant="25" id="zpG-xq-S3V"/>
