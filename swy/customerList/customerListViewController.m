@@ -39,6 +39,7 @@
 @property (nonatomic, strong) UIButton *floatBtn;
 @property (nonatomic, strong) UILabel  *floatSumLabel;
 @property (nonatomic, assign) NSInteger  sum;
+@property (nonatomic, strong) UILabel  *resultLabel;
 
 @end
 
@@ -59,6 +60,7 @@
     self.imageView.userInteractionEnabled = NO;
     [[UIApplication sharedApplication].keyWindow addSubview:self.floatBtn];
     [self.view addSubview:self.floatSumLabel];
+    [[UIApplication sharedApplication].keyWindow addSubview:self.resultLabel];
     [[swyManage manage] addObserver:self forKeyPath:@"settedCustomAutoClickSwitch" options:NSKeyValueObservingOptionNew context:nil];
 }
 
@@ -179,6 +181,18 @@
         _floatSumLabel.frame = CGRectMake([UIScreen mainScreen].bounds.size.width-130,[UIScreen mainScreen].bounds.size.height-120,130, 50);
     }
     return _floatSumLabel;
+}
+
+- (UILabel *)resultLabel {
+    if (!_resultLabel) {
+        _resultLabel = [[UILabel alloc] init];
+        _resultLabel.alpha = 0.75;
+        _resultLabel.font = [UIFont systemFontOfSize:15];
+        _resultLabel.text = @"";
+        _resultLabel.textColor = [UIColor orangeColor];
+        _resultLabel.frame = CGRectMake(50,20,250, 50);
+    }
+    return _resultLabel;
 }
 
 - (UITableView *)tableView
@@ -524,9 +538,9 @@
 
 - (void)showAlertAndRefresh:(NSString *)text
 {
-    [self showAlert:text confirm:^{
-       [self restartRefreshTimer];
-    }];
+    self.resultLabel.text = text;
+    [self restartRefreshTimer];
+
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
