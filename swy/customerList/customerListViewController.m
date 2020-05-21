@@ -341,9 +341,7 @@
                         self.customerId = dic[@"customerId"];
                          [self accountDetail];
                     }else{
-                        [self showAlert:@"未获取到token或者customerId" confirm:^{
-                            [self restartRefreshTimer];
-                        }];
+                        [self showAlertAndRefresh:@"未获取到token或者customerId"];
                         return;
                     }
                 }else{
@@ -362,9 +360,7 @@
 {
     if (!isDevlopping) {
         if (!self.customerId.length || !self.token.length) {
-            [self showAlert:@"未获取到token或者customerId" confirm:^{
-                [self restartRefreshTimer];
-            }];
+            [self showAlertAndRefresh:@"未获取到token或者customerId"];
             return;
         }
     }
@@ -388,9 +384,7 @@
                         self.formToken = [array[0].attributes objectForKey:@"value"];
                         [self clickNoOpen];
                     }else{
-                        [self showAlert:@"未取到FORM.TOKEN" confirm:^{
-                            [self restartRefreshTimer];
-                        }];
+                        [self showAlertAndRefresh:@"未取到FORM.TOKEN"];
                     }
                 }else{
                    NSLog(@"未登录");
@@ -524,16 +518,16 @@
     return dict;
 }
 
-- (void)showAlert:(NSString *)text confirm:(void(^)(void))block
-{
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:text message:nil preferredStyle:UIAlertControllerStyleAlert];
-    [self.navigationController presentViewController:alert animated:YES completion:nil];
-    [alert addAction:[UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        if (block) {
-            block();
-        }
-    }]];
-}
+//- (void)showAlert:(NSString *)text confirm:(void(^)(void))block
+//{
+//    UIAlertController *alert = [UIAlertController alertControllerWithTitle:text message:nil preferredStyle:UIAlertControllerStyleAlert];
+//    [self.navigationController presentViewController:alert animated:YES completion:nil];
+//    [alert addAction:[UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//        if (block) {
+//            block();
+//        }
+//    }]];
+//}
 
 
 - (void)showAlertAndRefresh:(NSString *)text
