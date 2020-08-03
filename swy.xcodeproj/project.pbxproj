@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3340385A24D7D82600805733 /* accountDetail.html in Resources */ = {isa = PBXBuildFile; fileRef = 3340385924D7D82600805733 /* accountDetail.html */; };
 		334F9B902282D409000652CD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 334F9B8F2282D409000652CD /* AppDelegate.m */; };
 		334F9B982282D40B000652CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 334F9B972282D40B000652CD /* Assets.xcassets */; };
 		334F9B9E2282D40B000652CD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 334F9B9D2282D40B000652CD /* main.m */; };
@@ -66,6 +67,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3340385924D7D82600805733 /* accountDetail.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = accountDetail.html; sourceTree = "<group>"; };
 		334F9B8B2282D409000652CD /* swy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = swy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		334F9B8E2282D409000652CD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		334F9B8F2282D409000652CD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -321,6 +323,7 @@
 		33ED6D4422B7297D00DE3003 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				3340385924D7D82600805733 /* accountDetail.html */,
 				33A3F962230F7C03001A58EB /* newResult.html */,
 				334F9B972282D40B000652CD /* Assets.xcassets */,
 				33ED6DE422BA462800DE3003 /* IMG_61332.JPG */,
@@ -454,6 +457,7 @@
 				33A3F961230ECCC8001A58EB /* newDetail.html in Resources */,
 				33ED6DE922BA547500DE3003 /* launchView.xib in Resources */,
 				33ED6DE322BA356D00DE3003 /* heightSetCell.xib in Resources */,
+				3340385A24D7D82600805733 /* accountDetail.html in Resources */,
 				87E76EA622AE9FAA005E4EFE /* customerListViewController.xib in Resources */,
 				33A3F963230F7C03001A58EB /* newResult.html in Resources */,
 				334F9B982282D40B000652CD /* Assets.xcassets in Resources */,

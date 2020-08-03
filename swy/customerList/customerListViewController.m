@@ -187,10 +187,11 @@
     if (!_resultLabel) {
         _resultLabel = [[UILabel alloc] init];
         _resultLabel.alpha = 0.75;
-        _resultLabel.font = [UIFont systemFontOfSize:15];
+        _resultLabel.font = [UIFont systemFontOfSize:12];
         _resultLabel.text = @"";
         _resultLabel.textColor = [UIColor orangeColor];
-        _resultLabel.frame = CGRectMake(50,20,250, 50);
+        _resultLabel.frame = CGRectMake(50,20,ScreenWidth-100, 50);
+        _resultLabel.numberOfLines = 0;
     }
     return _resultLabel;
 }
@@ -479,7 +480,46 @@
     self.currentTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if (!error) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self alertSuccessMessage];
+                if (!isDevlopping) {
+                    TFHpple *tfhpple = [[TFHpple alloc] initWithHTMLData:data];
+                    NSString *source = @"";
+                    NSArray<TFHppleElement *> *trArray = [tfhpple searchWithXPathQuery:@"//tr"];
+                    for (TFHppleElement *tr in trArray) {
+                        NSArray<TFHppleElement *> *thArray = [tr searchWithXPathQuery:@"//th"];
+                        for (TFHppleElement *th in thArray) {
+                            if ([th.content containsString:@"客户来源"]) {
+                                NSArray<TFHppleElement *> *tdArray = [tr searchWithXPathQuery:@"//td"];
+                                source = [tdArray objectAtIndex:1].content;
+                                source =  [source stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+                                source = [source stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                                NSLog(@"%@",source);
+                                break;
+                            }
+                        }
+                    }
+                    [self alertSuccessMessage:source];
+                }else {
+                    NSURL *url = [[NSBundle mainBundle] URLForResource:@"accountDetail.html" withExtension:nil];
+                    NSData *data2 = [[NSData alloc] initWithContentsOfURL:url];
+                    TFHpple *tfhpple = [[TFHpple alloc] initWithHTMLData:data2];
+                    NSString *source = @"";
+                    NSArray<TFHppleElement *> *trArray = [tfhpple searchWithXPathQuery:@"//tr"];
+                    for (TFHppleElement *tr in trArray) {
+                        NSArray<TFHppleElement *> *thArray = [tr searchWithXPathQuery:@"//th"];
+                        for (TFHppleElement *th in thArray) {
+                            if ([th.content containsString:@"客户来源"]) {
+                                NSArray<TFHppleElement *> *tdArray = [tr searchWithXPathQuery:@"//td"];
+                                source = [tdArray objectAtIndex:1].content;
+                                source =  [source stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+                                source = [source stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                                NSLog(@"%@",source);
+                                break;
+                            }
+                        }
+                    }
+                    [self alertSuccessMessage:source];
+                }
+                
             });
 
         }
@@ -487,7 +527,7 @@
     [self.currentTask resume];
 }
 
-- (void)alertSuccessMessage {
+- (void)alertSuccessMessage:(NSString *)source {
     if (self.customerId && [self.customDict objectForKey:self.customerId]) {
         _hud.label.text = @"盯到啦";
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -497,7 +537,7 @@
     }else {
         self.sum = self.sum+1;
         self.floatSumLabel.text = [NSString stringWithFormat:@"今日抢客户总数:%ld",_sum];
-        [self showAlertAndRefresh:@"将该客户加为自己的私有客户"];
+        [self showAlertAndRefresh:[NSString stringWithFormat:@"将该客户加为自己的私有客户\n 客户来源:%@",source]];
     }
     
 }
