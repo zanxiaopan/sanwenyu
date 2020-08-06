@@ -483,41 +483,15 @@
                 if (!isDevlopping) {
                     TFHpple *tfhpple = [[TFHpple alloc] initWithHTMLData:data];
                     NSString *source = @"";
-                    NSArray<TFHppleElement *> *trArray = [tfhpple searchWithXPathQuery:@"//tr"];
-                    for (TFHppleElement *tr in trArray) {
-                        NSArray<TFHppleElement *> *thArray = [tr searchWithXPathQuery:@"//th"];
-                        for (TFHppleElement *th in thArray) {
-                            if ([th.content containsString:@"客户来源"]) {
-                                NSArray<TFHppleElement *> *tdArray = [tr searchWithXPathQuery:@"//td"];
-                                source = [tdArray objectAtIndex:1].content;
-                                source =  [source stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-                                source = [source stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-                                NSLog(@"%@",source);
-                                break;
-                            }
-                        }
-                    }
+                    NSArray<TFHppleElement *> *textareaArray = [tfhpple searchWithXPathQuery:@"//textarea[@id='description']"];
+                    [self alertSuccessMessage:textareaArray[0].content];
                     [self alertSuccessMessage:source];
                 }else {
                     NSURL *url = [[NSBundle mainBundle] URLForResource:@"accountDetail.html" withExtension:nil];
                     NSData *data2 = [[NSData alloc] initWithContentsOfURL:url];
                     TFHpple *tfhpple = [[TFHpple alloc] initWithHTMLData:data2];
-                    NSString *source = @"";
-                    NSArray<TFHppleElement *> *trArray = [tfhpple searchWithXPathQuery:@"//tr"];
-                    for (TFHppleElement *tr in trArray) {
-                        NSArray<TFHppleElement *> *thArray = [tr searchWithXPathQuery:@"//th"];
-                        for (TFHppleElement *th in thArray) {
-                            if ([th.content containsString:@"客户来源"]) {
-                                NSArray<TFHppleElement *> *tdArray = [tr searchWithXPathQuery:@"//td"];
-                                source = [tdArray objectAtIndex:1].content;
-                                source =  [source stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-                                source = [source stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-                                NSLog(@"%@",source);
-                                break;
-                            }
-                        }
-                    }
-                    [self alertSuccessMessage:source];
+                    NSArray<TFHppleElement *> *textareaArray = [tfhpple searchWithXPathQuery:@"//textarea[@id='description']"];
+                    [self alertSuccessMessage:textareaArray[0].content];
                 }
                 
             });
